@@ -30,9 +30,8 @@
 ### Requirements
 For building and running the application you need:
 
-- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
-- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
-- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
+- [Node.js 20.9.0](https://nodejs.org/ca/blog/release/v20.9.0/)
+- [Npm 10.1.0](https://www.npmjs.com/package/npm/v/10.1.0)
 
 ### Installation
 ``` bash
@@ -43,14 +42,18 @@ $ cd Deep_Plant1_Final
 #### Frontend
 ```
 $ cd web
-$ nvm use v.14.19.3
-$ npm install 
-$ npm run dev
 ```
 
----
 
-## Stacks 🐈
+---
+### EC2 인스턴스 접속 후 배포
+```
+$ ssh -i DeeplantWebkey.pem ubuntu@43.202.4.18
+$ cd DP_Admin/frontend
+$ npm run build
+```
+
+## Stacks
 
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
@@ -71,38 +74,38 @@ $ npm run dev
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 
 ---
-## 화면 구성 📺
+## 화면 구성
 | 로그인 페이지  |  홈페이지   |
 | :-------------------------------------------: | :------------: |
 |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
 | 대시보드 페이지   |  데이터 예측 페이지   |  
 | <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_dashboard.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_data_predict.png?raw=true"/>     |
 | 통계 페이지    |   유저 관리 페이지   |
-| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_statistics.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_user_managerment.png?raw=true"/>     |
+| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_statistics.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_user_management.png?raw=true"/>     |
 
 ---
-## 주요 기능 📦
+## 주요 기능
 
-### ⭐️ 대시보드
+### 대시보드
 - .
 
-### ⭐️ 통계 분석
+### 통계 분석
 - 맛/관능, 원육/처리육/가열육 별 통계, 빈도수, 상관관계, 시계열 등을 날짜 별로 조회
 
-### ⭐️ 데이터 예측
+### 데이터 예측
 - .
 
-### ⭐️ 사용자 관리
+### 사용자 관리
 - 사용자 검색, 신규 회원 등록, 권한 변경, 사용자 삭제 기능
 
-### ⭐️ 프로필
+### 프로필
 - 프로필 정보 수정 및 회원 탈퇴 기능
 ---
 ## 아키텍쳐
 
 ### 디렉토리 구조
 ```bash
-├── API
+├── API : API 관련 정보 폴더
 │   ├── firebase
 │   │   ├── updateMeatImgToFirebase.js
 │   │   └── uploadNewImgToFirebase.js
