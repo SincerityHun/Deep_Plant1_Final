@@ -13,7 +13,7 @@
 
 > **프론트 서버** : [http://43.202.4.18:8080/](http://43.202.4.18:8080/) <br>
 
-## 웹개발팀 소개
+## 웹개발팀 
 
 | 김성중 (Kim Seongjung) | 박수현 (Park Suhyun) |
 | :---------------------: | :------------------: |
@@ -61,7 +61,8 @@ $ npm run build
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)             
 
 ### Config
-![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)        
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![node]("https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white")        
 
 ### Development
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
