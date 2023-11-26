@@ -7,7 +7,7 @@
 
 </div>
 
-# Voluntain Web Page v2.0
+# Deeplant1 Web Page
 > **성균관대학교 산학협력프로젝트 딥플랜트1 Web** <br/> **개발기간: 2023.03 ~ 2023.12**
 
 ## 배포 주소
@@ -18,16 +18,17 @@
 
 ## 웹개발팀 소개
 
-|      김성중       |          박수현        |                                                                                                             
-| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | 
-|   <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" />    |                      <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    | 
-|   [@parkjiye](https://github.com/parkjiye)   |    [@ChaeyeonSeo](https://github.com/ChaeyeonSeo) |
-| 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 3학년 | 
+| 김성중 (Kim Seongjung) | 박수현 (Park Suhyun) |
+| :---------------------: | :------------------: |
+| <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" alt="Kim Seongjung" /> | <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" alt="Park Suhyun" /> |
+| [GitHub: @qpwozxc](https://github.com/qpwozxc) | [GitHub: @claspsh](https://github.com/clapsh) |
+| 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 3학년 |
+
 
 ## 프로젝트 소개
 
 발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
-딥플랜트1은 어쩌고저쩌고
+딥플랜트1 웹은 육류데이터어쩌고저쩌고, 유저관리어쩌고, 통계분석,.....
 
 #### Voluntain will share the knowledge of programming.
 You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
@@ -49,8 +50,8 @@ For building and running the application you need:
 
 ### Installation
 ``` bash
-$ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
-$ cd Voluntain-2nd
+$ git clone https://github.com/SincerityHun/Deep_Plant1_Final.git
+$ cd Deep_Plant1_Final
 ```
 #### Backend
 ```
@@ -62,7 +63,7 @@ $ npm run develop
 
 #### Frontend
 ```
-$ cd voluntain-app
+$ cd web
 $ nvm use v.14.19.3
 $ npm install 
 $ npm run dev
@@ -83,7 +84,6 @@ $ npm run dev
 ### Development
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Strapi](https://img.shields.io/badge/Strapi-2F2E8B?style=for-the-badge&logo=Strapi&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
 ![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
@@ -91,7 +91,6 @@ $ npm run dev
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
-![GoogleMeet](https://img.shields.io/badge/GoogleMeet-00897B?style=for-the-badge&logo=Google%20Meet&logoColor=white)
 
 ---
 ## 화면 구성 📺
