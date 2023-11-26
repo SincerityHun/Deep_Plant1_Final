@@ -107,7 +107,7 @@ $ npm run build
 ### 디렉토리 구조
 ```bash
 ├── API : API 관련 정보 폴더
-│   ├── firebase
+│   ├── firebase : Firebase 연동과 관련된 스크립트 폴더
 │   │   ├── updateMeatImgToFirebase.js
 │   │   └── uploadNewImgToFirebase.js
 │   ├── getDetailMeatData.js
@@ -117,7 +117,7 @@ $ npm run build
 │   ├── getPredictedMeatList.js
 │   ├── getRejectedMeatList.js
 │   ├── predictPOST.js
-│   ├── update
+│   ├── update : 데이터 업데이트 관련 스크립트 폴더
 │   │   ├── updateHeatedData.js
 │   │   ├── updateProbexptData.js
 │   │   ├── updateProcessedData.js
@@ -126,30 +126,30 @@ $ npm run build
 │   └── useGetDetail.js
 ├── App.jsx
 ├── App.module.css
-├── Data
+├── Data : 데이터 파일 저장 폴더
 │   ├── pagination.json
 │   ├── processedMeat.json
 │   └── rawMeatConfirm.json
-├── Utils
+├── Utils : 유틸리티 함수 관련 폴더
 │   ├── isLogin.js
 │   └── selectBtn.js
 ├── components
-│   ├── Base
+│   ├── Base : 기본 컴포넌트 모음 폴더
 │   │   ├── ConfirmationModal.js
 │   │   ├── CustomSnackbar.js
 │   │   └── Sidebar.js
-│   ├── Charts
+│   ├── Charts // 차트 관련 컴포넌트 폴더
 │   │   ├── DataStat.js
-│   │   ├── PieChart
+│   │   ├── PieChart : 원 그래프 차트 관련 폴더
 │   │   │   ├── formatNumber.js
 │   │   │   ├── pieChart.js
 │   │   │   └── usePieChart.js
 │   │   ├── StackedBarChart.js
-│   │   └── choroplethMap
+│   │   └── choroplethMap : 지도 시각화 관련 폴더
 │   │       ├── ChoroplethMap.js
 │   │       ├── Map.js
 │   │       └── geojson_korea.json
-│   ├── DataDetailPage
+│   ├── DataDetailPage : 데이터 상세 페이지 관련 컴포넌트 폴더
 │   │   ├── DataPAView.js
 │   │   ├── DataView.js
 │   │   ├── DetailDataController.js
@@ -176,7 +176,7 @@ $ npm run build
 │   │       ├── processedTable.js
 │   │       ├── processedTablePA.js
 │   │       └── rawTable.js
-│   ├── DataListView
+│   ├── DataListView : 데이터 리스트 뷰 관련 컴포넌트 폴더
 │   │   ├── DataList.js
 │   │   ├── DataListComp.js
 │   │   ├── DataListComp.module.css
@@ -188,13 +188,13 @@ $ npm run build
 │   │   ├── excelExport.js
 │   │   └── statsExport.js
 │   ├── Dot.js
-│   ├── Log
+│   ├── Log : 로그인 관련 컴포넌트 폴더
 │   │   ├── LogInField.js
 │   │   └── LogInField.module.css
 │   ├── Routes.js
-│   ├── Search
+│   ├── Search : 검색 필터 관련 컴포넌트 폴더
 │   │   └── SearchFilterBar.js
-│   ├── Stats
+│   ├── Stats : 통계 관련 컴포넌트 폴더
 │   │   ├── Charts
 │   │   │   ├── BoxPlot
 │   │   │   │   ├── Sens_FreshMeat.js
@@ -224,7 +224,7 @@ $ npm run build
 │   │   ├── Options.js
 │   │   ├── SearchFilter.js
 │   │   └── StatsTabs.js
-│   └── User
+│   └── User : 사용자 관리 컴포넌트 폴더
 │       ├── UserContext.js
 │       ├── UserEdit.js
 │       ├── UserList.js
@@ -232,7 +232,7 @@ $ npm run build
 ├── config.js
 ├── firebase-config.js
 ├── index.js
-├── routes
+├── routes : 라우팅 컴포넌트 폴더
 │   ├── Dashboard.js
 │   ├── DataConfirm.js
 │   ├── DataEdit.js
@@ -243,7 +243,7 @@ $ npm run build
 │   ├── Profile.js
 │   ├── Stats.js
 │   └── UserManagement.js
-└── src_assets
+└── src_asset : 이미지 모음 폴더
     ├── BackGround.png
     ├── Data.png
     ├── Deeplant_big_logo.png
