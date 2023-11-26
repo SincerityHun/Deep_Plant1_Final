@@ -74,13 +74,9 @@ $ npm run dev
 ## 화면 구성 📺
 | 로그인 페이지  |  홈페이지   |
 | :-------------------------------------------: | :------------: |
-|  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
-
-
-
-
+|  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
 | 대시보드 페이지   |  데이터 예측 페이지   |  
-| <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
+| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_dashboard.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_data_predict.png?raw=true"/>     |
 
 ---
 ## 주요 기능 📦
