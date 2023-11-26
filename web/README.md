@@ -3,8 +3,6 @@
 <div align="center">
 <img width="300" alt="image" src="https://raw.githubusercontent.com/SincerityHun/Deep_Plant1_Final/main/web/images/l_deeplant.png">
 
-<!-- [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) -->
-
 </div>
 
 # Deeplant1 Web Page
@@ -27,16 +25,6 @@
 ## 프로젝트 소개
 
 딥플랜트1 웹은 육류데이터어쩌고저쩌고, 유저관리어쩌고, 통계분석,.....
-
-#### Voluntain will share the knowledge of programming.
-You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
-
-#### Voluntain's website will give you a learning-friendly environment.
-
-Our website supports the following component.
-1. Various online lectures with detailed descriptions and exercise questions.
-2. Q&A section to ask questions freely.
-3. Function to check the lecture you watched recently.
 
 ## 시작 가이드
 ### Requirements
@@ -84,10 +72,14 @@ $ npm run dev
 
 ---
 ## 화면 구성 📺
-| 로그인 페이지  |  소개 페이지   |
+| 로그인 페이지  |  홈페이지   |
 | :-------------------------------------------: | :------------: |
-|  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>|  
-| 강좌 소개 페이지   |  강의 영상 페이지   |  
+|  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="329" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
+
+
+
+
+| 대시보드 페이지   |  데이터 예측 페이지   |  
 | <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
 
 ---
