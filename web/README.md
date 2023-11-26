@@ -1,20 +1,19 @@
 # Deeplant1
 
 <div align="center">
-<img width="300" alt="image" src="../images/DeeplantWeblogo.png">
+<img width="300" alt="image" src="images/l_deeplant.png">
 
 <!-- [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) -->
 
 </div>
 
 # Deeplant1 Web Page
+
 > **성균관대학교 산학협력프로젝트 딥플랜트1 Web** <br/> **개발기간: 2023.03 ~ 2023.12**
 
 ## 배포 주소
 
-> **개발 버전** : [http://voluntain.cs.skku.edu/](http://voluntain.cs.skku.edu/) <br>
-> **프론트 서버** : [http://voluntain.cs.skku.edu:33307/](http://voluntain.cs.skku.edu:33307/)<br>
-> **백엔드 서버** : [http://voluntain.cs.skku.edu:2223/](http://voluntain.cs.skku.edu:2223/)<br>
+> **프론트 서버** : [http://43.202.4.18:8080/](http://43.202.4.18:8080/) <br>
 
 ## 웹개발팀 소개
 
@@ -52,13 +51,6 @@ For building and running the application you need:
 $ git clone https://github.com/SincerityHun/Deep_Plant1_Final.git
 $ cd Deep_Plant1_Final
 ```
-#### Backend
-```
-$ cd web
-$ nvm use v.14.19.3
-$ npm install
-$ npm run develop
-```
 
 #### Frontend
 ```
@@ -83,7 +75,6 @@ $ npm run dev
 ### Development
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
 ![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
 
@@ -93,7 +84,7 @@ $ npm run dev
 
 ---
 ## 화면 구성 📺
-| 메인 페이지  |  소개 페이지   |
+| 로그인 페이지  |  소개 페이지   |
 | :-------------------------------------------: | :------------: |
 |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036155-a57900f7-c68a-470d-923c-ff3c296ea635.png"/> |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036645-a76cf400-85bc-4fa2-af72-86d2abf61366.png"/>|  
 | 강좌 소개 페이지   |  강의 영상 페이지   |  
