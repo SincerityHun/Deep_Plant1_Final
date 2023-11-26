@@ -77,6 +77,8 @@ $ npm run dev
 |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
 | 대시보드 페이지   |  데이터 예측 페이지   |  
 | <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_dashboard.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_data_predict.png?raw=true"/>     |
+| 통계 페이지    |   유저 관리 페이지   |
+| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_statistics.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_user_managerment.png?raw=true"/>     |
 
 ---
 ## 주요 기능 📦
