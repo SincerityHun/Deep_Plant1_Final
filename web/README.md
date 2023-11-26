@@ -1,9 +1,9 @@
-# Voluntain-2nd
+# Deeplant1
 
 <div align="center">
-<img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png">
+<img width="300" alt="image" src="../images/DeeplantWeblogo.png">
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+<!-- [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) -->
 
 </div>
 
@@ -20,7 +20,7 @@
 
 | 김성중 (Kim Seongjung) | 박수현 (Park Suhyun) |
 | :---------------------: | :------------------: |
-| <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" alt="Kim Seongjung" /> | <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" alt="Park Suhyun" /> |
+| <img width="160px" src="https://avatars.githubusercontent.com/u/102349883?s=400&v=4" alt="Kim Seongjung" /> | <img width="160px" src="https://avatars.githubusercontent.com/u/73726272?v=4" alt="Park Suhyun" /> |
 | [GitHub: @qpwozxc](https://github.com/qpwozxc) | [GitHub: @claspsh](https://github.com/clapsh) |
 | 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 3학년 |
 
