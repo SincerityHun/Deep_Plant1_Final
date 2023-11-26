@@ -1,228 +1,247 @@
-<a name="readme-top"></a>
-<!-- PROJECT SHIELDS -->
-<!--
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+# Voluntain-2nd
 
-
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="https://github.com/SincerityHun/Deep_Plant1_Final">
-    <img src="../images/DeeplantWeblogo.png" alt="Logo" width="80" height="80">
-  </a>
+<img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png">
 
-<h3 align="center">Deeplant1</h3>
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-  <p align="center">
-    웹 프로젝트 설명
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
-  </p>
 </div>
 
+# Voluntain Web Page v2.0
+> **성균관대학교 산학협력프로젝트 딥플랜트1 Web** <br/> **개발기간: 2023.03 ~ 2023.12**
 
+## 배포 주소
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+> **개발 버전** : [http://voluntain.cs.skku.edu/](http://voluntain.cs.skku.edu/) <br>
+> **프론트 서버** : [http://voluntain.cs.skku.edu:33307/](http://voluntain.cs.skku.edu:33307/)<br>
+> **백엔드 서버** : [http://voluntain.cs.skku.edu:2223/](http://voluntain.cs.skku.edu:2223/)<br>
 
+## 웹개발팀 소개
 
+|      김성중       |          박수현        |                                                                                                             
+| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | 
+|   <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" />    |                      <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    | 
+|   [@parkjiye](https://github.com/parkjiye)   |    [@ChaeyeonSeo](https://github.com/ChaeyeonSeo) |
+| 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 3학년 | 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+## 프로젝트 소개
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
+딥플랜트1은 어쩌고저쩌고
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+#### Voluntain will share the knowledge of programming.
+You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### Voluntain's website will give you a learning-friendly environment.
 
+Our website supports the following component.
+1. Various online lectures with detailed descriptions and exercise questions.
+2. Q&A section to ask questions freely.
+3. Function to check the lecture you watched recently.
 
+## 시작 가이드
+### Requirements
+For building and running the application you need:
 
-### Built With
-
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
+- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
+- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
 
 ### Installation
+``` bash
+$ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
+$ cd Voluntain-2nd
+```
+#### Backend
+```
+$ cd strapi-backend
+$ nvm use v.14.19.3
+$ npm install
+$ npm run develop
+```
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+#### Frontend
+```
+$ cd voluntain-app
+$ nvm use v.14.19.3
+$ npm install 
+$ npm run dev
+```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
+## Stacks 🐈
 
+### Environment
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)             
 
-<!-- USAGE EXAMPLES -->
-## Usage
+### Config
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)        
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Development
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Strapi](https://img.shields.io/badge/Strapi-2F2E8B?style=for-the-badge&logo=Strapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Communication
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
+![GoogleMeet](https://img.shields.io/badge/GoogleMeet-00897B?style=for-the-badge&logo=Google%20Meet&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
+## 화면 구성 📺
+| 메인 페이지  |  소개 페이지   |
+| :-------------------------------------------: | :------------: |
+|  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036155-a57900f7-c68a-470d-923c-ff3c296ea635.png"/> |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036645-a76cf400-85bc-4fa2-af72-86d2abf61366.png"/>|  
+| 강좌 소개 페이지   |  강의 영상 페이지   |  
+| <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
 
+---
+## 주요 기능 📦
 
+### ⭐️ 강좌 선택 및 강의 영상 시청 기능
+- Scratch, Python 2개 강좌 및 각 강좌마다 10개 가량의 강의 영상 제공
+- 추후 지속적으로 강좌 추가 및 업로드 예정
 
-<!-- ROADMAP -->
-## Roadmap
+### ⭐️ 강의 관련 및 단체에 대한 자유로운 댓글 작성 가능
+- Disqus를 이용하여 강의 관련 질문이나 단체에 대한 질문 작성 가능
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+### ⭐️ 이어 학습하기 기능
+- Cookie 기능을 이용하여 이전에 학습했던 내용 이후부터 바로 학습 가능
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+---
+## 아키텍쳐
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### 디렉토리 구조
+```bash
+├── README.md
+├── package-lock.json
+├── package.json
+├── strapi-backend : 
+│   ├── README.md
+│   ├── api : db model, api 관련 정보 폴더
+│   │   ├── about
+│   │   ├── course
+│   │   └── lecture
+│   ├── config : 서버, 데이터베이스 관련 정보 폴더
+│   │   ├── database.js
+│   │   ├── env : 배포 환경(NODE_ENV = production) 일 때 설정 정보 폴더
+│   │   ├── functions : 프로젝트에서 실행되는 함수 관련 정보 폴더
+│   │   └── server.js
+│   ├── extensions
+│   │   └── users-permissions : 권한 정보
+│   ├── favicon.ico
+│   ├── package-lock.json
+│   ├── package.json
+│   └── public
+│       ├── robots.txt
+│       └── uploads : 강의 별 사진
+└── voluntain-app : 프론트엔드
+    ├── README.md
+    ├── components
+    │   ├── CourseCard.js
+    │   ├── Footer.js
+    │   ├── LectureCards.js
+    │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
+    │   ├── MainCard.js
+    │   ├── MainCookieCard.js
+    │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
+    │   ├── RecentLecture.js
+    │   └── useWindowSize.js
+    ├── config
+    │   └── next.config.js
+    ├── lib
+    │   ├── context.js
+    │   └── ga
+    ├── next.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── pages
+    │   ├── _app.js
+    │   ├── _document.js
+    │   ├── about.js
+    │   ├── course
+    │   ├── index.js
+    │   ├── lecture
+    │   ├── newcourse
+    │   ├── question.js
+    │   └── setting.js
+    ├── public
+    │   ├── favicon.ico
+    │   └── logo_about.png
+    └── styles
+        └── Home.module.css
 
+```
 
+<!--
+```bash
+├── README.md : 리드미 파일
+│
+├── strapi-backend/ : 백엔드
+│   ├── api/ : db model, api 관련 정보 폴더
+│   │   └── [table 이름] : database table 별로 분리되는 api 폴더 (table 구조, 해당 table 관련 api 정보 저장)
+│   │       ├── Config/routes.json : api 설정 파일 (api request에 따른 handler 지정)
+│   │       ├── Controllers/ [table 이름].js : api controller 커스텀 파일
+│   │       ├── Models : db model 관련 정보 폴더
+│   │       │   ├── [table 이름].js : (사용 X) api 커스텀 파일
+│   │       │   └── [table 이름].settings.json : model 정보 파일 (field 정보)
+│   │       └─── Services/ course.js : (사용 X) api 커스텀 파일
+│   │ 
+│   ├── config/ : 서버, 데이터베이스 관련 정보 폴더
+│   │   ├── Env/production : 배포 환경(NODE_ENV = production) 일 때 설정 정보 폴더
+│   │   │   └── database.js : production 환경에서 database 설정 파일
+│   │   ├── Functions : 프로젝트에서 실행되는 함수 관련 정보 폴더
+│   │   │   │   ├── responses : (사용 X) 커스텀한 응답 저장 폴더
+│   │   │   │   ├── bootstrap.js : 어플리케이션 시작 시 실행되는 코드 파일
+│   │   │   │   └── cron.js : (사용 X) cron task 관련 파일
+│   │   ├── database.js : 기본 개발 환경(NODE_ENV = development)에서 database 설정 파일
+│   │   └── server.js : 서버 설정 정보 파일
+│   │  
+│   ├── extensions/
+│   │   └── users-permissions/config/ : 권한 정보
+│   │ 
+│   └── public/
+│       └── uploads/ : 강의 별 사진
+│
+└── voluntain-app/ : 프론트엔드
+    ├── components/
+    │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
+    │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
+    │   ├── RecentLecture.js : 사용자가 시청 정보(쿠키)에 따라, 현재/다음 강의를 나타내는 컴포넌트 [호출: MainCookieCard]
+    │   ├── MainCookieCard.js : 상위 RecentLecture 컴포넌트에서 전달받은 props를 나타내는 레이아웃 컴포넌트.
+    │   ├── MainCard.js : 현재 등록된 course 정보를 백엔드에서 받아서 카드로 나타내는 컴포넌트 [호출: CourseCard]
+    │   └── CourseCard.js : 상위 MainCard 컴포넌트에서 전달받은 props를 나타내는 레이아웃 컴포넌트
+    │
+    ├── config/
+    │   └── next.config.js
+    │
+    ├── lib/
+    │   └── ga/
+    │   │   └── index.js
+    │   └── context.js
+    │
+    ├── pages/
+    │   ├── courses/
+    │   │   └── [id].js : 강의 페이지
+    │   ├── _app.js : Next.js에서 전체 컴포넌트 구조를 결정, 공통 컴포넌트(navbar, footer)가 선언되도록 customizing 됨.
+    │   ├── _document.js : Next.js에서 전체 html 문서의 구조를 결정, lang 속성과 meta tag가 customizing 됨.
+    │   ├── about.js : 단체 소개 페이지
+    │   ├── index.js : 메인 페이지
+    │   ├── question.js : Q&A 페이지
+    │   └── setting.js : 쿠키, 구글 애널리틱스 정보 수집 정책 페이지
+    │
+    ├── public/
+    │   ├── favicon.ico : 네비게이션바 이미지
+    │   └── logo_about.png : about 페이지 로고 이미지
+    │
+    └── styles/
+        └── Home.module.css
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+```
+-->
