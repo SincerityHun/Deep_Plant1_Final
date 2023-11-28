@@ -21,7 +21,7 @@ const RejectedDataListComp=({startDate, endDate, pageOffset})=>{
     const totalPages = Math.ceil(totalData / count);
 
     //api fetch
-    const handleRejectedMeatListLoad = async() => { // offset 파라미터로 필요?
+    const handleRejectedMeatListLoad = async() => { 
       const json = await getRejectedMeatList(offset, count, startDate, endDate);
       // 전체 데이터 수
       setTotalData(json["DB Total len"]);
@@ -31,7 +31,7 @@ const RejectedDataListComp=({startDate, endDate, pageOffset})=>{
       setIsLoaded(true);
     };
   
-      //데이터 api 로 부터 fetch
+    //데이터 api 로 부터 fetch
     useEffect(() => {
       handleRejectedMeatListLoad(currentPage - 1);
     }, [startDate, endDate, currentPage]);
@@ -60,14 +60,10 @@ const style = {
     textAlign: "center",
     width: "100%",
     paddingRight:'0px',
-    //padding: "0px 150px",
     paddingBottom: "0",
     height:'400px',
   },
   paginationBar : {
-    //display: "flex",
-    //position: "fixed",
-    //bottom: "10px",
     marginTop: "40px",
     width: "100%",
     justifyContent: "center",

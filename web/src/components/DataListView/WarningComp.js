@@ -1,25 +1,21 @@
 import { useState,  } from "react"
 import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 import {FaRegTrashAlt} from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 import { apiIP } from "../../config";
 const navy =  '#0F3659';
 
 
 export default function DelWarningModal({idArr, setIsDelClick, pageOffset, startDate, endDate}) {
     //화면 창 닫기
-    const navigate = useNavigate();
     const [open, setOpen] = useState(true);
     const handleClose = () => {
       setOpen(false); 
       setIsDelClick(false); 
     };
-    const ondelete = async(id) =>{
+    const onDelete = async(id) =>{
       const resp= await fetch(`http://${apiIP}/meat/delete?id=${id}`);
-      console.log('response', resp, id);
     }
   
-    //reload page with parameter
     const params = [
       `pageOffset=${pageOffset}`,
       `startDate=${startDate}`,
@@ -28,7 +24,7 @@ export default function DelWarningModal({idArr, setIsDelClick, pageOffset, start
 
     const handleOnDelete=async()=>{
         for (let i = 0; i < idArr.length; i++){
-          await ondelete(idArr[i]);
+          await onDelete(idArr[i]);
         }
         window.location.href = "http://" + window.location.host + window.location.pathname + '?' + params.join('&');
         handleClose();

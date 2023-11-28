@@ -3,11 +3,8 @@ import { Paper,  Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 const LabTable=({edited, labInput, lab_data,labToggleValue, handleInputChange})=>{
 
     return(
-        
         <TableContainer key='labData' component={Paper} sx={{maxWidth:'680px',maxHeight:'50vh',overflow:'auto'}}>
-        
             <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
-            
                 <TableHead>
                     <TableRow key={'labData-explanation'}>
                         <TableCell key={'labData-exp-col'}>{}</TableCell>
@@ -19,9 +16,8 @@ const LabTable=({edited, labInput, lab_data,labToggleValue, handleInputChange})=
                         }
                     </TableRow>
                 </TableHead>
-                
-                <TableBody >
-                
+   
+                <TableBody >          
                 {labField.map((f, idx)=>{
                 return(
                         
@@ -51,12 +47,9 @@ const LabTable=({edited, labInput, lab_data,labToggleValue, handleInputChange})=
                     
                     );
                 })
-                }
-               
+                }  
                 </TableBody>
-               
             </Table>
-           
         </TableContainer>
     );
 }

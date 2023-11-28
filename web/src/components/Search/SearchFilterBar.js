@@ -14,9 +14,8 @@ import dayjs from 'dayjs';
 import { TIME_ZONE } from "../../config";
 const navy =  '#0F3659';
 
-function SearchFilterBar({setStartDate, setEndDate, setIsDateFilterClicked}){
+function SearchFilterBar({setStartDate, setEndDate,}){
     
-    const [clicked, setClicked] = useState(false);
     //조회 기간 (탭으로 클릭 시)
     const [isDur, setIsDur] = useState(true);
     const [duration, setDuration] = useState('week');
@@ -34,7 +33,6 @@ function SearchFilterBar({setStartDate, setEndDate, setIsDateFilterClicked}){
         setCalenderStart(null);
         setCalenderEnd(null);
         setIsDur(true);
-        console.log('duration', duration)
     };
 
     // 탭으로 변경 시
@@ -74,7 +72,6 @@ function SearchFilterBar({setStartDate, setEndDate, setIsDateFilterClicked}){
                 setEndDate(endVal);
             }
             setDuration(null);
-           // setClicked(false);
        }else{//탭으로 클릭할시 
             if(durStart){
                 setStartDate(durStart);
@@ -197,7 +194,6 @@ const styles = {
     button:{
         borderRadius : '50px',
         padding: '0px 15px',
-        //width:'70px',
         height:'30px',
         fontWeight:'500',
         backgroundColor : navy,
@@ -205,7 +201,6 @@ const styles = {
     unClickedbutton:{
         borderRadius : '50px',
         padding: '0px 15px',
-        //width:'70px',
         height:'30px',
         fontWeight:'500',
         color : navy,
@@ -221,7 +216,6 @@ const styles = {
         justifyContent: "center", 
         alignItems: "center", 
         padding:'10px 10px',
-        //width: "string",
         gap: '10px', 
         gridTemplateColumns: 'minmax(400px, max-content) 1fr', 
         width:'fit-content', 

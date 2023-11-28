@@ -8,12 +8,9 @@ export default async function uploadNewImgToFirebase (file, folderName, fileName
    try {
      // 2. 변경할 이미지 firebase storage에 올리기
      await uploadBytes(fileRef, file);
-     
-     
      //firebase 업로드 성공 시 
      console.log("File uploaded successfully!", fileName);
    } catch (error) {
-
      console.error("Error uploading file:", error, fileName);
    }
 };

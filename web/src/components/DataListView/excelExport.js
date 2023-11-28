@@ -1,4 +1,3 @@
-import { useState } from "react";
 import * as XLSX from 'xlsx';
 import { apiIP } from "../../config";
 
@@ -6,8 +5,6 @@ const getDataListJSON = async () => {
     const json = await (
         await fetch(`http://${apiIP}/meat/get`)
     ).json();
-    //console.log("connected!! [DataList2Excel]", json);
-   // setDataListJSON([json]);
    return json;
 };
 

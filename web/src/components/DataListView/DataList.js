@@ -1,7 +1,7 @@
 import { useState,} from "react"
 import {Link as RouterLink} from "react-router-dom";
 // material-ui
-import { Box,Divider, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Button,Checkbox , IconButton} from '@mui/material';
+import { Box,Divider, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button,Checkbox , IconButton} from '@mui/material';
 import {FaRegTrashAlt} from "react-icons/fa";
 import DelWarningModal from "./WarningComp";
 import PropTypes from 'prop-types';
@@ -256,7 +256,6 @@ const style={
         fontSize:'17px',
         fontWeight:'600',
         padding:'5px',
-        //height:'35px',
     }
 }
 

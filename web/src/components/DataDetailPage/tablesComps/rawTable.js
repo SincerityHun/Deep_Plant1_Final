@@ -2,12 +2,6 @@ import { Paper,  Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import { useEffect, useState } from 'react';
 
 const RawTable=({data})=>{
-    /*console.log('why not', data);
-    const[rawdata, setRawData] = useState({});
-    useEffect(()=>{
-        setRawData(data)
-        console.log('rawdata',data);
-    },[data])*/
 
     return (
         <TableContainer key='rawmeat' component={Paper} sx={{width:'fitContent',overflow:'auto'}}>

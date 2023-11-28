@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 // third-party
 import ReactApexChart from 'react-apexcharts';
-
 import { apiIP } from '../../config';
 
 // chart options
@@ -103,7 +102,6 @@ const columnChartOptions = {
 
 const StackedBarChart = ({startDate,endDate}) => {
   const theme = useTheme();
-  const { primary, secondary } = theme.palette.text;
   const line = theme.palette.divider;
   const stackColors  = [ 
     theme.palette.success.light,
@@ -122,12 +120,10 @@ const StackedBarChart = ({startDate,endDate}) => {
 
   const [cattleData,setCattleData] = useState({});
   const [porkData, setPorkData] = useState({});
-  
-
   //부위별 데이터 저장 API 호출
   const [series, setSeries] = useState([]);
   useEffect(()=>{
-    const getData = async() => {
+    const getStackedData = async() => {
       // 부위별 개수
       const categCount = await(
         await fetch(`http://${apiIP}/meat/statistic?type=2&start=${startDate}&end=${endDate}`)
@@ -137,7 +133,7 @@ const StackedBarChart = ({startDate,endDate}) => {
       setPorkData(categCount['pork_counts_by_primal_value']);
     }
     // get api data
-    getData();    
+    getStackedData();    
   },[startDate, endDate]);
 
   // 부위별 데이터 series에 저장 
@@ -201,46 +197,3 @@ const StackedBarChart = ({startDate,endDate}) => {
 export default StackedBarChart;
 
 const categories = ["안심", "등심","목심","앞다리","갈비", "채끝","우둔", "설도", "양지",  "사태","삼겹살","뒷다리",];
-/*
-const cowCategory = [
-  { value: "tenderloin", label: "안심" },
-  { value: "sirloin", label: "등심" },
-  { value: "chuck", label: "목심" },
-  { value: "blade", label: "앞다리" },
-  { value: "rib", label: "갈비" },
-  { value: "striploin", label: "채끝" },
-  { value: "round", label: "우둔" },
-  { value: "bottom_round", label: "설도" },
-  { value: "brisket", label: "양지" },
-  { value: "shank", label: "사태" },
-]; 
-const pigCategory = [
-  { value: "tenderloin", label: "안심" },
-  { value: "loin", label: "등심" },
-  { value: "boston_shoulder", label: "목심" },
-  { value: "picinc_shoulder", label: "앞다리" },
-  { value: "spare_ribs", label: "갈비" },
-  { value: "belly", label: "삼겹살" },
-  { value: "ham", label: "뒷다리" },
-];
-*/
-  /*const pieChartColors  = [ 
-    theme.palette.success.light,
-    theme.palette.secondary.dark,
-    theme.palette.success.light,
-    theme.palette.primary.main,
-    theme.palette.warning.main,
-    theme.palette.info.main,
-    theme.palette.error.main,
-    theme.palette.info.light,
-    theme.palette.secondary.main,
-    theme.palette.warning.light,
-    theme.palette.action.main,
-    theme.palette.success.main,
-    theme.palette.mode.main,
-    theme.palette.success.dark,
-    theme.palette.secondary.light,
-    theme.palette.error.light,
-    theme.palette.warning.dark,
-    theme.palette.secondary.dark,
-  ];*/

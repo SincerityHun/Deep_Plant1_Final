@@ -15,7 +15,7 @@ const fetcher = (...args) =>
 
 export const useMeatListFetch = (offset, count, startDate, endDate) => {
     const { data, error } = useSWR(`http://${apiIP}/meat/get?offset=${offset}&count=${count}&start=${startDate}&end=${endDate}&createdAt=true`, fetcher);
-    
+    console.log(`http://${apiIP}/meat/get?offset=${offset}&count=${count}&start=${startDate}&end=${endDate}&createdAt=true`);
     return {
       data,
       isLoading: !error && !data,

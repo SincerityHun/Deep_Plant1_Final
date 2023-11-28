@@ -1,12 +1,9 @@
 import { Paper,  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from '@mui/material';
-
 // modal component
 import InputTransitionsModal from '../InputWarningComp';
 
 
 const ProcessedTable = ({edited,modal,setModal,processed_img_path, processedMinute, setProcessedMinute ,processedInput,processedToggleValue, handleInputChange, processed_data}) => {
-
-
      // 처리육 딥에이징 시간 (분) input 핸들링
     const handleMinuteInputChange = (e, index)=>{
         const value = e.target.value;

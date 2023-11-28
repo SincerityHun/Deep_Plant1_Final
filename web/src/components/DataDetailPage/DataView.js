@@ -110,7 +110,7 @@ function DataView({page, currentUser ,dataProps}){
         const value = e.target.value;
         // 처리육의 경우 사진을 먼저 업로드 해야함
         if (idx ===1 ){
-            if (imgArr[valueIdx+1] === null){
+            if (imgArr[valueIdx+1] === null || imgArr[valueIdx+1] === undefined){
                 console.log('upload image first!')
                 setModal(true);
                 return(

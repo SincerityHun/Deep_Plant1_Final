@@ -4,11 +4,10 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Spinner from "react-bootstrap/Spinner";
-
+//mui
 import Divider from '@mui/material/Divider';
 import './imgRot.css';
 import { TextField, Autocomplete} from '@mui/material';
-
 // import tables
 import RawTable from "./tablesComps/rawTable";
 import PredictedRawTable from "./tablesComps/predictedRawTable";
@@ -46,7 +45,7 @@ function DataPAView({ currentUser ,dataProps}){
    // 예측 데이터 fetch
     const [loaded, setLoaded] = useState(false);
     const [dataPA, setDataPA] = useState(null);
-    const getData = async (seqno) => {
+    const getPredictedData = async (seqno) => {
         try {
             const response = await fetch(`http://${apiIP}/predict/get?id=${id}&seqno=${seqno}`);
             if (!response.ok){
@@ -89,7 +88,6 @@ function DataPAView({ currentUser ,dataProps}){
         
         const len = processed_data_seq.length;
         //seqno for loop
-       // console.log('len',len);
         SetIsPredictedDone(false);
         for (let i = 0; i < len; i++){
             let req = {
@@ -109,7 +107,7 @@ function DataPAView({ currentUser ,dataProps}){
                 body: res,
                 });
                 console.log("predict result-",seqno,res);
-                await getData(seqno);
+                await getPredictedData(seqno);
                 
                 // 강제 새로고침
                 //window.location.reload();
@@ -122,17 +120,16 @@ function DataPAView({ currentUser ,dataProps}){
         }
     }
 
-
     useEffect(()=>{
         // 초기에 데이터 로드
-        getData(0);
+        getPredictedData(0);
     },[])
     
 
     //탭 변환에 맞는 데이터 로드 
     const handleSelect=async(key)=>{
         // 예측 데이터 로드
-        await getData(key); 
+        await getPredictedData(key); 
         // 원본 이미지 바꾸기
         key === '0'
         ?setPreviewImage(raw_img_path)
@@ -287,7 +284,6 @@ export default DataPAView;
 // 토글 버튼
 let options = ['원육',];
 
-//탭 버튼 별 데이터 항목 -> map함수 이용 json key값으로 세팅하는 걸로 바꾸기
 const style={
     singleDataWrapper:{
       height:'fit-content',
@@ -297,7 +293,6 @@ const style={
       width: "100%",
     },
     editBtnWrapper:{
-        //padding:"5px 10px",
         padding:'0px',
         margin:'0px',
         paddingRight:'10px', 
@@ -306,13 +301,13 @@ const style={
         justifyContent:'end', 
         borderBottomLeftRadius:'10px', 
         borderBottomRightRadius:'10px'
-      },
+    },
     dataFieldColumn:{
-    backgroundColor:'#9e9e9e',
-    height:'33px',
-    borderRight: '1px solid rgb(174, 168, 168)', 
-    borderBottom:'1px solid #fafafa',
-    padding:'4px 5px',
+        backgroundColor:'#9e9e9e',
+        height:'33px',
+        borderRight: '1px solid rgb(174, 168, 168)', 
+        borderBottom:'1px solid #fafafa',
+        padding:'4px 5px',
     },
     dataExpColumn:{
         backgroundColor:'#757575',
@@ -323,11 +318,11 @@ const style={
         color:'white',
     },
     dataFieldContainer:{
-      backgroundColor:'#eeeeee',
-      height:'100%',
-      borderRight: '1px solid rgb(174, 168, 168)', 
-      borderBottom:'1px solid #fafafa',
-      padding:'4px 5px',
+        backgroundColor:'#eeeeee',
+        height:'100%',
+        borderRight: '1px solid rgb(174, 168, 168)', 
+        borderBottom:'1px solid #fafafa',
+        padding:'4px 5px',
     },
     dataContainer:{
         height:'33px', 
@@ -338,9 +333,6 @@ const style={
         display:'flex'
     },
     imgContainer:{
-        //-ms-transform: rotate(90deg); /* IE 9 */
-        //-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-
     }
   
   }
@@ -357,12 +349,9 @@ const style={
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+        },
+        loadingText :{
+            fontSize:'25px',
+            textAlign: 'center',
         }
-        
-    ,loadingText :{
-        fontSize:'25px',
-        textAlign: 'center',
-    }
-
- 
   }

@@ -1,36 +1,33 @@
 import { useState, useEffect } from "react";
 import DataView from "./DataView";
 import DataPAView from "./DataPAView";
-import GetDetailMeatData from "../../API/getDetailMeatData";
 import dataProcessing from "./dataProcessing";
 import Spinner from "react-bootstrap/Spinner";
-
 import { useDetailMeatDataFetch } from "../../API/getDetailMeatDataSWR";
-//import tempData from "../../Data/processedMeat.json"
 
 //하나의 관리번호에 대한 고기 데이터를 API에서 GET해서 json 객체로 넘겨줌 
 const DataLoad = ({id, page, currentUser}) => {
-
   const [detailData, setDetailData] = useState();
   // API fetch
   const { data, isLoading, isError } = useDetailMeatDataFetch(id) ;
-  console.log('meat detail:', data);
-
+  
   //데이터 가공 
   useEffect(()=>{
-    //setDetailData(dataProcessing(tempData)); // -->나중에 삭제
     if (data !== null && data !== undefined){
       setDetailData(dataProcessing(data));//
     }
   },[data]); 
 
-  if (data === null) return null;
-  if (isLoading) return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
+  if (data === null) 
+    return null;
+  if (isLoading) 
+    return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
       <div>
         <Spinner animation="border" />
       </div>
   );
-  if (isError) return null;//경고 컴포넌트
+  if (isError) 
+    return null;//경고 컴포넌트
 
   return(
     <>

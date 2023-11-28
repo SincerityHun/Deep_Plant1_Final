@@ -13,7 +13,8 @@ const PADataListComp=({startDate, endDate})=>{
   const [totalData, setTotalData] = useState(0);
   // 페이지네이션 컴포넌트와 공유하는 변수 -> current page 변화하면 api 새로 가져옴 
   const [currentPage, setCurrentPage] = useState(1);
-  const count = 8; // 한페이지당 보여줄 개수 
+  // 한페이지당 보여줄 개수 
+  const count = 8; 
 
   //API로부터 fetch 하는 함수
   const handlePredictedMeatListLoad = async () => {
@@ -37,24 +38,6 @@ const PADataListComp=({startDate, endDate})=>{
     handlePredictedMeatListLoad(currentPage - 1 );
   }, [startDate, endDate, currentPage,]);
 
-
-  /*// 예측 get
-  const [predictItems, setPredictItems] = useState([]);
-  const [isPredicted , setIsPredicted] = useState(false);
-  const [data, setData] = useState();
-  const [datas, setDatas] = useState([]);
-  // 처음 한번만 받아오는 게 나을 듯 
-  useEffect(()=>{
-    for (let i = 0; i < meatList.length; i++){
-        GetSingleData(meatList[i].id, setData);
-        if (data){
-            setDatas([...datas, data['butcheryYmd']]);
-            console.log(meatList[i].id,data['butcheryYmd'] )
-        }
-            
-    }
-  },[meatList])
-  console.log(currentPage,datas);*/
 
   return (
     <div>
@@ -92,14 +75,10 @@ const style = {
     textAlign: "center",
     width: "100%",
     paddingRight:'0px',
-    //padding: "0px 120px",
     paddingBottom: "0",
     height:'500px'
   },
   paginationBar : {
-    //display: "flex",
-    //position: "fixed",
-    //bottom: "10px",
     marginTop: "20px",
     width: "100%",
     justifyContent: "center",

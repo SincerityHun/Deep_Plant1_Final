@@ -10,12 +10,10 @@ export default function AcceptModal({id, setConfirmVal, confirmVal}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);
     const handleClose = () => {setOpen(false); setConfirmVal(null);};
-
     // 승인 api 호출
     const changeConfirmState=()=>{
         updateDataStatus(confirmVal, id, setStateChanged);
     };
-
     // 최종 변경 완료 팝업
     const [stateChanged, setStateChanged] = useState(false);
 
@@ -80,7 +78,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 500,
     bgcolor: 'background.paper',
-    //border: '2px solid #000',
     boxShadow: 24,
     p: 4,
     borderRadius:'10px'

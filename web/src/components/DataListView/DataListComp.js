@@ -3,12 +3,9 @@ import { Box, } from "@mui/material";
 import Spinner from "react-bootstrap/Spinner";
 import DataList from "./DataList";
 import Pagination from "./Pagination";
-import getMeatList from "../../API/getMeatList";
 import { useMeatListFetch } from "../../API/getMeatListSWR";
-//import tempListData from "../../Data/pagination.json"
 
 const DataListComp=({startDate, endDate, pageOffset})=>{
-
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
   // 데이터 전체 개수
@@ -16,16 +13,6 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   // 현재 페이지 번호
   const [currentPage, setCurrentPage] = useState(1);
     
-  // current page를 쿼리 스트링으로 캐치
-  // setCurrentPage를 dataList로 전달 
-  /*useEffect(() => {
-    if (pageOffset){
-      setCurrentPage(pageOffset+1);
-      console.log('this page,', pageOffset);
-    } 
-  }, [pageOffset ]);
-  */
-
   // 한페이지당 보여줄 개수 
   const count = 6; 
 
@@ -45,11 +32,10 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   
   // 데이터 가공 
   useEffect(() => {
-    //processMeatDatas(tempListData); //나중에 삭제!!!!!!!!!!!!!!!!!111
     if (data !== null && data !== undefined) {
       processMeatDatas(data);
     }
-  }, [data]); // 나중에 변경!!!!!!!!!!!!!!11
+  }, [data]);
 
   if (data === null) return null;
   if (isLoading) return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
@@ -102,9 +88,6 @@ const style = {
     height:'400px',
   },
   paginationBar : {
-    //display: "flex",
-    //position: "fixed",
-    //bottom: "10px",
     marginTop: "40px",
     width: "100%",
     justifyContent: "center",

@@ -2,10 +2,7 @@ import { Box, IconButton,FormControl, MenuItem, Select, Divider,} from '@mui/mat
 import { FaArrowLeft, FaArrowRight} from "react-icons/fa";
 
 function Pagination({count,totalDatas,currentPage, setCurrentPage }){
-      // 페이지네이션 - 전체 페이지 개수 
-  const totalPages = Math.ceil(totalDatas / count);
-    //console.log('current page', currentPage);
-    //count - 한페이지당 보여줄 데이터 개수 
+    const totalPages = Math.ceil(totalDatas / count);
     const pageArr = Array.from({length: totalPages}, (undefined, i) => i+1); 
     // 이전 버튼 클릭
     const handlePrevClick = () => {

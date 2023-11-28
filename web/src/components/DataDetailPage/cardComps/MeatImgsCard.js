@@ -68,10 +68,7 @@ const MeatImgsCard=(
                 }
                 else{
                     // 처리육 수정 api 호출 이미지인 경우 0이상 
-                    const i = currentIdx - 1;
-                    /*const response = await updateProcessedData(
-                        processedInput[i],processed_data[i],processedMinute[i],  i, id, tempUserID, createdDate,elapsedHour);
-                    console.log(response);*/          
+                    const i = currentIdx - 1;          
                     await updateProcessedData(
                         processedInput[i],processed_data[i],processedMinute[i],  i, id, userId, createdDate,elapsedHour)
                         .then((response) => {
@@ -121,87 +118,86 @@ const MeatImgsCard=(
     
     return(
         <Card style={{ width: "27vw", margin:'0px 10px',boxShadow: 24,}}>
-                {/* 1.1. 이미지 */}
-                <Card.Body>
-                    {/**이미지 제목 */}
-                    <Card.Text style={{display:'flex', justifyContent:'space-between', alignItems:'center',}}>
-                        {// 이미지 제목 
-                            currentIdx === 0
-                            ?<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>원육이미지</div>
-                            :<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>딥에이징 {currentIdx}회차 이미지</div>
+            {/* 1.1. 이미지 */}
+            <Card.Body>
+                {/**이미지 제목 */}
+                <Card.Text style={{display:'flex', justifyContent:'space-between', alignItems:'center',}}>
+                    {// 이미지 제목 
+                        currentIdx === 0
+                        ?<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>원육이미지</div>
+                        :<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>딥에이징 {currentIdx}회차 이미지</div>
+                    }
+                    <div style={{display:'flex'}}>            
+                        {page === '수정및조회'
+                        &&<div>
+                            <input className="form-control" id="formFile" 
+                                accept="image/jpg,impge/png,image/jpeg,image/gif" 
+                                type="file" 
+                                ref={fileRef}
+                                onChange={(e) => {handleImgChange(e.target.files[0]); }} 
+                                style={{ marginRight: "20px", display:'none' }}/>
+                            {
+                            edited
+                            &&
+                            <IconButton type="button" className="btn btn-success" style={{height:"40px", width:'160px',border:`1px solid ${navy}`, borderRadius:'5px'}} 
+                                onClick={()=>{fileRef.current.click()}}>
+                                <span style={{color:`${navy}`, fontSize:'16px', marginRight:'5px'}}>
+                                    이미지 업로드
+                                </span>
+                                <FaUpload/>
+                            </IconButton>
+                            }
+                        </div>
                         }
-                        <div style={{display:'flex'}}>            
-                            {page === '수정및조회'
-                            &&<div>
-                                <input className="form-control" id="formFile" 
-                                    accept="image/jpg,impge/png,image/jpeg,image/gif" 
-                                    type="file" 
-                                    ref={fileRef}
-                                    onChange={(e) => {handleImgChange(e.target.files[0]); }} 
-                                    style={{ marginRight: "20px", display:'none' }}/>
-                                {
-                                edited
-                                &&
-                                <IconButton type="button" className="btn btn-success" style={{height:"40px", width:'160px',border:`1px solid ${navy}`, borderRadius:'5px'}} 
-                                    onClick={()=>{fileRef.current.click()}}>
-                                    <span style={{color:`${navy}`, fontSize:'16px', marginRight:'5px'}}>
-                                        이미지 업로드
-                                    </span>
-                                    <FaUpload/>
-                                </IconButton>
-                                }
+                    </div> 
+                </Card.Text>
+                {/**이미지 */}
+                <Card.Text>  
+                    <div style={{height:'350px',width:"100%",borderRadius:'10px'}}>
+                        {// 실제 이미지 
+                        imgArr[currentIdx]
+                        ? isImgChanged === true 
+                            ?/*이미지 미리 보기*/<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]}  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
+                            :<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]+"?time=" + new Date() }  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
+                        :<div style={{height:'350px',width:"400px", display:'flex', justifyContent:'center', alignItems:'center'}}>이미지가 존재하지 않습니다.</div>
+                        }
+                    </div>
+                </Card.Text>
+                {/**페이지네이션 */}
+                <Card.Text style={{display:'flex', justifyContent:'center',alignItems:'center',}}>
+                    <IconButton 
+                        variant="contained" 
+                        size="small" 
+                        sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
+                        onClick={handlePrevClick}
+                        disabled={currentIdx === 0}
+                    >
+                        <FaArrowLeft/>
+                    </IconButton>
+                    <div style={{display:'flex',  justifyContent:'center', margin:'0px 5px',}}>
+                    {// 페이지네이션 
+                        Array.from({ length: imgArr.length }, (_, idx)=>(
+                            <div 
+                                value={idx} 
+                                style={currentIdx === idx ? divStyle.currDiv : divStyle.notCurrDiv} 
+                                onClick={(e)=>handleNumClick(e)}>
+                                {idx + 1}
                             </div>
-                            }
-                        </div> 
-                    </Card.Text>
-                    {/**이미지 */}
-                    <Card.Text>  
-                        <div style={{height:'350px',width:"100%",borderRadius:'10px'}}>
-                            {// 실제 이미지 
-                            imgArr[currentIdx]
-                            ? isImgChanged === true 
-                                ?<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]}  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
-                                :<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]+"?time=" + new Date() }  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
-                            :<div style={{height:'350px',width:"400px", display:'flex', justifyContent:'center', alignItems:'center'}}>이미지가 존재하지 않습니다.</div>
-                            }
-                        </div>
-                    </Card.Text>
-                    {/**페이지네이션 */}
-                    <Card.Text style={{display:'flex', justifyContent:'center',alignItems:'center',}}>
-                        <IconButton 
-                            variant="contained" 
-                            size="small" 
-                            sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
-                            onClick={handlePrevClick}
-                            disabled={currentIdx === 0}
-                        >
-                            <FaArrowLeft/>
-                        </IconButton>
-                        <div style={{display:'flex',  justifyContent:'center', margin:'0px 5px',}}>
-                            {// 페이지네이션 
-                                Array.from({ length: imgArr.length }, (_, idx)=>(
-                                    <div 
-                                        value={idx} 
-                                        style={currentIdx === idx ? divStyle.currDiv : divStyle.notCurrDiv} 
-                                        onClick={(e)=>handleNumClick(e)}>
-                                        {idx + 1}
-                                    </div>
-                                ))
-                            }
-                            
-                        </div>
-                        <IconButton 
-                            variant="contained" 
-                            size="small" 
-                            sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
-                            onClick={handleNextClick}
-                            disabled={currentIdx === imgArr.length-1}
-                        >
-                            <FaArrowRight/>
-                        </IconButton>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+                        ))
+                    } 
+                    </div>
+                    <IconButton 
+                        variant="contained" 
+                        size="small" 
+                        sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
+                        onClick={handleNextClick}
+                        disabled={currentIdx === imgArr.length-1}
+                    >
+                        <FaArrowRight/>
+                    </IconButton>
+                </Card.Text>
+            </Card.Body>
+        </Card>
     );
 
 }
@@ -224,26 +220,3 @@ const divStyle = {
         color:'#b0bec5',
     },
 }
-
-    /*useEffect(() => {
-        if (newImgFile) {
-            const fileName = id+'-'+currentIdx+'.png';
-            const folderName = "sensory_evals";
-            const reader = new FileReader();
-            // 파일에서 이미지 선택 
-            reader.onload = () => {
-                //firebase에 업로드하기 전에 lock 걸어두기
-                SetisUploadedToFirebase(false);
-                uploadNewImgToFirebase(newImgFile, folderName, fileName, SetisUploadedToFirebase);
-
-                //원육 이미지인 경우 currentIdx == 0 
-                // 처리육 이미지인 경우 0이상 
-                
-                let newImages = imgArr;
-                newImages[currentIdx] = reader.result;
-                setImgArr(newImages);
-                console.log('new images,', imgArr);
-            };
-            reader.readAsDataURL(newImgFile);
-        }
-    }, [newImgFile]);*/

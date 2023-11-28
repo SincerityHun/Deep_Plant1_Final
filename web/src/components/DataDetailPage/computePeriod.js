@@ -4,7 +4,6 @@ import { TIME_ZONE } from "../../config";
 function computePeriod(butcheryYmd){
     // 수정 시간
     const createdDate = new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5);
-
     // period 계산 
     const year = butcheryYmd.slice(0,4);
     const month =  butcheryYmd.slice(4,6);
