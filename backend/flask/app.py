@@ -9,6 +9,8 @@ from db.db_controller import initialize_db
 from connection.firebase_connect import FireBase_
 from connection.s3_connect import S3_
 from utils import logger
+import json
+import base64
 
 app = Flask(__name__)
 
@@ -24,7 +26,7 @@ def initialize_services():
     # RDS DB 연결
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    
+
     # Using Flask Application
     with app.app_context():
         # 1. DB Session Connection
