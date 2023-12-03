@@ -36,7 +36,6 @@ const navy =  '#0F3659';
 function DataView({page,dataProps}){
     const [searchParams, setSearchParams] = useSearchParams();
     const pageOffset = searchParams.get("pageOffset");
-    console.log("page offset",pageOffset);
     
     //데이터 받아오기 -> props 로 전달로 변경
     const { 

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import ReactApexChart from 'react-apexcharts';
 // @mui
 import { useTheme, styled } from '@mui/material/styles';
-
 import { Card, CardHeader, Button, ButtonGroup, Box} from '@mui/material';
 // utils
 import { fNumber } from './formatNumber';
@@ -10,7 +9,99 @@ import { fNumber } from './formatNumber';
 import useChart from './usePieChart';
 import { useEffect, useState } from "react";
 
-import { apiIP } from '../../../config';
+import { usePieChartFetch } from '../../../API/listCharts/getPieChartSWR';
+
+const PieChart = ({ subheader, chartColors, startDate,endDate,...other }) => {
+    const theme = useTheme();
+    const [label, setLabel] = useState('total_counts');
+    const [chartSeries, setChartSeries] = useState([]);
+    const chartOptions = useChart({
+      colors: chartColors,
+      labels: CHART_LABLE,
+      stroke: { colors: [theme.palette.background.paper] },
+      legend: { floating: true, horizontalAlign: 'center' },
+      dataLabels: { enabled: true, dropShadow: { enabled: false } },
+      tooltip: {
+        fillSeriesColor: false,
+        y: {
+          formatter: (seriesName) => fNumber(seriesName),
+          title: {
+            formatter: (seriesName) => `${seriesName}`,
+          },
+        },
+      },
+      plotOptions: {
+        pie: { donut: { labels: { show: false } } },
+      },
+    });
+
+    //  API fetch 데이터 전처리
+    const processPieData = (data) => {
+      setChartSeries([data['total_counts']['raw'], data['total_counts']['processed']]);
+    }
+
+    // API fetch
+    const { data, isLoading, isError } = usePieChartFetch(startDate, endDate) ;
+    console.log('pie chart fetch 결과:', data);
+
+    // fetch한 데이터 전처리 함수 호출
+    useEffect(() => {
+      if (data !== null && data !== undefined) {
+        processPieData(data);
+      }
+    }, [data]);
+
+    // 토글 버튼 handle (전체, 소, 돼지)
+    const handleBtnClick= (e)=>{
+      const value = e.target.value;
+      const chart_series = [data[value]['raw'], data[value]['processed']];
+      setLabel(value);
+      setChartSeries(chart_series);
+    }
+
+    return (
+      <Card {...other}>
+        <CardHeader title={TITLE} titleTypographyProps={{variant:'h6'}} style={{paddingBottom:'0px'}}></CardHeader>
+        <Box sx={style.cardWrapper}>
+          <ButtonGroup variant="outlined" aria-label="outlined button group">
+              <Button 
+                variant={label === 'total_counts'?"contained":"outlined"}  
+                value='total_counts' 
+                onClick={(e) => handleBtnClick(e)}>
+                전체
+              </Button>
+              <Button 
+                variant={label === 'cattle_counts'?"contained":"outlined"} 
+                value='cattle_counts'  
+                onClick={(e) => handleBtnClick(e)}>
+                소
+              </Button>
+              <Button 
+                variant={label === 'pig_counts'?"contained":"outlined"} 
+                value='pig_counts' 
+                onClick={(e) => handleBtnClick(e)}>
+                돼지
+              </Button>
+          </ButtonGroup>
+        </Box>
+      
+        <StyledChartWrapper dir="ltr" style={{marginTop:'20px'}}>
+          {chartSeries[0] === 0 && chartSeries[1] === 0 
+          ?
+            // 데이터가 없는 경우
+            <div style={style.chartWrapperDiv}>
+              <span>데이터가 존재하지 않습니다</span>
+            </div>
+          :
+            // 데이터가 있는 경우
+            <ReactApexChart type="donut" series={chartSeries} options={chartOptions} height={280} />
+          }    
+        </StyledChartWrapper>
+      </Card>
+  );
+}
+
+export default PieChart;
 
 const CHART_HEIGHT = 300;
 const LEGEND_HEIGHT = 50;
@@ -33,83 +124,24 @@ const StyledChartWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-const PieChart = ({ subheader, chartColors, startDate,endDate,...other }) => {
-    const theme = useTheme();
-  // const chartSeries = chartData;
-    const [data, setData] = useState({});
-    const [label, setLabel] = useState('total_counts');
-    const [chartSeries, setChartSeries] = useState([]);
-    const chartOptions = useChart({
-      colors: chartColors,
-      labels: CHART_LABLE,
-      stroke: { colors: [theme.palette.background.paper] },
-      legend: { floating: true, horizontalAlign: 'center' },
-      dataLabels: { enabled: true, dropShadow: { enabled: false } },
-      tooltip: {
-        fillSeriesColor: false,
-        y: {
-          formatter: (seriesName) => fNumber(seriesName),
-          title: {
-            formatter: (seriesName) => `${seriesName}`,
-          },
-        },
-      },
-      plotOptions: {
-        pie: { donut: { labels: { show: false } } },
-      },
-    });
-    console.log("date",startDate, endDate);
-    useEffect(()=>{
-      // pie 차트 데이터 받아오는 함수
-      const getPieData = async() => {
-        const json = await(
-        await fetch(`http://${apiIP}/meat/statistic?type=0&start=${startDate}&end=${endDate}`)
-        ).json();
-        setData(json);
-        setChartSeries([json['total_counts']['raw'], json['total_counts']['processed']]);
-      } 
-
-      // pie 차트 데이터 받아오기
-      getPieData();
-    },[startDate, endDate]);
-
-    // 토글 버튼 클릭시 
-    const handleBtnClick= (e)=>{
-      const value = e.target.value;
-      const chart_series = [data[value ]['raw'], data[value ]['processed']];
-      console.log('chart',chart_series);
-      setLabel(value);
-      setChartSeries(chart_series);
-    }
-
-    return (
-    <Card {...other}>
-        <CardHeader title={TITLE} titleTypographyProps={{variant:'h6' }} style={{paddingBottom:'0px'}}></CardHeader>
-        <Box sx={{display:'flex', width:'100%', justifyContent:'end', paddingRight:'20px'}}>
-        <ButtonGroup variant="outlined" aria-label="outlined button group">
-            <Button variant={label === 'total_counts'?"contained":"outlined"}  value='total_counts' onClick={(e) => handleBtnClick(e)}>전체</Button>
-            <Button variant={label === 'cattle_counts'?"contained":"outlined"} value='cattle_counts'  onClick={(e) => handleBtnClick(e)}>소</Button>
-            <Button variant={label === 'pig_counts'?"contained":"outlined"} value='pig_counts' onClick={(e) => handleBtnClick(e)}>돼지</Button>
-        </ButtonGroup>
-      </Box>
-      
-      <StyledChartWrapper dir="ltr" style={{marginTop:'20px'}}>
-        {chartSeries[0] === 0 && chartSeries[1] === 0 
-        ?// 데이터가 없는 경우
-        <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}><span>데이터가 존재하지 않습니다</span></div>
-        :<ReactApexChart type="donut" series={chartSeries} options={chartOptions} height={280} />
-        }
-        
-      </StyledChartWrapper>
-    </Card>
-  );
+const style = {
+  cardWrapper : {
+    display:'flex', 
+    width:'100%', 
+    justifyContent:'end', 
+    paddingRight:'20px',
+  },
+  chartWrapperDiv : {
+    width:'100%', 
+    height:'100%', 
+    display:'flex', 
+    justifyContent:'center',
+    alignItems:'center',
+  }
 }
-
 
 PieChart.propTypes = {
   subheader: PropTypes.string,
   chartColors: PropTypes.arrayOf(PropTypes.string),
   chartData: PropTypes.array,
 };
-
-export default PieChart;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useSyncExternalStore } from "react"
+import { useState, } from "react"
 import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 
 const navy =  '#0F3659';

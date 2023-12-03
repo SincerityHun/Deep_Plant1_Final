@@ -7,16 +7,13 @@ import DataLoad from "../components/DataDetailPage/DetailDataController";
 const navy =  '#0F3659';
 
 function DataEdit(){
-
     // 쿼리스트링 추출 
     const searchParams = useLocation().search;
     const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
     const startDate = new URLSearchParams(searchParams).get('startDate');
     const endDate = new URLSearchParams(searchParams).get('endDate');
     console.log('수정 및 조회',{ pageOffset, startDate , endDate});
-    //const pageOffset = 0;
-    //로그인한 관리자의 관리번호 받아오기
-    //const {editId} = useParams();
+
     //관리번호
      const idParam  = useParams();
 
@@ -35,7 +32,6 @@ function DataEdit(){
           </div>
         </Box>
         <DataLoad id = {idParam.id} page = {"수정및조회"} />
-        
       </Box>
     );
 }
@@ -43,7 +39,6 @@ export default DataEdit;
 
 const style={
   fixed:{
-    //position: 'fixed', 
     marginTop:'80px',
     right:'0',
     left:'80px',
@@ -52,7 +47,6 @@ const style={
     borderRadius:'0',
     display:'flex',
     justifyContent:'space-between',
-    //backgroundColor:'tran',
     height: "70px",
   },
 

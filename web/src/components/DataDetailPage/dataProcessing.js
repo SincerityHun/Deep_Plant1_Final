@@ -18,7 +18,6 @@ function convertToApiData ( birthYmd, butcheryYmd,farmAddr,farmerNm,gradeNm, pri
 
 export default function dataProcessing (items) {
      // 3. API fetch가 정상적으로 일어난 경우 데이터를 JSON객체로 변환해서 반환
-    console.log('api items', items.statusType);
     // 3-1. 축산물 이력 데이터 json 객체로 만들기 
     const apiData = convertToApiData(
         items.birthYmd,
@@ -70,7 +69,6 @@ export default function dataProcessing (items) {
         processed_minute : processedMinute,
         processed_img_path : processedDataImgPath,
     };
-    console.log('data process =', data);
     return data;
 }
 

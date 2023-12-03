@@ -103,11 +103,7 @@ function DataPAView({ dataProps}){
                 body: res,
                 });
                 console.log("predict result-",seqno,res);
-                await getPredictedData(seqno);
-                
-                // 강제 새로고침
-                //window.location.reload();
-                
+                await getPredictedData(seqno);                
             }catch(err){
                 console.log('error')
                 console.error(err);

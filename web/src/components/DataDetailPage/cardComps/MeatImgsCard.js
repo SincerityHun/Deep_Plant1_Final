@@ -37,7 +37,6 @@ const MeatImgsCard=(
             const reader = new FileReader();
             //로그인한 유저 정보 -> 임시로 저장
             const userId = JSON.parse(localStorage.getItem('UserInfo'))["userId"];
-            //const tempUserID = 'junsu0573@naver.com';// //'junsu0573@gmail.com'; 
             // 수정 시간
             const createdDate = new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5);
             // period 계산 

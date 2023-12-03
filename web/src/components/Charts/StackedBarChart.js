@@ -3,7 +3,99 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 // third-party
 import ReactApexChart from 'react-apexcharts';
-import { apiIP } from '../../config';
+import { useStackedBarFetch } from '../../API/listCharts/getStackedBarSWR';
+
+const StackedBarChart = ({startDate,endDate}) => {
+  const theme = useTheme();
+  const line = theme.palette.divider;
+  const stackColors  = [ 
+    theme.palette.success.light,
+    theme.palette.primary.main,
+    theme.palette.warning.main,
+    '#BB86FC',
+    theme.palette.error.main,
+    '#FF0266',
+    theme.palette.info.light,
+    theme.palette.warning.light,
+    theme.palette.secondary.main,
+    theme.palette.success.dark,
+    '#03DAC5',
+    theme.palette.error.light,
+  ];
+
+  //API fetch 데이터 저장
+  const [series, setSeries] = useState([]);
+
+  //  API fetch 데이터 전처리
+  const processStackedBarData = (data) => {
+    const cattleData = data['beef_counts_by_primal_value'];
+    const porkData = data['pork_counts_by_primal_value'];
+    let seriesArr = [];
+    categories.map((c)=>{
+      seriesArr = [
+          ...seriesArr,
+          {
+            name : c,
+            data : [(cattleData[c]!==undefined)? cattleData[c]: 0, (porkData[c]!==undefined) ? porkData[c] : 0],
+          }
+        ];
+    });
+    setSeries(seriesArr);
+  }
+
+  // API fetch
+  const { data, isLoading, isError } = useStackedBarFetch(startDate, endDate) ;
+  console.log('stacked bar chart fetch 결과:', data);
+
+  // fetch한 데이터 전처리 함수 호출
+  useEffect(() => {
+    if (data !== null && data !== undefined) {
+      processStackedBarData(data);
+    }
+  }, [data]);
+  
+  // stacked bar 스타일 
+  const [options, setOptions] = useState(columnChartOptions);
+  useEffect(() => {
+    setOptions((prevState) => ({
+      ...prevState,
+      colors: stackColors,
+      xaxis: {
+        labels: {
+          style: {
+            colors: stackColors,
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: stackColors,
+          },
+        },
+      },
+      grid: {
+        borderColor: line,
+      },
+      tooltip: {
+        theme: "light",
+      },  
+    }));
+  }, []);
+ 
+  return (
+    <div id="chart" style={{ backgroundColor: "white", borderRadius: "5px" }}>
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={450}
+      />
+    </div>
+  );
+};
+
+export default StackedBarChart;
 
 // chart options
 const columnChartOptions = {
@@ -95,105 +187,7 @@ const columnChartOptions = {
       horizontal: 10,
       vertical: 20,
     },
-    
   },
-  
 };
-
-const StackedBarChart = ({startDate,endDate}) => {
-  const theme = useTheme();
-  const line = theme.palette.divider;
-  const stackColors  = [ 
-    theme.palette.success.light,
-    theme.palette.primary.main,
-    theme.palette.warning.main,
-    '#BB86FC',
-    theme.palette.error.main,
-    '#FF0266',
-    theme.palette.info.light,
-    theme.palette.warning.light,
-    theme.palette.secondary.main,
-    theme.palette.success.dark,
-    '#03DAC5',
-    theme.palette.error.light,
-  ];
-
-  const [cattleData,setCattleData] = useState({});
-  const [porkData, setPorkData] = useState({});
-  //부위별 데이터 저장 API 호출
-  const [series, setSeries] = useState([]);
-  useEffect(()=>{
-    const getStackedData = async() => {
-      // 부위별 개수
-      const categCount = await(
-        await fetch(`http://${apiIP}/meat/statistic?type=2&start=${startDate}&end=${endDate}`)
-      ).json();
-        console.log(`http://${apiIP}/meat/statistic?type=2&start=${startDate}&end=${endDate}`)
-      setCattleData(categCount['beef_counts_by_primal_value']);
-      setPorkData(categCount['pork_counts_by_primal_value']);
-    }
-    // get api data
-    getStackedData();    
-  },[startDate, endDate]);
-
-  // 부위별 데이터 series에 저장 
- useEffect(()=>{
-    let seriesArr = [];
-    categories.map((c)=>{
-      seriesArr = [
-          ...seriesArr,
-          {
-            name : c,
-            data : [(cattleData[c]!==undefined)? cattleData[c]: 0, (porkData[c]!==undefined) ? porkData[c] : 0],
-          }
-        ];
-    });
-    setSeries(seriesArr);
- },[cattleData, porkData])
-  
-  // 스타일 
-  const [options, setOptions] = useState(columnChartOptions);
-
-  useEffect(() => {
-    setOptions((prevState) => ({
-      ...prevState,
-      colors: stackColors,
-      xaxis: {
-        labels: {
-          style: {
-            colors: stackColors,
-          },
-        },
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: stackColors,
-          },
-        },
-      },
-      grid: {
-        borderColor: line,
-      },
-      tooltip: {
-        theme: "light",
-      },
-      
-    }));
-  }, []);
- 
-  return (
-    <div id="chart" style={{ backgroundColor: "white", borderRadius: "5px" }}>
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="bar"
-        height={450}
-      />
-    </div>
-  );
-};
-
-export default StackedBarChart;
 
 const categories = ["안심", "등심","목심","앞다리","갈비", "채끝","우둔", "설도", "양지",  "사태","삼겹살","뒷다리",];

@@ -1,121 +1,117 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { apiIP } from '../../../config';
+import { useMapFetch } from '../../../API/listCharts/getChoroplethMapSWR';
 
-const ChoroplethMap = ({data,startDate,endDate})=>{
-    // 지역별 개수 API 데이터 받아오기
-    const [cattleCnt, setCattleCnt] = useState({});
-    const [porkCnt, setPorkCnt] = useState({});
-    const [totalCnt, setTotalCnt] = useState({});
-    const [keyIdx, setKeyIdx] = useState(0);
+const ChoroplethMap = ({mapData,startDate,endDate})=>{
+  const [keyIdx, setKeyIdx] = useState(0);
+   // 지역별 개수 API 데이터 저장
+  const [geoJSONData, setGeoJSONData] = useState(mapData);
 
-    // 지도 통계 API 호출
-    useEffect(()=>{
-      const getChoroplethMapData = async() =>{
-        const mapData = await(
-          await fetch(`http://${apiIP}/meat/statistic?type=3&start=${startDate}&end=${endDate}`)
-        ).json();
+  //  API fetch 데이터 전처리
+  const processMapData = (data) => {
+    const cattleCnt = (data['cattle_counts_by_region']);
+    const porkCnt = (data['pig_counts_by_region']);
+    const totalCnt = (data['total_counts_by_region']);
 
-        //데이터 set
-        setCattleCnt(mapData['cattle_counts_by_region']);
-        setPorkCnt(mapData['pig_counts_by_region']);
-        setTotalCnt(mapData['total_counts_by_region']);
-      }
-      getChoroplethMapData();
-    },[startDate, endDate])
-    const [geoJSONData, setGeoJSONData] = useState(data);
-
-    // 데이터 추가하기
-    useEffect(()=>{
-      const addProperties = () => {
-        const updatedFeatures = data.features.map(feature => ({
-          ...feature,
-          properties:{
-            ...feature.properties,
-            value : {
-              cattle : cattleCnt[feature.properties.CTP_KOR_NM],
-              pork : porkCnt[feature.properties.CTP_KOR_NM],
-              total: totalCnt[feature.properties.CTP_KOR_NM],
-            }
+    const addProperties = () => {
+      const updatedFeatures = mapData.features.map(feature => ({
+        ...feature,
+        properties:{
+          ...feature.properties,
+          value : {
+            cattle : cattleCnt[feature.properties.CTP_KOR_NM],
+            pork : porkCnt[feature.properties.CTP_KOR_NM],
+            total: totalCnt[feature.properties.CTP_KOR_NM],
           }
-        }));
-
-        const updatedGeoJSON = {
-          ...data,
-          features: updatedFeatures
         }
-        setGeoJSONData(updatedGeoJSON);   
+      }));
+
+      const updatedGeoJSON = {
+        ...mapData,
+        features: updatedFeatures
       }
-      
-      addProperties();
-      setKeyIdx((prev)=>prev+1);
-      console.log(cattleCnt, porkCnt, totalCnt);
-    },[cattleCnt, porkCnt, totalCnt]);
+      setGeoJSONData(updatedGeoJSON);   
+    }
+    addProperties();
+    setKeyIdx((prev)=>prev+1);
+  }
+
+  // API fetch
+  const { data, isLoading, isError } = useMapFetch(startDate, endDate) ;
+  console.log('map fetch 결과:', data);
+
+  // fetch한 데이터 전처리 함수 call
+  useEffect(() => {
+    if (data !== null && data !== undefined) {
+      processMapData(data);
+    }
+  }, [data]);
+
   
-    // 값에 따른 색
-    const getColor = (value) => {
-      if (!value){
-        return '#ffffff';
-      }
-      const cattle = value.cattle;
-      const pork = value.pork;
-      const total = value.total;
-      if (total === 0){
-        // 데이터가 없는 경우 
-        return '#ffffff';
-      }else if (cattle === 0 && pork){
-        // 돼지 데이터만 있는 경우
-        return (pork > 40 ? '#e91e63' :
-              pork > 30 ? '#ec407a' :
-              pork > 20  ? '#f06292' :
-              pork > 10 ? '#f48fb1' :
-                          '#f8bbd0');
-      }else if (cattle && pork === 0){
-        // 소 데이터만 있는 경우
-        return (cattle > 40 ? '#2196f3' :
-              cattle > 30 ? '#42a5f5' :
-              cattle > 20  ? '#64b5f6' :
-              cattle > 10 ? '#90caf9' :
-                          '#bbdefb');
-      }else{
-        // 둘다 있는 경우 
-        return (total > 40 ? '#9c27b0' :
-              total > 30 ? '#ab47bc' :
-              total > 20  ? '#ba68c8' :
-              total > 10 ? '#ce93d8' :
-                          '#e1bee7');
-      }
+  // 값에 따른 색
+  const getColor = (value) => {
+    if (!value){
+      return '#ffffff';
+    }
+    const cattle = value.cattle;
+    const pork = value.pork;
+    const total = value.total;
+    if (total === 0){
+      // 데이터가 없는 경우 
+      return '#ffffff';
+    }else if (cattle === 0 && pork){
+      // 돼지 데이터만 있는 경우
+      return (pork > 40 ? '#e91e63' :
+            pork > 30 ? '#ec407a' :
+            pork > 20  ? '#f06292' :
+            pork > 10 ? '#f48fb1' :
+                        '#f8bbd0');
+    }else if (cattle && pork === 0){
+      // 소 데이터만 있는 경우
+      return (cattle > 40 ? '#2196f3' :
+            cattle > 30 ? '#42a5f5' :
+            cattle > 20  ? '#64b5f6' :
+            cattle > 10 ? '#90caf9' :
+                        '#bbdefb');
+    }else{
+      // 둘다 있는 경우 
+      return (total > 40 ? '#9c27b0' :
+            total > 30 ? '#ab47bc' :
+            total > 20  ? '#ba68c8' :
+            total > 10 ? '#ce93d8' :
+                        '#e1bee7');
+    }
+  };
+
+  //지도 스타일 
+  const style = (features) => {
+    const value= features.properties.value;
+    return {
+      fillColor: getColor(value),
+      weight: 1,
+      opacity: 1,
+      color: 'black',  // 선 색깔
+      fillOpacity: 0.9, 
     };
+  };
 
-      const style = (features) => {
-        // 데이터 
-        const value= features.properties.value;
-        return {
-          fillColor: getColor(value),
-          weight: 1,
-          opacity: 1,
-          color: 'black',  // 선 색깔
-          fillOpacity: 0.9, 
-        };
-      };
+  //state(지역) layer에 listener 추가
+  const onEachFeature = (feature, layer) => {
+      // 지역 별 값에대한 설명을 pop up
+      if(feature.properties.value)
+        layer.bindPopup(`지역: ${feature.properties.CTP_KOR_NM}<br>전체: ${feature.properties.value.total?feature.properties.value.total:0} 마리
+        <br>소: ${feature.properties.value.cattle?feature.properties.value.cattle:0} 마리<br>돼지: ${feature.properties.value.pork?feature.properties.value.pork:0} 마리`);
+      else
+        layer.bindPopup(`지역: ${feature.properties.CTP_KOR_NM}`);      
+  };
 
-      //state(지역) layer에 listener 추가
-      const onEachFeature = (feature, layer) => {
-          // 지역 별 값에대한 설명을 pop up
-          if(feature.properties.value)
-            layer.bindPopup(`지역: ${feature.properties.CTP_KOR_NM}<br>전체: ${feature.properties.value.total?feature.properties.value.total:0} 마리
-            <br>소: ${feature.properties.value.cattle?feature.properties.value.cattle:0} 마리<br>돼지: ${feature.properties.value.pork?feature.properties.value.pork:0} 마리`);
-          else
-            layer.bindPopup(`지역: ${feature.properties.CTP_KOR_NM}`);      
-      };
-
-    return (
-      <MapContainer center={[35.8754 , 128.5823]}style={{height:'350px'}} zoom={6} scrollWheelZoom={false}>      
-          <TileLayer style={styles.customTileLayer} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  />
-          <GeoJSON key={keyIdx} data={geoJSONData} style={style} onEachFeature={onEachFeature} />               
-      </MapContainer>
-    );
+  return (
+    <MapContainer center={[35.8754 , 128.5823]}style={{height:'350px'}} zoom={6} scrollWheelZoom={false}>      
+        <TileLayer style={styles.customTileLayer} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  />
+        <GeoJSON key={keyIdx} data={geoJSONData} style={style} onEachFeature={onEachFeature} />               
+    </MapContainer>
+  );
 }
 
 export default ChoroplethMap;

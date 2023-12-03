@@ -4,7 +4,7 @@ import ChoroplethMap from './ChoroplethMap';
 function Map({startDate,endDate}){
     return(
         <div style={{width:'350px', height:'350px'}}>
-        <ChoroplethMap data={geojsonData} startDate={startDate} endDate={endDate}/>
+        <ChoroplethMap mapData={geojsonData} startDate={startDate} endDate={endDate}/>
         </div>
     );
 }
