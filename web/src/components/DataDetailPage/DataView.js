@@ -33,7 +33,7 @@ import { computePeriod } from "./computePeriod";
 
 const navy =  '#0F3659';
 
-function DataView({page, currentUser ,dataProps}){
+function DataView({page,dataProps}){
     const [searchParams, setSearchParams] = useSearchParams();
     const pageOffset = searchParams.get("pageOffset");
     console.log("page offset",pageOffset);

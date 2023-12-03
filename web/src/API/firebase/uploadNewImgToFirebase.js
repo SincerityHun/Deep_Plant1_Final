@@ -1,6 +1,6 @@
 // firebase 
 import {  ref as storageRef ,uploadBytes } from 'firebase/storage';
-import { db, storage } from '../../firebase-config.js';
+import { storage } from '../../firebase-config.js';
 
 // firebase 이미지 업로드 
 export default async function uploadNewImgToFirebase (file, folderName, fileName, SetisUploadedToFirebase) {

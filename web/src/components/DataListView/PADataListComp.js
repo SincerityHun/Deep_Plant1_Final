@@ -3,48 +3,61 @@ import { Box,} from "@mui/material";
 import DataList from "./DataList";
 import Pagination from "./Pagination";
 import Spinner from "react-bootstrap/Spinner";
-import getPredictedMeatList from "../../API/getPredictedMeatList";
-
+import { usePredictedMeatListFetch } from "../../API/getPredictedMeatListSWR";
 
 const PADataListComp=({startDate, endDate})=>{
-  const [isLoaded, setIsLoaded] = useState(true);
+  // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
-  // 페이지네이션 - api로 부터 받아오는 정보 전체 데이터 개수
+  // 데이터 전체 개수
   const [totalData, setTotalData] = useState(0);
-  // 페이지네이션 컴포넌트와 공유하는 변수 -> current page 변화하면 api 새로 가져옴 
+  // 현재 페이지 번호
   const [currentPage, setCurrentPage] = useState(1);
   // 한페이지당 보여줄 개수 
   const count = 8; 
 
-  //API로부터 fetch 하는 함수
-  const handlePredictedMeatListLoad = async () => {
-     const json = await getPredictedMeatList((currentPage - 1), count, startDate, endDate);
-
-    // 전체 데이터 수
-    setTotalData(json["DB Total len"]);
-    // 데이터 가공
-    let data = [];
-    json.id_list.map((m) => {
-      data = [...data, json.meat_dict[m]];
+  // API fetch 데이터 전처리
+  const processPAMeatDatas = (data) =>{
+    setTotalData(data["DB Total len"]);
+    let meatData = [];
+    data.id_list.map((m) => {
+      meatData = [...meatData, data.meat_dict[m]];
     });
-    setMeatList(data);
+    setMeatList(meatData);
+  }
 
-    // 데이터 로드 성공
-    setIsLoaded(true);
-  };
+  // API fetch
+  const { data, isLoading, isError } = usePredictedMeatListFetch(currentPage-1, count, startDate, endDate) ;
+  console.log('육류 예측 목록 fetch 결과:', data);
 
-  //데이터 api 로 부터 fetch
+  // fetch한 데이터 전처리
   useEffect(() => {
-    handlePredictedMeatListLoad(currentPage - 1 );
-  }, [startDate, endDate, currentPage,]);
+    if (data !== null && data !== undefined) {
+      processPAMeatDatas(data);
+    }
+  }, [data]);
 
+  if (data === null) return null;
+  // 데이터가 로드되지 않은 경우 로딩중 반환 
+  if (isLoading) return ( 
+      <div >
+        <div style={style.listContainer} >  
+                <Spinner animation="border" />
+        </div>
+        <Box sx={style.paginationBar}>
+          <Pagination totalDatas={totalData} count={count} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </Box>
+      </div>
+  );
+  // 에러인 경우 경고 컴포넌트
+  if (isError) return null;
 
+  // 정상 데이터 로드 된 경우
   return (
     <div>
       <div style={style.listContainer} >
         {
-          isLoaded
-          ? (//데이터가 로드된 경우 데이터 목록 반환
+          meatList !== undefined
+          &&
           <DataList
             meatList={meatList}
             pageProp={'pa'}
@@ -53,10 +66,6 @@ const PADataListComp=({startDate, endDate})=>{
             startDate={startDate}
             endDate={endDate}
           />
-          )
-          : (// 데이터가 로드되지 않은 경우 로딩중 반환
-             <Spinner animation="border" />
-          )
         }
       </div>
       

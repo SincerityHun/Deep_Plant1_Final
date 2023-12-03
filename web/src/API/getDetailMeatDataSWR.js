@@ -1,4 +1,4 @@
-import useSWR from "swr"
+import useSWR from "swr";
 import { apiIP } from "../config";
 
 const fetcher = (...args) =>
@@ -11,14 +11,14 @@ const fetcher = (...args) =>
       default:
         return res.json();
     }
-  });
+  }
+);
 
 export const useDetailMeatDataFetch = (id) => {
-    const { data, error } = useSWR(`http://${apiIP}/meat/get?id=${id}`, fetcher);
-    
-    return {
-      data,
-      isLoading: !error && !data,
-      error,
-    };
+  const { data, error } = useSWR(`http://${apiIP}/meat/get?id=${id}`, fetcher);
+  return {
+    data,
+    isLoading: !error && !data,
+    error,
   };
+};

@@ -16,7 +16,7 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   // 한페이지당 보여줄 개수 
   const count = 6; 
 
-  // 데이터 가공
+  // API fetch 데이터 전처리
   const processMeatDatas = (data) =>{
       setTotalData(data["DB Total len"]);
       let meatData = [];
@@ -28,9 +28,9 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   
   // API fetch
   const { data, isLoading, isError } = useMeatListFetch(currentPage-1, count, startDate, endDate) ;
-  console.log('meat list:', data);
+  console.log('육류 목록 fetch 결과:', data);
   
-  // 데이터 가공 
+  // fetch한 데이터 전처리
   useEffect(() => {
     if (data !== null && data !== undefined) {
       processMeatDatas(data);
@@ -38,7 +38,8 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   }, [data]);
 
   if (data === null) return null;
-  if (isLoading) return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
+  // 데이터가 로드되지 않은 경우 로딩중 반환 
+  if (isLoading) return ( 
       <div >
         <div style={style.listContainer} >  
                 <Spinner animation="border" />
@@ -48,9 +49,10 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
         </Box>
       </div>
   );
-  if (isError) return null;//경고 컴포넌트
+  // 에러인 경우 경고 컴포넌트
+  if (isError) return null;
  
-  
+  // 정상 데이터 로드 된 경우
   return (
     <div >
       <div style={style.listContainer} >

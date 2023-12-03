@@ -1,11 +1,9 @@
 import Box from "@mui/material/Box";
-import Sidebar from "../components/Base/Sidebar";
 import React from "react";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CardActionArea from "@mui/material/CardActionArea";
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
@@ -16,8 +14,6 @@ import home3 from "../src_assets/home3.png";
 import home4 from "../src_assets/home4.png";
 import home5 from "../src_assets/home5.png";
 import home6 from "../src_assets/home6.png";
-
-const defaultTheme = createTheme();
 
 const cards = [
   {

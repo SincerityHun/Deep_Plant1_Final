@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import LogInField from "../components/Log/LogInField";
 import { UserProvider } from "../components/User/UserContext";
 

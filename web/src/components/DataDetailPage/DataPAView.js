@@ -16,7 +16,7 @@ import PredictedProcessedTablePA from "./tablesComps/predictedProcessedTablePA";
 import { computePeriod } from "./computePeriod";
 import { apiIP } from "../../config";
 
-function DataPAView({ currentUser ,dataProps}){
+function DataPAView({ dataProps}){
     //데이터 받아오기 -> props 로 전달로 변경
     const { id, userId, createdAt,qrImagePath,raw_img_path, raw_data,processed_data,api_data, processed_data_seq, processed_minute , processed_img_path } = dataProps;
 

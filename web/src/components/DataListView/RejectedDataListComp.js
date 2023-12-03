@@ -4,54 +4,80 @@ import { Box, } from "@mui/material";
 import DataList from "./DataList";
 import Spinner from "react-bootstrap/Spinner";
 import Pagination from "./Pagination";
-import './DataListComp.module.css'
-import getRejectedMeatList from "../../API/getRejectedMeatList";
+import { useRejectedMeatListFetch } from "../../API/getRejectedMeatListSWR";
+
 const navy =  '#0F3659';
 
 const RejectedDataListComp=({startDate, endDate, pageOffset})=>{
-    const [isLoaded, setIsLoaded] = useState(true);
+  // 고기 데이터 목록
+  const [meatList, setMeatList] = useState([]);
+  // 데이터 전체 개수
+  const [totalData, setTotalData] = useState(0);
+  // 현재 페이지 번호
+  const [currentPage, setCurrentPage] = useState(1);  
+  // 한페이지당 보여줄 개수 
+  const count = 6; 
+  const totalPages = Math.ceil(totalData / count);
 
-    const [meatList, setMeatList] = useState([]);
-    //현재 페이지
-    const [currentPage, setCurrentPage] = useState(1);
-    // 전체 데이터 
-    const [totalData, setTotalData] = useState(0);
-    const offset = 0; // 현재 로드하는 페이지의 인덱스
-    const count = 6; // 한페이지당 보여줄 개수 
-    const totalPages = Math.ceil(totalData / count);
+  // API fetch 데이터 전처리
+  const processRejectedMeatDatas = (data) => {
+    console.log('process data', data);
+    // 전체 데이터 수
+    setTotalData(data["DB Total len"]);
+    // 반려데이터
+    setMeatList(data['반려']);
+  }
 
-    //api fetch
-    const handleRejectedMeatListLoad = async() => { 
-      const json = await getRejectedMeatList(offset, count, startDate, endDate);
-      // 전체 데이터 수
-      setTotalData(json["DB Total len"]);
-      // 반려데이터
-      setMeatList(json['반려']);
-      // 데이터 로드 성공
-      setIsLoaded(true);
-    };
-  
-    //데이터 api 로 부터 fetch
-    useEffect(() => {
-      handleRejectedMeatListLoad(currentPage - 1);
-    }, [startDate, endDate, currentPage]);
+  //API fetch
+  const {data, isLoading, isError} = useRejectedMeatListFetch(currentPage-1, count, startDate, endDate);
+  console.log('반려 육류 데이터 fetch 결과:', data, isLoading, isError);
 
-    return(
-        <div>
-          <div style={style.listContainer}>
-            {isLoaded ? (
-              //데이터가 로드된 경우 데이터 목록 반환
-              <DataList meatList={meatList} pageProp={'reject'} offset={offset} count={count} totalPages={totalPages} pageOffset={pageOffset}/>
-            ) : (
-              // 데이터가 로드되지 않은 경우 로딩중 반환
-              <Spinner animation="border"/>
-            )}
-          </div>
-          <Box sx={style.paginationBar}>
-            <Pagination totalDatas={totalData} count={count} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-          </Box>
+  // 데이터 전처리
+  useEffect(()=>{
+  if (data !== null && data !== undefined){
+    processRejectedMeatDatas(data);
+  }
+},[data]);
+
+  if (data === null) return null;
+  // 데이터가 로드되지 않은 경우 로딩중 반환 
+  if (isLoading)  return ( 
+      <div >
+        <div style={style.listContainer} >  
+                <Spinner animation="border" />
+        </div>
+        <Box sx={style.paginationBar}>
+          <Pagination totalDatas={totalData} count={count} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </Box>
       </div>
-    );
+  );
+  // 에러인 경우 경고 컴포넌트
+  if (isError) return null;
+
+  // 정상 데이터 로드 된 경우
+  return(
+      <div>
+        <div style={style.listContainer}>
+          {
+            meatList !== undefined
+            &&
+            <DataList 
+              meatList={meatList} 
+              pageProp={'reject'} 
+              offset={currentPage -1 } 
+              count={count} 
+              totalPages={totalPages} 
+              startDate={startDate}
+              endDate={endDate}
+              pageOffset={pageOffset}
+            />
+          }
+        </div>
+        <Box sx={style.paginationBar}>
+          <Pagination totalDatas={totalData} count={count} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </Box>
+    </div>
+  );
 }
 
 export default RejectedDataListComp;

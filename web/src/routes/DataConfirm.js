@@ -1,15 +1,12 @@
-import { useState, useEffect, useRef } from "react";
 import { useParams, useLocation,Link } from "react-router-dom";
 import DataLoad from "../components/DataDetailPage/DetailDataController";
-import DataView from "../components/DataDetailPage/DataView";
-import { Box, Typography, Button, IconButton} from '@mui/material';
+import { Box, IconButton} from '@mui/material';
 import { FaArrowLeft } from "react-icons/fa";
 
 const navy =  '#0F3659';
 
 function DataConfirm(){
-    //현재 로그인한 유저 이메일
-    const [currentUser, setCurrUser] = useState("admin@admin.com")
+
     const idParam  = useParams();
     // 쿼리스트링 추출 
     const searchParams = useLocation().search;
@@ -33,7 +30,7 @@ function DataConfirm(){
               </span>
             </div> 
           </Box>
-          <DataLoad id = {idParam.id} page = {"검토"} currentUser={currentUser}/>
+          <DataLoad id = {idParam.id} page = {"검토"}/>
         
         </Box>
     );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 // 검색 필터 컴포넌트
 import SearchFilterBar from "../components/Search/SearchFilterBar";
 // 목록 컴포넌트
@@ -16,7 +16,7 @@ import { Box, Button, } from "@mui/material";
 import { TIME_ZONE } from "../config";
 // import icon
 import {FaBoxOpen} from "react-icons/fa";
-import { useParams, useLocation ,Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const navy =  '#0F3659';
 
@@ -28,8 +28,7 @@ function Dashboard() {
   s.setDate(s.getDate() -7);
   const [startDate, setStartDate] = useState(new Date(s.getTime() + TIME_ZONE).toISOString().slice(0, -5));
   const [endDate, setEndDate] = useState(new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5));
-  // 완료버튼 클릭 여부 
-  const [isDateFilterClicked, setIsDateFilterClicked] = useState(false);
+
   // 쿼리스트링 추출 
   const searchParams = useLocation().search;
   const pageOffset = new URLSearchParams(searchParams).get('pageOffset');

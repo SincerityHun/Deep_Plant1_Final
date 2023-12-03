@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { useDetailMeatDataFetch } from "../../API/getDetailMeatDataSWR";
 
 //하나의 관리번호에 대한 고기 데이터를 API에서 GET해서 json 객체로 넘겨줌 
-const DataLoad = ({id, page, currentUser}) => {
+const DataLoad = ({id, page}) => {
   const [detailData, setDetailData] = useState();
   // API fetch
   const { data, isLoading, isError } = useDetailMeatDataFetch(id) ;
@@ -34,8 +34,8 @@ const DataLoad = ({id, page, currentUser}) => {
       {
       detailData !== undefined 
       && ( page === "예측"
-          ?<DataPAView currentUser={currentUser} dataProps={detailData}/>
-          :<DataView page={page} currentUser={currentUser} dataProps={detailData}/>
+          ?<DataPAView dataProps={detailData}/>
+          :<DataView page={page} dataProps={detailData}/>
       )
     }
     </>)

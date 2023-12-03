@@ -13,7 +13,7 @@ export default function DelWarningModal({idArr, setIsDelClick, pageOffset, start
       setIsDelClick(false); 
     };
     const onDelete = async(id) =>{
-      const resp= await fetch(`http://${apiIP}/meat/delete?id=${id}`);
+      await fetch(`http://${apiIP}/meat/delete?id=${id}`);
     }
   
     const params = [

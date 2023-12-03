@@ -3,10 +3,10 @@ import SearchFilterBar from "../components/Search/SearchFilterBar";
 // 데이터 목록
 import PADataListComp from "../components/DataListView/PADataListComp";
 // mui 
-import { Box, Button, } from "@mui/material";
+import { Box,  } from "@mui/material";
 // import timezone
 import { TIME_ZONE } from "../config";
-import { useParams, useLocation ,Link } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 
 const navy =  '#0F3659';
 
@@ -18,7 +18,7 @@ function PA(){
 
     // 쿼리스트링 추출 
     const searchParams = useLocation().search;
-    const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+    //const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
     const queryStartDate = new URLSearchParams(searchParams).get('startDate');
     const queryEndDate = new URLSearchParams(searchParams).get('endDate');
       
@@ -48,7 +48,6 @@ export default PA;
 const styles={
     fixed:{
         zIndex: 1,
-        //width:'100%',
         borderRadius:'0',
         display:'flex',
         justifyContent:'space-between',

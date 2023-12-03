@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { useParams, useLocation ,Link } from "react-router-dom";
-import { Box, Typography, Button, IconButton} from '@mui/material';
+import { Box, IconButton} from '@mui/material';
 import "bootstrap/dist/css/bootstrap.css"; 
 import { FaArrowLeft } from "react-icons/fa";
 import DataLoad from "../components/DataDetailPage/DetailDataController";
@@ -8,8 +7,7 @@ import DataLoad from "../components/DataDetailPage/DetailDataController";
 const navy =  '#0F3659';
 
 function DataEdit(){
-    //현재 로그인한 유저 이메일
-    const [currentUser, setCurrUser] = useState("admin@admin.com");
+
     // 쿼리스트링 추출 
     const searchParams = useLocation().search;
     const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
@@ -36,7 +34,7 @@ function DataEdit(){
             </Link>
           </div>
         </Box>
-        <DataLoad id = {idParam.id} page = {"수정및조회"} currentUser={currentUser}/>
+        <DataLoad id = {idParam.id} page = {"수정및조회"} />
         
       </Box>
     );

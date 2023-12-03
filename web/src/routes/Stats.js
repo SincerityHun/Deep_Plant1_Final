@@ -2,7 +2,7 @@ import StatsTabs from "../components/Stats/StatsTabs";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import SearchFilterBar from "../components/Search/SearchFilterBar";
-import { useState, useEffect, useRef } from "react";
+import { useState, } from "react";
 import { TIME_ZONE } from "../config";
 import { Typography } from "@mui/material";
 

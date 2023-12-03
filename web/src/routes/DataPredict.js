@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { useParams, useLocation ,Link } from "react-router-dom";
-import { Box, Typography, Button, IconButton} from '@mui/material';
+import { Box, IconButton} from '@mui/material';
 import "bootstrap/dist/css/bootstrap.css"; 
 import { FaArrowLeft } from "react-icons/fa";
 import DataLoad from "../components/DataDetailPage/DetailDataController";
@@ -8,11 +7,6 @@ import DataLoad from "../components/DataDetailPage/DetailDataController";
 const navy =  '#0F3659';
 
 function DataPredict(){
-    //현재 로그인한 유저 이메일
-    const [currentUser, setCurrUser] = useState("admin@admin.com");
-
-    //로그인한 관리자의 관리번호 받아오기
-    //const {editId} = useParams();
     //관리번호
      const idParam  = useParams();
    // 쿼리스트링 추출 
@@ -38,7 +32,7 @@ function DataPredict(){
             </span>
           </div>
         </Box>
-        <DataLoad id = {idParam.id} page = {"예측"} currentUser={currentUser}/>
+        <DataLoad id = {idParam.id} page = {"예측"} />
       </Box>
     );
 }

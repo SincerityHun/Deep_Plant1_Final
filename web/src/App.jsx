@@ -14,10 +14,6 @@ import DataPredict from "./routes/DataPredict";
 import Box from "@mui/material/Box";
 import Sidebar from "./components/Base/Sidebar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
-import {
-  getAuth,
-} from "firebase/auth";
 const defaultTheme = createTheme();
 
 

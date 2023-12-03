@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, json, useLocation, useNavigate } from "react-router-dom";
-import PropTypes, { string } from "prop-types";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { auth } from "../../firebase-config";
-import firebase from "firebase/compat/app";
 // import mui component
 import {
   ListItemButton,
@@ -18,9 +9,7 @@ import {
   ListItemIcon,
   Typography,
   ListItemText,
-  Badge,
   List,
-  Divider,
   IconButton,
   Toolbar,
   Tooltip,
@@ -28,10 +17,7 @@ import {
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 // import icons
-import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -43,8 +29,6 @@ import { HiOutlineChip } from "react-icons/hi";
 
 import DeeplantLong from "../../src_assets/Deeplant_long.webp";
 import LOGO from "../../src_assets/LOGO.png"
-import { apiIP } from "../../config";
-import LogIn from "../../routes/LogIn";
 
 const mainListItems = [
   {

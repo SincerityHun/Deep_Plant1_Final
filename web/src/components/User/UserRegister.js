@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import { Button } from "react-bootstrap";
 import InputGroup from 'react-bootstrap/InputGroup';
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
-import { db, auth } from "../../firebase-config";
+import { auth } from "../../firebase-config";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { Box } from "@mui/material";
 
 function UserRegister({ handleClose }) {
   const [userId, setuserId] = useState("");
