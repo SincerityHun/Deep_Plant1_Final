@@ -8,13 +8,12 @@ import PropTypes from 'prop-types';
 function DataList({meatList, pageProp, offset, count, totalPages,startDate, endDate, pageOffset}){
     console.log('check pa date', startDate, endDate)
 ;    // 삭제 
-    // 테이블 헤더상 선택 삭제 클릭 -> 변수명 isDelClick으로 바꾸기
+    // 테이블 헤더상 선택 삭제 클릭
     const [isDelClick, setIsDelClick] = useState(false);
 
     // 테이블 헤더의 선택 삭제버튼 클릭
     const handleTableHeaderDeleteBtn = () =>{
         setIsDelClick(true);
-        //setDeleteItems(checkItems);
     }
 
     // 체크된 아이템 배열 관리
@@ -43,15 +42,12 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
 
     //테이블 셀에 있는 삭제 버튼 클릭 시
     const [isTableCellDelClick, setIsTableCellDelClick] = useState(false);
-    const [delId, setDelId] = useState(null);
 
     const handleTableCellDelete = (id) =>{
-        //setIsTableCellDelClick(true);
         let idArr = [];
         idArr.push(id);
         setCheckItems(idArr);
         setIsDelClick(true);
-        //setDelId(id);
     }
 
     // 테이블 헤더
@@ -91,7 +87,7 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
                 </TableRow>
                 }
             <TableRow>
-                {// 반려함 탭인 경우 전체 선택 테이블 헤더 추가
+                {// 반려함 탭인 경우 전체 선택 테이블 셀 추가
                 pageProp === 'reject'
                 &&
                 <TableCell key={"checkbox"} align="center" padding="none" style={{}}></TableCell>
@@ -119,9 +115,6 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
     };
  
     // 테이블 바디 
-    // 오름차순 내림차순 정렬
-    const [order] = useState('asc');
-    const [orderBy] = useState('trackingNo');
     const [selected] = useState([]);
 
     const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;

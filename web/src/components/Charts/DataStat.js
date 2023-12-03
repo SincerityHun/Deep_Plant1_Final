@@ -1,7 +1,7 @@
 import PieChart from "./PieChart/pieChart";
 import StackedBarChart from "./StackedBarChart";
 import Map from "./choroplethMap/Map";
-import { Box,  useTheme, } from "@mui/material";
+import { Box,   } from "@mui/material";
 const DataStat = ({startDate,endDate})=>{
     return(
         <div>

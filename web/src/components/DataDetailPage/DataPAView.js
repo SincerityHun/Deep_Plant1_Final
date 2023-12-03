@@ -1,11 +1,10 @@
-import { useState, useEffect , useRef} from "react";
+import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Spinner from "react-bootstrap/Spinner";
 //mui
-import Divider from '@mui/material/Divider';
 import './imgRot.css';
 import { TextField, Autocomplete} from '@mui/material';
 // import tables
@@ -17,13 +16,10 @@ import PredictedProcessedTablePA from "./tablesComps/predictedProcessedTablePA";
 import { computePeriod } from "./computePeriod";
 import { apiIP } from "../../config";
 
-const navy =  '#0F3659';
-
-
 function DataPAView({ currentUser ,dataProps}){
     //데이터 받아오기 -> props 로 전달로 변경
     const { id, userId, createdAt,qrImagePath,raw_img_path, raw_data,processed_data,api_data, processed_data_seq, processed_minute , processed_img_path } = dataProps;
-    const [processedMinute,setProcessedMinute] = useState(processed_minute);
+
     // 처리육 및 실험 회차 토글  
     useEffect(()=>{
         options = processed_data_seq;
@@ -261,7 +257,7 @@ function DataPAView({ currentUser ,dataProps}){
                             renderInput={(params) => <TextField {...params}/>}
                         />
                         <ProcessedTablePA
-                            processedMinute={processedMinute}
+                            processedMinute={processed_minute}
                             processedToggleValue={processedToggleValue}
                             processed_data={processed_data}
                         />

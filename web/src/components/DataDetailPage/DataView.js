@@ -1,5 +1,5 @@
-import { useState, useEffect , useRef} from "react";
-import { useNavigate, useSearchParams } from 'react-router-dom'; 
+import { useState, useEffect } from "react";
+import { useSearchParams } from 'react-router-dom'; 
 // react-bootstrap
 import Card from "react-bootstrap/Card";
 import Tab from "react-bootstrap/Tab";
@@ -192,7 +192,6 @@ function DataView({page, currentUser ,dataProps}){
     };
     
     // 1.이미지 파일 변경 
-    const [isRawImageChange, setIsRawImageChange] = useState(false);// 이때 마다 api 호출을 위한 것 
     const [isUploadingDone, setIsUploadingDone] = useState(true); // 화면 로딩중 표시를 위한 것
 
     // 처리육 이미지 먼저 업로드 경고

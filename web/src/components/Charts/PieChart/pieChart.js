@@ -16,7 +16,6 @@ const CHART_HEIGHT = 300;
 const LEGEND_HEIGHT = 50;
 const TITLE = '신선육/숙성육';
 const CHART_LABLE = ['신선육','숙성육',];
-const CHART_SERIES = [520, 1520];
 
 const StyledChartWrapper = styled('div')(({ theme }) => ({
   height: CHART_HEIGHT,
