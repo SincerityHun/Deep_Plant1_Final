@@ -11,6 +11,7 @@ export default async function uploadNewImgToFirebase (file, folderName, fileName
      //firebase 업로드 성공 시 
      console.log("File uploaded successfully!", fileName);
    } catch (error) {
+    //firebase 업로드 실패 시 
      console.error("Error uploading file:", error, fileName);
    }
 };

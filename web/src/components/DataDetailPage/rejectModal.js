@@ -6,12 +6,13 @@ import updateDataStatus from "../../API/updateDataStatus";
 
 const navy =  '#0F3659';
 
+// 반려 여부 확인 모달
 export default function RejectModal({id, setConfirmVal, confirmVal}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);
     const handleClose = () => {setOpen(false); setConfirmVal(null)};
 
-    // 승인 상태 변경 api 호출
+    // 반려 Api 호출
     const changeConfirmState=()=>{
         updateDataStatus(confirmVal, id, setStateChanged);
     };

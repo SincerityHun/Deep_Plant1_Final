@@ -1,4 +1,4 @@
-import { useState, useEffect, useSyncExternalStore } from "react"
+import { useState, } from "react"
 import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 import {FaRegCheckCircle} from "react-icons/fa";
 import StateChangedModal from "./stateChangedModal";
@@ -6,11 +6,13 @@ import updateDataStatus from "../../API/updateDataStatus";
 
 const navy =  '#0F3659';
 
+// 승인 여부 확인 모달
 export default function AcceptModal({id, setConfirmVal, confirmVal}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);
     const handleClose = () => {setOpen(false); setConfirmVal(null);};
-    // 승인 api 호출
+
+    // 승인 Api 호출
     const changeConfirmState=()=>{
         updateDataStatus(confirmVal, id, setStateChanged);
     };

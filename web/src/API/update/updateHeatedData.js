@@ -1,6 +1,7 @@
 import { apiIP } from "../../config";
+
+// 가열육 수정 POST API
 export default async function updateHeatedData(data,i, id, createdDate, userId, elapsedHour,){
-    
     //request body에 보낼 데이터 가공
     let req = {
         ...data,

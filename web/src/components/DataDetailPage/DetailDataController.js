@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 import DataView from "./DataView";
 import DataPAView from "./DataPAView";
+import DataConfirmView from "./DataConfirmView";
 import dataProcessing from "./dataProcessing";
 import Spinner from "react-bootstrap/Spinner";
 import { useDetailMeatDataFetch } from "../../API/getDetailMeatDataSWR";
 
-//하나의 관리번호에 대한 고기 데이터를 API에서 GET해서 json 객체로 넘겨줌 
+
+//하나의 관리번호에 대한 육류 상세 데이터를 API로 부터 fetch
 const DataLoad = ({id, page}) => {
+  // 전처리된 상세 데이터 저장 
   const [detailData, setDetailData] = useState();
-  // API fetch
+  console.log(page);
+  // 육류 상세 데이터 API fetch
   const { data, isLoading, isError } = useDetailMeatDataFetch(id) ;
   
-  //데이터 가공 
+  //데이터 전처리 
   useEffect(()=>{
     if (data !== null && data !== undefined){
-      setDetailData(dataProcessing(data));//
+      setDetailData(dataProcessing(data));
     }
   },[data]); 
 
@@ -35,7 +39,9 @@ const DataLoad = ({id, page}) => {
       detailData !== undefined 
       && ( page === "예측"
           ?<DataPAView dataProps={detailData}/>
-          :<DataView page={page} dataProps={detailData}/>
+          : page === "수정및조회"
+           ?<DataView dataProps={detailData}/>
+           :page === "검토" && <DataConfirmView dataProps={detailData}/>
       )
     }
     </>)

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const navy =  '#0F3659';
 
+//승인/반려 변경 후 최종 확인 안내 모달 
 export default function StateChangedModal({confirmVal, setStateChanged, handleParentClose}) {
     //화면 창 닫기
     const navigate = useNavigate();
@@ -36,7 +37,6 @@ export default function StateChangedModal({confirmVal, setStateChanged, handlePa
                 <span style={{color:navy, fontSize:'20px', fontWeight:'600'}}>
                     데이터가
                 </span>
-                
                 {
                     confirmVal === 'confirm'
                     ?<span style={{marginLeft:'5px',color: '#00e676', fontSize:'20px', lineHeight:'5px', fontWeight:'600'}}>
@@ -44,7 +44,6 @@ export default function StateChangedModal({confirmVal, setStateChanged, handlePa
                     :<span style={{marginLeft:'5px',color: '#e53935', fontSize:'20px', lineHeight:'5px', fontWeight:'600'}}>
                     반려</span>
                 }
-            
                 <span style={{color:navy, fontSize:'20px', fontWeight:'600'}}>
                     되었습니다.
                 </span>

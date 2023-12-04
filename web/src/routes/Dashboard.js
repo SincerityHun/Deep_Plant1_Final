@@ -34,9 +34,6 @@ function Dashboard() {
   const queryStartDate = new URLSearchParams(searchParams).get('startDate');
   const queryEndDate = new URLSearchParams(searchParams).get('endDate');
   
-  console.log({ pageOffset, queryStartDate,queryEndDate});
-
-
   useEffect(()=>{
     if(queryStartDate && queryEndDate){
       setStartDate(queryStartDate);

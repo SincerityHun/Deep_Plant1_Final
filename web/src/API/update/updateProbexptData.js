@@ -1,6 +1,8 @@
 import { apiIP } from "../../config";
+
+// 실험실 데이터 수정 POST API
 export default async function updateProbexptData(data,i, id, createdDate, userId, elapsedHour,){
-      //request body에 보낼 데이터 가공    
+      //request body에 보낼 데이터 전처리    
         let req = {
             ...data,
         }
@@ -13,14 +15,13 @@ export default async function updateProbexptData(data,i, id, createdDate, userId
             ['period'] :  Math.round(elapsedHour),
         }
         // /meat/add/probexpt_data로 실험 수정 데이터 전송 
-        const res = JSON.stringify(req);
         try{
             const response = await fetch(`http://${apiIP}/meat/add/probexpt_data`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: res,
+            body: JSON.stringify(req),
             });
             if (!response.ok) {
                 throw new Error('probexpt_data 서버에서 응답 코드가 성공(2xx)이 아닙니다.');

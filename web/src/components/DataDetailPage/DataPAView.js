@@ -10,7 +10,7 @@ import { TextField, Autocomplete} from '@mui/material';
 // import tables
 import RawTable from "./tablesComps/rawTable";
 import PredictedRawTable from "./tablesComps/predictedRawTable";
-import ProcessedTablePA from "./tablesComps/processedTablePA";
+import ProcessedTableStatic from "./tablesComps/processedTableStatic";
 import PredictedProcessedTablePA from "./tablesComps/predictedProcessedTablePA";
 
 import { computePeriod } from "./computePeriod";
@@ -66,11 +66,9 @@ function DataPAView({ dataProps}){
         dataPA && setGradeXAIImg(dataPA.xai_gradeNum_imagePath);
     },[seqno, id]);
 
-    //set image path
     useEffect(()=>{
         //XAI 이미지 로드
-        console.log('to load ',dataPA && dataPA.xai_imagePath);
-        dataPA ? setDataXAIImg(dataPA.xai_imagePath) : console.log('null');
+        dataPA && setDataXAIImg(dataPA.xai_imagePath);
         dataPA && setGradeXAIImg(dataPA.xai_gradeNum_imagePath); 
     },[dataPA,loaded,id]);
     
@@ -78,10 +76,8 @@ function DataPAView({ dataProps}){
     const handlePredictClick=async()=>{
         //로그인한 유저 정보
         const userId = JSON.parse(localStorage.getItem('UserInfo'))["userId"];
-        //const tempUserID = 'junsu0573@naver.com';
         // period 계산 
-        const elapsedHour = computePeriod(api_data['butcheryYmd']);
-        
+        const elapsedHour = computePeriod(api_data['butcheryYmd']);  
         const len = processed_data_seq.length;
         //seqno for loop
         SetIsPredictedDone(false);
@@ -252,7 +248,7 @@ function DataPAView({ dataProps}){
                             sx={{ width: 300 ,marginBottom:'10px'}} 
                             renderInput={(params) => <TextField {...params}/>}
                         />
-                        <ProcessedTablePA
+                        <ProcessedTableStatic
                             processedMinute={processed_minute}
                             processedToggleValue={processedToggleValue}
                             processed_data={processed_data}
@@ -263,7 +259,6 @@ function DataPAView({ dataProps}){
                             dataPA={dataPA}
                         />
                     </Tab>
-                    
                 </Tabs>         
                 </Card>
             </div>    
