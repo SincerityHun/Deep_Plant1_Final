@@ -8,6 +8,7 @@ import { useStackedBarFetch } from '../../API/listCharts/getStackedBarSWR';
 const StackedBarChart = ({startDate,endDate}) => {
   const theme = useTheme();
   const line = theme.palette.divider;
+  //누적 바 차트 부위 별 색
   const stackColors  = [ 
     theme.palette.success.light,
     theme.palette.primary.main,
@@ -26,28 +27,32 @@ const StackedBarChart = ({startDate,endDate}) => {
   //API fetch 데이터 저장
   const [series, setSeries] = useState([]);
 
-  //  API fetch 데이터 전처리
+  // fetch한 JSON 데이터에서 필요한 값 parsing 및 전처리하여 series에 저장
   const processStackedBarData = (data) => {
+    // parsing
     const cattleData = data['beef_counts_by_primal_value'];
     const porkData = data['pork_counts_by_primal_value'];
+    // [{name:'부위 별 이름', data : '부위 별 개수'}, ... ] 형태로 데이터 전처리
     let seriesArr = [];
     categories.map((c)=>{
       seriesArr = [
           ...seriesArr,
           {
             name : c,
-            data : [(cattleData[c]!==undefined)? cattleData[c]: 0, (porkData[c]!==undefined) ? porkData[c] : 0],
+            data : [(cattleData[c]!==undefined) ? cattleData[c] : 0, 
+                      (porkData[c]!==undefined) ? porkData[c] : 0],
           }
         ];
     });
+    // series에 저장 
     setSeries(seriesArr);
   }
 
-  // API fetch
+  // 누적 바 데이터 API fetch
   const { data, isLoading, isError } = useStackedBarFetch(startDate, endDate) ;
   console.log('stacked bar chart fetch 결과:', data);
 
-  // fetch한 데이터 전처리 함수 호출
+  // fetch한 데이터 parsing 함수 호출
   useEffect(() => {
     if (data !== null && data !== undefined) {
       processStackedBarData(data);
@@ -86,9 +91,9 @@ const StackedBarChart = ({startDate,endDate}) => {
   return (
     <div id="chart" style={{ backgroundColor: "white", borderRadius: "5px" }}>
       <ReactApexChart
+        type="bar"
         options={options}
         series={series}
-        type="bar"
         height={450}
       />
     </div>

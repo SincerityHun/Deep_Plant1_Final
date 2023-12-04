@@ -10,34 +10,34 @@ import ExcelImportAlertModal from "../DataDetailPage/excelImportAlertModal";
 const navy =  '#0F3659';
 
 function ExcelController(){
-    //엑셀 업로드 성공 여부
-    const [isImportSuccessed, setIsImportSuccessed] = useState(true);
-    //엑셀 업로드 완료
-    const [alertDone, setAlertDone] = useState(false);
+  //엑셀 업로드 성공 여부
+  const [isImportSuccessed, setIsImportSuccessed] = useState(true);
+  //엑셀 업로드 완료
+  const [alertDone, setAlertDone] = useState(false);
 
-    const fileRef = useRef(null);
+  const fileRef = useRef(null);
 
-    // 파일 선택 함수 
-    const handleFileChange = async (event) => {
-        const file = event.target.files[0];
-        await handleExcelFile(file);
-        setAlertDone(true);
-    };
+  // 파일 선택 함수 
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    await handleExcelFile(file);
+    setAlertDone(true);
+  };
 
-    // 선택한 엑셀 파일을 json으로 변환한 뒤 추가 API로 전송 
-    const handleExcelFile = async(file) => {
-        ExcelRenderer(file, (err, resp) => {
-        if (err) {
-            console.log(err);
-        } else {
-          for (let index = 1; index < resp.rows.length; index++){
+  // 선택한 엑셀 파일을 json으로 변환한 뒤 추가 API로 전송 
+  const handleExcelFile = async(file) => {
+    ExcelRenderer(file, (err, resp) => {
+      if (err) {
+        console.log(err);
+      } 
+      else {
+        for (let index = 1; index < resp.rows.length; index++){
           const id =  resp.rows[index][0];
           // 파일 최종 수정 시간
           const lastModified = file.lastModified;
           
           const heatedmeat_eval = {};
           const probexpt_data = {};
-
           for (let i = 1; i < 6; i++) {
             resp.rows[index][i]
             ? heatedmeat_eval[resp.rows[0][i]] = resp.rows[index][i]
@@ -50,13 +50,11 @@ function ExcelController(){
             : probexpt_data[resp.rows[0][i]] = null
             ;
           }
-          
-         // 수정 api 전송을 위한 데이터 다듬기 
-          // 수정 시간
-          const lastModifiedDate = file.lastModifiedDate.toISOString().slice(0, -5);
-          const butcheryDate = new Date(2023, 1, 1, 0, 0, 0);
         
-          // period 계산 
+          // 수정 시간 계산
+          const lastModifiedDate = file.lastModifiedDate.toISOString().slice(0, -5);
+          // 수정이후 period 계산
+          const butcheryDate = new Date(2023, 1, 1, 0, 0, 0);
           const elapsedMSec = lastModified - butcheryDate.getTime();
           const elapsedHour = elapsedMSec / 1000 / 60 / 60;
 
@@ -74,121 +72,144 @@ function ExcelController(){
               ["period"] : Math.round(elapsedHour),
           }
           
-          ///meat/add/heatedmeat_eval
-          const heatedmeatEvalRes = JSON.stringify(heatedmeatEvalReq);
-       
           try{
-                const response  = fetch(`http://${apiIP}/meat/add/heatedmeat_eval`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: heatedmeatEvalRes,
-                });
-                //업로드에 실패한 경우
-                response.then((res)=>{
-                  if (res.status === 404) {
-                    setIsImportSuccessed(false);
-                  }
-                });
-            }catch(err){
-                console.log('error')
-                console.error(err);
-                //업로드에 실패한 경우
-                setIsImportSuccessed(false);
-            }
-
-            // 2. 실험실 데이터 
-
-            let probexptReq = probexpt_data;
-            probexptReq = {
-                ...probexptReq,
-                ['id'] : id,
-                ['updatedAt'] : lastModifiedDate,
-                ['userId'] :   userId ,
-                ['seqno'] : 0,
-                ['period'] :  Math.round(elapsedHour),
-            }
-
-            // api 연결 /meat/add/probexpt_data
-            const probexptRes = JSON.stringify(probexptReq);
-            try{
-                const response = fetch(`http://${apiIP}/meat/add/probexpt_data`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: probexptRes,
-                });
-                //업로드에 실패한 경우
-                response.then((res)=>{
-                  if (res.status === 404) {
-                    setIsImportSuccessed(false);
-                  }
-                });
-            }catch(err){
-                console.log('error')
-                console.error(err);
-                //업로드에 실패한 경우
-                setIsImportSuccessed(false);
-            }  
-          } 
-        }
-        });
-    };
-
-    const [excelData ,setExcelData] = useState();
-    const handleExcelExport = () => {
-      downloadExcel(excelData);
-    }
-    useEffect(()=>{
-      getDataListJSON().then((data)=>{
-        setExcelData(data);
-      });
-    },[])
-   
-    return(
-        <Box>
-          {
-            alertDone
-            && <ExcelImportAlertModal setAlertDone={setAlertDone} isImportSuccessed={isImportSuccessed} setIsImportSuccessed={setIsImportSuccessed}/>
+              const response  = fetch(`http://${apiIP}/meat/add/heatedmeat_eval`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(heatedmeatEvalReq),
+              });
+              //업로드에 실패한 경우
+              response.then((res)=>{
+                if (res.status === 404) {
+                  setIsImportSuccessed(false);
+                }
+              });
+          }catch(err){
+            console.error(err);
+            //업로드에 실패한 경우
+            setIsImportSuccessed(false);
           }
-          <input 
-            class="form-control" 
-            accept=".csv,.xlsx,.xls" 
-            type="file" 
-            id="formFile" 
-            ref={fileRef}
-            onChange={(e) => {handleFileChange(e);}} 
-            style={{display:'none' }}
-          />
 
-          <Button 
-            style={{color:navy, marginRight:'10px', backgroundColor:'white', border:`1px solid ${navy}`, height:'35px', borderRadius:'10px'}} 
-            onClick={()=>{fileRef.current.click();}}
-          >
-            <div style={{display:'flex'}}>
-              <SvgIcon fontSize="small">
-                <ArrowUpOnSquareIcon />
-              </SvgIcon>
-            <span>Import</span>
-            </div>  
-          </Button>
+          // 2. 실험실 데이터 
+          let probexptReq = probexpt_data;
+          probexptReq = {
+            ...probexptReq,
+            ['id'] : id,
+            ['updatedAt'] : lastModifiedDate,
+            ['userId'] :   userId ,
+            ['seqno'] : 0,
+            ['period'] :  Math.round(elapsedHour),
+          }
 
-          <Button 
-            style={{color:navy , backgroundColor:'white', border:`1px solid ${navy}`, height:'35px', borderRadius:'10px'}} 
-            onClick={handleExcelExport}
-          >
-            <div style={{display:'flex'}}>
-              <SvgIcon fontSize="small">
-                  <ArrowDownOnSquareIcon />
-              </SvgIcon>
-            <span>Export</span>
-            </div>
-          </Button>
-        </Box>
-    );
+          try{
+            const response = fetch(`http://${apiIP}/meat/add/probexpt_data`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(probexptReq),
+            });
+            //업로드에 실패한 경우
+            response.then((res)=>{
+              if (res.status === 404) {
+                setIsImportSuccessed(false);
+              }
+            });
+          }catch(err){
+            console.log('error')
+            console.error(err);
+            //업로드에 실패한 경우
+            setIsImportSuccessed(false);
+          }  
+        } 
+      }
+    });
+  };
+
+  // excel export 시 다운로드 할 데이터 목록 
+  const [excelData ,setExcelData] = useState();
+
+  // excel export 버튼 클릭 시
+  const handleExcelExport = () => {
+    // 'excelData'를 인자로 다운로드 함수 호출
+    downloadExcel(excelData);
+  }
+
+  // excel export할 목록 데이터 fetch
+  useEffect(()=>{
+    // API로 부터 fetch 후 'excelData' 상태 변경
+    getDataListJSON().then((data)=>{
+      setExcelData(data);
+    });
+  },[]);
+  
+  return(
+    <Box>
+      {
+        alertDone
+        && 
+        <ExcelImportAlertModal 
+          setAlertDone={setAlertDone} 
+          isImportSuccessed={isImportSuccessed} 
+          setIsImportSuccessed={setIsImportSuccessed}
+        />
+      }
+      <input 
+        class="form-control" 
+        accept=".csv,.xlsx,.xls" 
+        type="file" 
+        id="formFile" 
+        ref={fileRef}
+        onChange={(e) => {handleFileChange(e);}} 
+        style={{display:'none' }}
+      />
+
+      <Button 
+        style={style.importBtnWrapper} 
+        onClick={()=>{fileRef.current.click();}}
+      >
+        <div style={{display:'flex'}}>
+          <SvgIcon fontSize="small">
+            <ArrowUpOnSquareIcon />
+          </SvgIcon>
+          <span>Import</span>
+        </div>  
+      </Button>
+
+      <Button 
+        style={style.exportBtnWrapper} 
+        onClick={handleExcelExport}
+      >
+        <div style={{display:'flex'}}>
+          <SvgIcon fontSize="small">
+              <ArrowDownOnSquareIcon />
+          </SvgIcon>
+          <span>Export</span>
+        </div>
+      </Button>
+    </Box>
+  );
 }
 
 export default ExcelController;
+
+const style = {
+  importBtnWrapper : {
+    color:navy, 
+    marginRight:'10px', 
+    backgroundColor:'white', 
+    border:`1px solid ${navy}`, 
+    height:'35px', 
+    borderRadius:'10px'
+  },
+  exportBtnWrapper : {
+    color:navy , 
+    backgroundColor:'white', 
+    border:`1px solid ${navy}`, 
+    height:'35px', 
+    borderRadius:'10px'
+  }
+}
 

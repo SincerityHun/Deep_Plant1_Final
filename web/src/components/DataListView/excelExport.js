@@ -10,11 +10,7 @@ const getDataListJSON = async () => {
 
 // JSON파일을 엑셀로 변환하기
 const downloadExcel = (data) => {
-    console.log('is rendered? ', data);
     const rows = DataListJSON2Excel(data);
-   
-    console.log('rows:', rows, 'type:', typeof(rows));
-    
     const worksheet = XLSX.utils.json_to_sheet(rows);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'my_sheet');

@@ -21,7 +21,6 @@ const RejectedDataListComp=({startDate, endDate, pageOffset})=>{
 
   // API fetch 데이터 전처리
   const processRejectedMeatDatas = (data) => {
-    console.log('process data', data);
     // 전체 데이터 수
     setTotalData(data["DB Total len"]);
     // 반려데이터

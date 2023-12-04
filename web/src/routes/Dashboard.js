@@ -23,7 +23,6 @@ const navy =  '#0F3659';
 function Dashboard() { 
   // 목록/ 통계/ 반려함 탭 메뉴
   const [value, setValue] = useState('list');
-  //const [period, setPeriod] = useState(7);
   const s = new Date();
   s.setDate(s.getDate() -7);
   const [startDate, setStartDate] = useState(new Date(s.getTime() + TIME_ZONE).toISOString().slice(0, -5));
@@ -81,8 +80,7 @@ function Dashboard() {
           { value === "stat" && <StatsExport/>}
         </div>
       </Box>
-
-
+      
       { value === "list" && <DataListComp startDate={startDate} endDate={endDate} pageOffset={pageOffset}/> }
       { value === "stat" && <DataStat startDate={startDate} endDate={endDate}  pageOffset={pageOffset}/>}
       { value === "reject" && <RejectedDataListComp startDate={startDate} endDate={endDate}  pageOffset={pageOffset}/> }

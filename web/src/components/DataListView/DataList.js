@@ -31,8 +31,10 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
     const handleSingleCheck = (checked, id) => {
         // 삭제할 id를 배열로 만듦
         if (checked) {
+            // 체크한 경우 배열에 추가
             setCheckItems([...checkItems, id]);
         } else {
+            // 체크 해제한 경우 배열에서 삭제
             setCheckItems(checkItems.filter((el) => el !== id));
         }
     };
@@ -41,11 +43,13 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
     const handleAllCheck = (checked) => {
         // 삭제할 id를 배열로 만듦
         if (checked) {
+            // 체크한 경우 전체 id를 배열에 추가
             const idArray = [];
             meatList.forEach((el) => idArray.push(el.id));
             setCheckItems(idArray);
         }
         else {
+            // 체크 해제한 경우 배열을 []로 설정
             setCheckItems([]);
         }
     };
@@ -289,13 +293,6 @@ const headCells = [
         disablePadding: true,
         label: '생성 날짜'
     },
-   /* {
-        id: 'button',
-        align: 'center',
-        disablePadding: false,
-    
-        label: '검토'
-      },*/
     {
       id: 'accept',
       align: 'center',

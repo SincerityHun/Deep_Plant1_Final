@@ -37,7 +37,7 @@ function DataView({page,dataProps}){
     const [searchParams, setSearchParams] = useSearchParams();
     const pageOffset = searchParams.get("pageOffset");
     
-    //데이터 받아오기 -> props 로 전달로 변경
+    //dataProps로 부터 properties destruct
     const { 
         id, 
         userId, 
@@ -57,10 +57,9 @@ function DataView({page,dataProps}){
     const [processedMinute,setProcessedMinute] = useState(processed_minute);
     //탭 정보 
     const tabFields = [rawField, deepAgingField,heatedField, labField, apiField,];
-    // 탭별 데이터 -> datas는 불변 , input text를 바꾸고 서버에 전송하고, db에서 바뀐 데이터를 받아서 datas에 저장 
+    // 탭별 데이터 -> datas는 불변 , input text를 바꾸고 서버에 전송
     const datas = [ raw_data, processed_data, heated_data, lab_data, api_data];
-   
-    const  butcheryYmd = api_data['butcheryYmd'];
+
     useEffect(()=>{
         options = processed_data_seq;
     },[]);
@@ -74,7 +73,7 @@ function DataView({page,dataProps}){
     const [labToggleValue, setLabToggleValue] = useState('');
 
     // "원육","처리육","가열육","실험실+전자혀","축산물 이력",별 수정 및 추가 input text
-    const [rawInput, setRawInput] = useState({});// 이거 필요?없을 듯 
+    const [rawInput, setRawInput] = useState({});
     const [processedInput, setProcessedInput] = useState({});
     const [heatInput, setHeatInput] = useState({});
     const [labInput , setLabInput] = useState({});
@@ -171,7 +170,6 @@ function DataView({page,dataProps}){
                 })
             ;
         }
-        console.log("original img path", processed_img_path);
 
         // 3. 처리육 관능검사 데이터 수정 API POST
         const pro_len = (len===1 ? len : (len-1));
@@ -223,14 +221,14 @@ function DataView({page,dataProps}){
         &&
         <div style={style.editBtnWrapper}>
             <IconButton 
-                style={{backgroundColor:'#00e676',color:'white', fontSize:'15px', borderRadius:'5px', width:'80px', height:'35px'}} 
+                style={style.acceptBtn} 
                 onClick={()=>setConfirmVal('confirm')}
             >
                 <FaRegCheckCircle/>
                 승인
             </IconButton>
             <IconButton 
-                style={{backgroundColor:'#e53935',color:'white', fontSize:'15px', borderRadius:'5px', width:'80px', height:'35px', marginLeft:'20px'}}
+                style={style.rejectBtn}
                 onClick={()=>setConfirmVal('reject')}
             >
                 <FaRegTimesCircle/>
@@ -256,22 +254,33 @@ function DataView({page,dataProps}){
        }
         <div style={style.singleDataWrapper}>
             {/* 1. 관리번호 고기에 대한 사진*/}
-            <MeatImgsCard edited={edited} page={page} raw_img_path={raw_img_path} processed_img_path={processed_img_path} setIsUploadingDone={setIsUploadingDone}  id={id}
-            raw_data={raw_data}
-            setIsLimitedToChangeImage={setIsLimitedToChangeImage}
-            butcheryYmd={butcheryYmd}
-            processedInput={processedInput}
-            processed_data={processed_data} 
-            processedMinute={processedMinute}
+            <MeatImgsCard 
+                edited={edited} 
+                page={page} 
+                raw_img_path={raw_img_path} 
+                processed_img_path={processed_img_path} 
+                setIsUploadingDone={setIsUploadingDone}  
+                id={id}
+                raw_data={raw_data}
+                setIsLimitedToChangeImage={setIsLimitedToChangeImage}
+                butcheryYmd={api_data['butcheryYmd']}
+                processedInput={processedInput}
+                processed_data={processed_data} 
+                processedMinute={processedMinute}
             />
             {/* 2. QR코드와 데이터에 대한 기본 정보*/}
             <QRInfoCard qrImagePath={qrImagePath} id={id} userId={userId} createdAt={createdAt}/>
 
             {/* 3. 세부 데이터 정보*/}
             <Card style={{ width:'27vw', margin:'0px 10px', boxShadow: 24, height:'65vh',}}>    
-            
-            <Tabs  value={value} onChange={handleChange} defaultActiveKey='rawMeat' aria-label="tabs" className="mb-3" style={{backgroundColor:'white', width:'100%'}}>
-            
+            <Tabs  
+                value={value} 
+                onChange={handleChange} 
+                defaultActiveKey='rawMeat' 
+                aria-label="tabs" 
+                className="mb-3" 
+                style={{backgroundColor:'white', width:'100%'}}
+            >
                 <Tab value='raw' eventKey='rawMeat' title='원육' >
                     <RawTable data={rawInput}/>                  
                 </Tab>
@@ -282,7 +291,7 @@ function DataView({page,dataProps}){
                         value={processed_toggle} 
                         onChange={(event, newValue) => {setProcessedToggle(newValue);}}
                         inputValue={processedToggleValue} 
-                        onInputChange={(event, newInputValue) => {setProcessedToggleValue(newInputValue); console.log('deepading seq',newInputValue)/*이미지 바꾸기 */}}
+                        onInputChange={(event, newInputValue) => {setProcessedToggleValue(newInputValue); /*이미지 바꾸기 */}}
                         options={options.slice(1,)} 
                         size="small"
                         sx={{ width: "fit-content" ,marginBottom:'10px'}} 
@@ -303,8 +312,16 @@ function DataView({page,dataProps}){
                   
                 </Tab>
                 <Tab value='heat' eventKey='heatedMeat' title='가열육' style={{backgroundColor:'white'}}>
-                    <Autocomplete value={heatedToggle}  size="small" onChange={(event, newValue) => {setHeatedToggle(newValue)}} inputValue={heatedToggleValue} onInputChange={(event, newInputValue) => {setHeatedToggleValue(newInputValue)}}
-                    id={"controllable-states-heated"} options={options} sx={{ width: "fit-content" ,marginBottom:'10px'}} renderInput={(params) => <TextField {...params} label="처리상태" />}
+                    <Autocomplete 
+                        value={heatedToggle}  
+                        size="small" 
+                        onChange={(event, newValue) => {setHeatedToggle(newValue)}} 
+                        inputValue={heatedToggleValue} 
+                        onInputChange={(event, newInputValue) => {setHeatedToggleValue(newInputValue)}}
+                        id={"controllable-states-heated"} 
+                        options={options} 
+                        sx={{ width: "fit-content" ,marginBottom:'10px'}} 
+                        renderInput={(params) => <TextField {...params} label="처리상태" />}
                     />
                     <HeatTable 
                         edited ={edited} 
@@ -315,8 +332,16 @@ function DataView({page,dataProps}){
                     />
                 </Tab>
                 <Tab value='lab' eventKey='labData' title='실험실' style={{backgroundColor:'white'}}>
-                    <Autocomplete value={labToggle}  size="small" onChange={(event, newValue) => {setLabToggle(newValue)}} inputValue={labToggleValue} onInputChange={(event, newInputValue) => {setLabToggleValue(newInputValue)}}
-                    id={"controllable-states-api"} options={options} sx={{ width: "fit-content" ,marginBottom:'10px'}} renderInput={(params) => <TextField {...params} label="처리상태" />}
+                    <Autocomplete 
+                        value={labToggle}  
+                        size="small" 
+                        onChange={(event, newValue) => {setLabToggle(newValue)}} 
+                        inputValue={labToggleValue} 
+                        onInputChange={(event, newInputValue) => {setLabToggleValue(newInputValue)}}
+                        id={"controllable-states-api"} 
+                        options={options} 
+                        sx={{ width: "fit-content" ,marginBottom:'10px'}} 
+                        renderInput={(params) => <TextField {...params} label="처리상태" />}
                     />
                     <LabTable 
                         edited={edited} 
@@ -364,15 +389,11 @@ const apiField = ['birthYmd', 'butcheryYmd', 'farmAddr','farmerNm','gradeNm','pr
 
 const style={
     singleDataWrapper:{
-      //height:'fit-content',
       marginTop:'40px',
-      //padding: "20px 10px",
-      //paddingBottom: "0px",
       display: "flex",
       justifyContent: "space-between",
     },
     editBtnWrapper:{
-        //padding:"5px 10px",
         paddingTop:'0px',
         width:'100%' ,
         display:'flex',
@@ -382,11 +403,11 @@ const style={
         borderBottomRightRadius:'10px'
       },
     dataFieldColumn:{
-    backgroundColor:'#9e9e9e',
-    height:'33px',
-    borderRight: '1px solid rgb(174, 168, 168)', 
-    borderBottom:'1px solid #fafafa',
-    padding:'4px 5px',
+        backgroundColor:'#9e9e9e',
+        height:'33px',
+        borderRight: '1px solid rgb(174, 168, 168)', 
+        borderBottom:'1px solid #fafafa',
+        padding:'4px 5px',
     },
     dataExpColumn:{
         backgroundColor:'#757575',
@@ -409,27 +430,39 @@ const style={
         width:'',
         borderRight:'0.8px solid #e0e0e0',
         padding:'4px 5px',
+    },
+    acceptBtn : {
+        backgroundColor:'#00e676',
+        color:'white', 
+        fontSize:'15px', 
+        borderRadius:'5px', 
+        width:'80px', 
+        height:'35px'
+    },
+    rejectBtn : {
+        backgroundColor:'#e53935',
+        color:'white', 
+        fontSize:'15px', 
+        borderRadius:'5px', 
+        width:'80px', 
+        height:'35px', 
+        marginLeft:'20px'
     }
-  
-  }
+}
   const divStyle = {
     currDiv :{
         height:"fit-content", 
         width:"fit-content", 
         padding:'10px',
         borderRadius : '5px',
-        //backgroundColor:'#002984', 
         color:navy,
-        //border:'1px solid white'
     },
     notCurrDiv :{
         height:"100%", 
         width:"fit-content", 
         borderRadius : '5px',
         padding:'10px',
-        //backgroundColor:'white', 
         color:'#b0bec5',
-        //border:'1px solid #002984'
     },
     loadingBackground : {
         position: 'absolute',
@@ -443,14 +476,9 @@ const style={
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+    },  
+    loadingText :{
+        fontSize:'25px',
+        textAlign: 'center',
     }
-      
-  ,loadingText :{
-    fontSize:'25px',
-    textAlign: 'center',
   }
-
- 
-  }
-
-

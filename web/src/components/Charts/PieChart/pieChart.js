@@ -13,38 +13,43 @@ import { usePieChartFetch } from '../../../API/listCharts/getPieChartSWR';
 
 const PieChart = ({ subheader, chartColors, startDate,endDate,...other }) => {
     const theme = useTheme();
+    // 전체 또는 소 또는 돼지 중 조회할 데이터의 label
     const [label, setLabel] = useState('total_counts');
+
+    // pie chart에 나타낼 chart series 값
     const [chartSeries, setChartSeries] = useState([]);
+
+    //'useChart' hook과 configuration settings을 사용하여 'chartOptions' 을 정의 
     const chartOptions = useChart({
-      colors: chartColors,
-      labels: CHART_LABLE,
-      stroke: { colors: [theme.palette.background.paper] },
-      legend: { floating: true, horizontalAlign: 'center' },
-      dataLabels: { enabled: true, dropShadow: { enabled: false } },
+      colors: chartColors, // Colors for the chart series.
+      labels: CHART_LABLE, // Labels for the chart.
+      stroke: { colors: [theme.palette.background.paper] }, // Stroke colors for the chart.
+      legend: { floating: true, horizontalAlign: 'center' }, // Legend configuration.
+      dataLabels: { enabled: true, dropShadow: { enabled: true } }, // Data label configuration
       tooltip: {
-        fillSeriesColor: false,
+        fillSeriesColor: true, // Whether to fill the tooltip with series color.
         y: {
-          formatter: (seriesName) => fNumber(seriesName),
+          formatter: (seriesName) => fNumber(seriesName), // Formatter for the y-axis tooltip.
           title: {
-            formatter: (seriesName) => `${seriesName}`,
+            formatter: (seriesName) => `${seriesName}`, // Formatter for the tooltip title.
           },
         },
       },
       plotOptions: {
-        pie: { donut: { labels: { show: false } } },
+        pie: { donut: { labels: { show: true } } }, // Plot options for a donut chart. (가운데 설명 표시)
       },
     });
 
-    //  API fetch 데이터 전처리
+    // fetch한 JSON 데이터에서 필요한 값 parsing 및 chartSeries에 저장
     const processPieData = (data) => {
       setChartSeries([data['total_counts']['raw'], data['total_counts']['processed']]);
     }
 
-    // API fetch
+    // pie chart 데이터 API fetch
     const { data, isLoading, isError } = usePieChartFetch(startDate, endDate) ;
     console.log('pie chart fetch 결과:', data);
 
-    // fetch한 데이터 전처리 함수 호출
+    // fetch한 데이터 parsing 함수 호출
     useEffect(() => {
       if (data !== null && data !== undefined) {
         processPieData(data);
