@@ -135,10 +135,12 @@ function DataPAView({ dataProps}){
                 </div>
             }
             <div style={style.editBtnWrapper}>
-                <button type="button" class="btn btn-outline-success" style={{/*marginLeft:'30px'*/}} onClick={handlePredictClick}>예측</button>
+                <button type="button" class="btn btn-outline-success" style={{/*marginLeft:'30px'*/}} onClick={handlePredictClick}>
+                    예측
+                </button>
             </div>  
             <div style={style.singleDataWrapper}>
-                {/* 1. 관리번호 고기에 대한 사진 -> 컴포넌트 따로 만들기*/}
+                {/* 1. 관리번호 육류에 대한 사진*/}
                 <div>
                     {/* 1.1. 원본이미지 */}
                     <Card style={{ width: "23vw", margin:'0px 10px',marginBottom:'20px', boxShadow: 24,}}>    
@@ -155,8 +157,7 @@ function DataPAView({ dataProps}){
                                 </div>
                             </Card.Text>
                         </Card.Body>
-                    </Card>
-                            
+                    </Card>          
                     {/** 1.2. XAI 이미지 */}
                     <Card style={{ width: "23vw", margin:'0px 10px',boxShadow: 24,}}>
                         <Card.Body>
@@ -189,9 +190,7 @@ function DataPAView({ dataProps}){
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                </div>
-                
-                
+                </div>        
                 {/* 2. QR코드와 데이터에 대한 기본 정보*/}
                 <Card style={{width:'23vw', margin:'0px 10px',boxShadow: 24,}}>
                     <Card.Body> 
