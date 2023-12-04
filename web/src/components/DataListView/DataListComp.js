@@ -61,7 +61,7 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
           &&
             <DataList
               meatList={meatList}
-              pageProp={'list'}
+              pageProp={'list'} // 육류 목록 페이지임을 명시
               offset={currentPage-1}
               count={count}
               startDate={startDate}

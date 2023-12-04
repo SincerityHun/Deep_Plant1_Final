@@ -4,7 +4,6 @@ import {FaRegTrashAlt} from "react-icons/fa";
 import { apiIP } from "../../config";
 const navy =  '#0F3659';
 
-
 export default function DelWarningModal({idArr, setIsDelClick, pageOffset, startDate, endDate}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);
@@ -12,21 +11,28 @@ export default function DelWarningModal({idArr, setIsDelClick, pageOffset, start
       setOpen(false); 
       setIsDelClick(false); 
     };
+
+    // 삭제 API 호출함수
     const onDelete = async(id) =>{
       await fetch(`http://${apiIP}/meat/delete?id=${id}`);
     }
-  
+
+    // 삭제 후 reload 시 쿼리 파라미터 변수 값
     const params = [
       `pageOffset=${pageOffset}`,
       `startDate=${startDate}`,
       `endDate=${endDate}`,
     ];
 
-    const handleOnDelete=async()=>{
+    // 삭제 버튼 클릭 시 
+    const handleOnDelete = async() =>{
         for (let i = 0; i < idArr.length; i++){
+          // 삭제 API 호출
           await onDelete(idArr[i]);
         }
+        // 삭체 후 새로고침
         window.location.href = "http://" + window.location.host + window.location.pathname + '?' + params.join('&');
+        // 모달 창 닫기
         handleClose();
     }
     return (

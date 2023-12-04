@@ -5,22 +5,31 @@ import { Box,Divider, Link, Stack, Table, TableBody, TableCell, TableContainer, 
 import {FaRegTrashAlt} from "react-icons/fa";
 import DelWarningModal from "./WarningComp";
 import PropTypes from 'prop-types';
-function DataList({meatList, pageProp, offset, count, totalPages,startDate, endDate, pageOffset}){
-    console.log('check pa date', startDate, endDate)
-;    // 삭제 
-    // 테이블 헤더상 선택 삭제 클릭
-    const [isDelClick, setIsDelClick] = useState(false);
 
-    // 테이블 헤더의 선택 삭제버튼 클릭
+function DataList({meatList, pageProp, offset, count, totalPages,startDate, endDate, pageOffset}){
+
+    // 삭제 클릭 여부 
+    const [isDelClick, setIsDelClick] = useState(false);
+    // 삭제할 아이템 배열 관리
+    const [checkItems, setCheckItems] = useState([]);
+
+    // 테이블 셀에 있는 '휴지통 아이콘'삭제 버튼 클릭 시
+    const handleTableCellDelete = (id) =>{
+        // 삭제할 id를 배열로 만듦
+        let idArr = [];
+        idArr.push(id);
+        setCheckItems(idArr);
+        setIsDelClick(true);
+    }
+
+    // 테이블 헤더의 '선택 삭제'버튼 클릭 시
     const handleTableHeaderDeleteBtn = () =>{
         setIsDelClick(true);
     }
 
-    // 체크된 아이템 배열 관리
-    const [checkItems, setCheckItems] = useState([]);
-
     // 체크박스 단일 개체 선택
     const handleSingleCheck = (checked, id) => {
+        // 삭제할 id를 배열로 만듦
         if (checked) {
             setCheckItems([...checkItems, id]);
         } else {
@@ -30,6 +39,7 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
 
     // 체크박스 전체 선택
     const handleAllCheck = (checked) => {
+        // 삭제할 id를 배열로 만듦
         if (checked) {
             const idArray = [];
             meatList.forEach((el) => idArray.push(el.id));
@@ -39,16 +49,6 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
             setCheckItems([]);
         }
     };
-
-    //테이블 셀에 있는 삭제 버튼 클릭 시
-    const [isTableCellDelClick, setIsTableCellDelClick] = useState(false);
-
-    const handleTableCellDelete = (id) =>{
-        let idArr = [];
-        idArr.push(id);
-        setCheckItems(idArr);
-        setIsDelClick(true);
-    }
 
     // 테이블 헤더
     function OrderTableHead({ order, orderBy }) {
@@ -213,16 +213,9 @@ function DataList({meatList, pageProp, offset, count, totalPages,startDate, endD
             </Table>
         </TableContainer>
         {
-            // 테이블 셀의 삭제버튼이 클릭된 경우 
-            isTableCellDelClick
-            ?<DelWarningModal idArr={checkItems} setIsDelClick={setIsDelClick} pageOffset={pageOffset} startDate={startDate} endDate={endDate}/>
-            :<></>
-        }
-        {
-            // 테이블 헤더의 선택 삭제 버튼이 클릭된 경우
+            // 테이블 삭제 버튼이 클릭된 경우
             isDelClick       
-            ?<DelWarningModal idArr={checkItems} setIsDelClick={setIsDelClick} pageOffset={pageOffset} startDate={startDate} endDate={endDate}/>
-            :<></>
+            &&<DelWarningModal idArr={checkItems} setIsDelClick={setIsDelClick} pageOffset={pageOffset} startDate={startDate} endDate={endDate}/>
         }
         </Box>
     );
