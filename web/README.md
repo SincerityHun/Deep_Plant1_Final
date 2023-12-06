@@ -25,6 +25,33 @@
 ## 프로젝트 소개
 육류 및 유저 데이터의 입력/수정/조회/통계 기능이 탑재된 관리자 도메인
 
+---
+## 주요 기능
+
+### 대시보드
+- 목록 - 육류데이터 조회, 삭제, 엑셀 import/export 가능
+- 통계 - 육류데이터의 원육 및 숙성육 비율, 부위 별 데이터 수, 지역 별 데이터 수에 대한 통계 조회 가능
+- 반려 - 반려 상태 육류데이터 조회, 삭제 가능
+
+### 상세조회
+- 개별적인 육류 데이터가 승인 상태인 경우, 해당 육류 데이터에 대해 상세한 정보 조회, 수정 가능
+- 개별적인 육류 데이터가 대기 및 반려 상태인 경우, 상세한 정보 조회, 승인 또는 반려로 상태 변경 가능
+
+### 통계 분석
+- 맛/관능, 원육/처리육/가열육 별 통계, 빈도수, 상관관계, 시계열 등을 날짜 별로 조회
+
+### 데이터 예측
+- 예측할 육류데이터 조회 가능
+- 개별적인 육류 데이터의 상세한 정보 조회 가능, 데이터 및 등급 예측 가능
+
+
+### 사용자 관리
+- 사용자 검색, 신규 회원 등록, 권한 변경, 사용자 삭제 기능
+
+### 프로필
+- 프로필 정보 수정 및 회원 탈퇴 기능
+---
+
 ## 시작 가이드
 ### Requirements
 
@@ -42,7 +69,15 @@ $ cd Deep_Plant1_Final
 $ cd web
 $ npm run start
 ```
-
+---
+## 화면 구성
+| 로그인 페이지  |  홈페이지   |
+| :-------------------------------------------: | :------------: |
+|  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
+| 대시보드 페이지   |  데이터 예측 페이지   |  
+| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_dashboard.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_data_predict.png?raw=true"/>     |
+| 통계 페이지    |   유저 관리 페이지   |
+| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_statistics.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_user_management.png?raw=true"/>     |
 
 <!-- ---
 ### EC2 인스턴스 접속 후 배포
@@ -74,40 +109,7 @@ $ npm run build
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 
----
-## 화면 구성
-| 로그인 페이지  |  홈페이지   |
-| :-------------------------------------------: | :------------: |
-|  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_login.png?raw=true"/> |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_home.png?raw=true"/>| 
-| 대시보드 페이지   |  데이터 예측 페이지   |  
-| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_dashboard.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_data_predict.png?raw=true"/>     |
-| 통계 페이지    |   유저 관리 페이지   |
-| <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_statistics.png?raw=true"/>   |  <img width="400" src="https://github.com/SincerityHun/Deep_Plant1_Final/blob/main/web/images/s_user_management.png?raw=true"/>     |
-
----
-## 주요 기능
-
-### 대시보드
-- 목록 - 육류데이터 조회, 삭제, 엑셀 import/export 가능
-- 통계 - 육류데이터의 원육 및 숙성육 비율, 부위 별 데이터 수, 지역 별 데이터 수에 대한 통계 조회 가능
-- 반려 - 반려 상태 육류데이터 조회, 삭제 가능
-
-### 상세조회
-- 개별적인 육류 데이터가 승인 상태인 경우, 해당 육류 데이터에 대해 상세한 정보 조회, 수정 가능
-- 개별적인 육류 데이터가 대기 및 반려 상태인 경우, 상세한 정보 조회, 승인 또는 반려로 상태 변경 가능
-
-### 통계 분석
-- 맛/관능, 원육/처리육/가열육 별 통계, 빈도수, 상관관계, 시계열 등을 날짜 별로 조회
-
-### 데이터 예측
-- 예측할 육류데이터 조회 가능
-- 개별적인 육류 데이터의 상세한 정보 조회 가능, 데이터 및 등급 예측 가능
 
 
-### 사용자 관리
-- 사용자 검색, 신규 회원 등록, 권한 변경, 사용자 삭제 기능
 
-### 프로필
-- 프로필 정보 수정 및 회원 탈퇴 기능
----
 
