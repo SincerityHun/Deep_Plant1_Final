@@ -1,6 +1,11 @@
 import { useState } from "react"
 import PropTypes from 'prop-types';
-import {Tabs, Tab, Box,useTheme}from '@mui/material';
+import { Tabs, Tab, Box, Button, useTheme } from '@mui/material';
+import BarGraph from "./Charts/barGraph";
+import PieChart from "./Charts/pieChart";
+import AreaChart from "./Charts/BoxPlot/Sens_FreshMeat";
+import { IoBarChart, IoPieChart } from "react-icons/io5";
+import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Select, MenuItem } from '@mui/material';
 import Sens_FreshMeat from "./Charts/BoxPlot/Sens_FreshMeat";
@@ -53,27 +58,27 @@ function a11yProps(index) {
 export default function StatsTabs({ startDate, endDate }) {
   const [value, setValue] = useState(0);
   const [slot, setSlot] = useState("week");
-  useEffect(() => {console.log('stat tab'+startDate, '-', endDate)}, [startDate, endDate]);
+  useEffect(() => { console.log('stat tab' + startDate, '-', endDate) }, [startDate, endDate]);
   const theme = useTheme();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  
+
   const [alignment, setAlignment] = React.useState("맛");
   const [secondary, setSecondary] = React.useState("원육");
 
   const handleFirstChange = (event) => {
-  setAlignment(event.target.value);
-};
+    setAlignment(event.target.value);
+  };
 
-const handleSecondChange = (event) => {
-  setSecondary(event.target.value);
-};
+  const handleSecondChange = (event) => {
+    setSecondary(event.target.value);
+  };
 
   return (
     <Box sx={{ width: "900px", height: "350px" }}>
-     
+
       <Box
         sx={{
           borderBottom: 1,
@@ -97,33 +102,33 @@ const handleSecondChange = (event) => {
         </Tabs>
         <Box>
 
-        {value !== 3 && (
-  <div>
-    <Select
-      labelId="alignment-label"
-      id="alignment"
-      value={alignment}
-      onChange={handleFirstChange}
-      label="맛 또는 관능"
-    >
-      <MenuItem value="맛">맛</MenuItem>
-      <MenuItem value="관능">관능</MenuItem>
-    </Select>
-    <Select
-      labelId="secondary-label"
-      id="secondary"
-      value={secondary}
-      onChange={handleSecondChange}
-      label="원육, 처리육, 가열육"
-    >
-      <MenuItem value="원육">원육</MenuItem>
-      <MenuItem value="처리육">처리육</MenuItem>
-      <MenuItem value="가열육" disabled={alignment === "맛"}>가열육</MenuItem>
-    </Select>
-  </div>
-)}
+          {value !== 3 && (
+            <div>
+              <Select
+                labelId="alignment-label"
+                id="alignment"
+                value={alignment}
+                onChange={handleFirstChange}
+                label="맛 또는 관능"
+              >
+                <MenuItem value="맛">맛</MenuItem>
+                <MenuItem value="관능">관능</MenuItem>
+              </Select>
+              <Select
+                labelId="secondary-label"
+                id="secondary"
+                value={secondary}
+                onChange={handleSecondChange}
+                label="원육, 처리육, 가열육"
+              >
+                <MenuItem value="원육">원육</MenuItem>
+                <MenuItem value="처리육">처리육</MenuItem>
+                <MenuItem value="가열육" disabled={alignment === "맛"}>가열육</MenuItem>
+              </Select>
+            </div>
+          )}
 
-  </Box>
+        </Box>
 
       </Box>
       {/* BoxPlot(통계) */}
@@ -158,7 +163,6 @@ const handleSecondChange = (event) => {
 
       <CustomTabPanel value={value} index={2}>
         {alignment === "관능" && secondary === "원육" ? (
-          // <Sens_Fresh_Map startDate={startDate} endDate={endDate} />
           <Sense_Fresh_Corr startDate={startDate} endDate={endDate} />
         ) : alignment === "관능" && secondary === "처리육" ? (
           <Sense_Proc_Corr startDate={startDate} endDate={endDate} />
