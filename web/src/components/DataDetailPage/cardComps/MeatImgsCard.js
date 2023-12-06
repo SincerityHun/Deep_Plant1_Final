@@ -15,9 +15,20 @@ import { computePeriod } from "../computePeriod";
 
 const navy =  '#0F3659';
 
-const MeatImgsCard=(
-    {edited, page, raw_img_path,processed_img_path, setIsUploadingDone, id,raw_data, setIsLimitedToChangeImage,butcheryYmd, processedInput, processed_data, processedMinute }
-    )=>{
+const MeatImgsCard = ({
+    edited, 
+    page, 
+    raw_img_path,
+    processed_img_path, 
+    setIsUploadingDone, 
+    id,
+    raw_data, 
+    setIsLimitedToChangeImage,
+    butcheryYmd, 
+    processedInput, 
+    processed_data, 
+    processedMinute,})=>{
+
     // 1.이미지 파일 변경 
     const fileRef = useRef(null);
     // 이미지 미리보기 or 이미지 변경 될 때 마다 firebase 업로드 
@@ -31,7 +42,6 @@ const MeatImgsCard=(
 
     const handleImgChange =(newImgFile)=>{
         if (newImgFile){
-            console.log('new img file', newImgFile)
             const fileName = id+'-'+currentIdx+'.png';
             const folderName = "sensory_evals";
             const reader = new FileReader();
@@ -120,16 +130,18 @@ const MeatImgsCard=(
             {/* 1.1. 이미지 */}
             <Card.Body>
                 {/**이미지 제목 */}
-                <Card.Text style={{display:'flex', justifyContent:'space-between', alignItems:'center',}}>
+                <Card.Text style={style.imgTitleContainer}>
                     {// 이미지 제목 
                         currentIdx === 0
-                        ?<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>원육이미지</div>
-                        :<div style={{color:'#002984', height:"40px", fontSize:'18px', fontWeight:'800'}}>딥에이징 {currentIdx}회차 이미지</div>
+                        ?<div style={style.imgTitleWrapper}>원육이미지</div>
+                        :<div style={style.imgTitleWrapper}>딥에이징 {currentIdx}회차 이미지</div>
                     }
                     <div style={{display:'flex'}}>            
-                        {page === '수정및조회'
-                        &&<div>
-                            <input className="form-control" id="formFile" 
+                        {
+                        page === '수정및조회'&&
+                        <div>
+                            <input 
+                                className="form-control" id="formFile" 
                                 accept="image/jpg,impge/png,image/jpeg,image/gif" 
                                 type="file" 
                                 ref={fileRef}
@@ -138,9 +150,12 @@ const MeatImgsCard=(
                             {
                             edited
                             &&
-                            <IconButton type="button" className="btn btn-success" style={{height:"40px", width:'160px',border:`1px solid ${navy}`, borderRadius:'5px'}} 
+                            <IconButton 
+                                type="button" 
+                                className="btn btn-success" 
+                                style={style.imgUploadWrapper} 
                                 onClick={()=>{fileRef.current.click()}}>
-                                <span style={{color:`${navy}`, fontSize:'16px', marginRight:'5px'}}>
+                                <span style={style.imgUploadTextWrapper}>
                                     이미지 업로드
                                 </span>
                                 <FaUpload/>
@@ -152,46 +167,58 @@ const MeatImgsCard=(
                 </Card.Text>
                 {/**이미지 */}
                 <Card.Text>  
-                    <div style={{height:'350px',width:"100%",borderRadius:'10px'}}>
+                    <div style={style.imgContainer}>
                         {// 실제 이미지 
                         imgArr[currentIdx]
                         ? isImgChanged === true 
-                            ?/*이미지 미리 보기*/<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]}  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
-                            :<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]+"?time=" + new Date() }  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
-                        :<div style={{height:'350px',width:"400px", display:'flex', justifyContent:'center', alignItems:'center'}}>이미지가 존재하지 않습니다.</div>
+                            ?/*이미지 미리 보기*/
+                            <img 
+                                ng-src="data:image/jpeg;base64,{{image}}" 
+                                src={imgArr[currentIdx]}  
+                                alt={`Image ${currentIdx + 1}`} 
+                                style={style.imgWrapper}/>
+                            :
+                            <img 
+                                ng-src="data:image/jpeg;base64,{{image}}" 
+                                src={imgArr[currentIdx]+"?time=" + new Date() }  
+                                alt={`Image ${currentIdx + 1}`} 
+                                style={style.imgWrapper}/>
+                        :<div style={style.imgNotExistWrapper}>
+                            이미지가 존재하지 않습니다.
+                        </div>
                         }
                     </div>
                 </Card.Text>
                 {/**페이지네이션 */}
-                <Card.Text style={{display:'flex', justifyContent:'center',alignItems:'center',}}>
+                <Card.Text style={style.paginationBtnWrapper}>
                     <IconButton 
                         variant="contained" 
                         size="small" 
-                        sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
+                        sx={style.paginationLeftBtn} 
                         onClick={handlePrevClick}
-                        disabled={currentIdx === 0}
-                    >
+                        disabled={currentIdx === 0}>
                         <FaArrowLeft/>
                     </IconButton>
-                    <div style={{display:'flex',  justifyContent:'center', margin:'0px 5px',}}>
+                    <div style={style.paginationNavBtnWrapper}>
                     {// 페이지네이션 
-                        Array.from({ length: imgArr.length }, (_, idx)=>(
-                            <div 
-                                value={idx} 
-                                style={currentIdx === idx ? divStyle.currDiv : divStyle.notCurrDiv} 
-                                onClick={(e)=>handleNumClick(e)}>
-                                {idx + 1}
-                            </div>
-                        ))
+                        Array.from(
+                            { length: imgArr.length }, (_, idx)=>(
+                                <div 
+                                    value={idx} 
+                                    style={currentIdx === idx ? style.paginationNavCurrDiv : style.paginationNavNotCurrDiv} 
+                                    onClick={(e)=>handleNumClick(e)}>
+                                    {idx + 1}
+                                </div>
+                            )
+                        )
                     } 
                     </div>
                     <IconButton 
                         variant="contained" 
                         size="small" 
-                        sx={{height:'35px', width:'35px', borderRadius:'10px', padding:'0', border:'1px solid black'}} 
+                        sx={style.paginationRightBtn} 
                         onClick={handleNextClick}
-                        disabled={currentIdx === imgArr.length-1}
-                    >
+                        disabled={currentIdx === imgArr.length-1}>
                         <FaArrowRight/>
                     </IconButton>
                 </Card.Text>
@@ -203,19 +230,84 @@ const MeatImgsCard=(
 
 export default MeatImgsCard;
 
-const divStyle = {
-    currDiv :{
+const style = {
+    imgTitleContainer : {
+        display:'flex', 
+        justifyContent:'space-between', 
+        alignItems:'center',
+    },
+    imgTitleWrapper : {
+        color:'#002984', 
+        height:"40px", 
+        fontSize:'18px', 
+        fontWeight:'800'
+    },
+    imgContainer : {
+        height:'350px',
+        width:"100%",
+        borderRadius:'10px',
+    },
+    imgWrapper : {
+        height:'350px',
+        width:"400px",
+        objectFit:'contain'
+    },
+    imgNotExistWrapper : {
+        height:'350px',
+        width:"400px", 
+        display:'flex', 
+        justifyContent:'center', 
+        alignItems:'center',
+    },
+    imgUploadWrapper : {
+        height:"40px", 
+        width:'160px',
+        border:`1px solid ${navy}`, 
+        borderRadius:'5px',
+    },
+    imgUploadTextWrapper : {
+        color:`${navy}`, 
+        fontSize:'16px', 
+        marginRight:'5px',
+    },
+    paginationBtnWrapper : {
+        display:'flex', 
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    paginationLeftBtn : {
+        height:'35px', 
+        width:'35px', 
+        borderRadius:'10px', 
+        padding:'0', 
+        border:'1px solid black',
+    },
+    paginationNavBtnWrapper : {
+        display:'flex',  
+        justifyContent:'center', 
+        margin:'0px 5px',
+    },
+    paginationNavCurrDiv : {
         height:"fit-content", 
         width:"fit-content", 
         padding:'10px',
         borderRadius : '5px', 
         color:navy,
     },
-    notCurrDiv :{
+    paginationNavNotCurrDiv : {
         height:"100%", 
         width:"fit-content", 
         borderRadius : '5px',
         padding:'10px', 
         color:'#b0bec5',
     },
+    paginationRightBtn : {
+        height:'35px', 
+        width:'35px', 
+        borderRadius:'10px', 
+        padding:'0', 
+        border:'1px solid black',
+    },
+
+
 }

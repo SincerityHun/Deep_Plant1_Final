@@ -2,9 +2,9 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const QRInfoCard=({qrImagePath, id, userId, createdAt})=>{
+const QRInfoCard=({qrImagePath, id, userId, createdAt, page, divStyle})=>{
     return(
-        <Card style={{width:'27vw', height:'65vh',margin:'0px 10px',boxShadow: 24,}}>
+        <Card style={page === 'predict' ? divStyle :{width:'27vw', height:'65vh',margin:'0px 10px',boxShadow: 24,}}>
             <Card.Body>
                 <Card.Text>
                     <div style={{color:'#002984', fontSize:'18px', fontWeight:'800'}}>

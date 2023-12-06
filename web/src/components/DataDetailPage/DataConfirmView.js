@@ -21,6 +21,7 @@ import ApiTable from "./tablesComps/apiTable";
 // import card 
 import QRInfoCard from "./cardComps/QRInfoCard";
 import MeatImgsCard from "./cardComps/MeatImgsCard";
+import MeatImgsCardStatic from "./cardComps/MeatImgsCardStatic";
 
 function DataConfirmView({dataProps}){
     const [searchParams, setSearchParams] = useSearchParams();
