@@ -62,7 +62,7 @@ $ npm run build
 
 ### Config
 ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
-![node]("https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white")        
+![node](https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white)        
 
 ### Development
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
