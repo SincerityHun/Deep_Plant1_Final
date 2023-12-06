@@ -26,24 +26,34 @@ function ExcelController(){
 
   // 선택한 엑셀 파일을 json으로 변환한 뒤 추가 API로 전송 
   const handleExcelFile = async(file) => {
+
+    //엑셀 시트를 JSON객체로 변경
     ExcelRenderer(file, (err, resp) => {
+      // 변경 중 에러가 난 경우
       if (err) {
         console.log(err);
       } 
+      // 정상적으로 변경된 경우
       else {
         for (let index = 1; index < resp.rows.length; index++){
+          // 엑셀 파일에서 관리번호를 추출
           const id =  resp.rows[index][0];
           // 파일 최종 수정 시간
           const lastModified = file.lastModified;
           
+          // 가열육 수정 정보를 저장할 객채 
           const heatedmeat_eval = {};
+          // 처리육 수정 정보를 저장할 객체 
           const probexpt_data = {};
+
+          // 엑셀 파일에서 가열육 정보를 추출
           for (let i = 1; i < 6; i++) {
             resp.rows[index][i]
             ? heatedmeat_eval[resp.rows[0][i]] = resp.rows[index][i]
             : heatedmeat_eval[resp.rows[0][i]] = null
             ;
           }
+          // 엑셀 파일에서 처리육 정보를 추출
           for (let i = 6; i<  resp.rows[0].length; i++) {
             resp.rows[index][i]
             ? probexpt_data[resp.rows[0][i]] = resp.rows[index][i]
@@ -57,11 +67,10 @@ function ExcelController(){
           const butcheryDate = new Date(2023, 1, 1, 0, 0, 0);
           const elapsedMSec = lastModified - butcheryDate.getTime();
           const elapsedHour = elapsedMSec / 1000 / 60 / 60;
-
           //로그인한 유저 정보
           const userId = JSON.parse(localStorage.getItem('UserInfo'))["userId"];
 
-          // 1. 가열육 관능평가 데이터 
+          // 1.1 가열육 관능평가 데이터 JSON으로 변환 
           let heatedmeatEvalReq = heatedmeat_eval;
           heatedmeatEvalReq = {
               ...heatedmeatEvalReq,
@@ -71,7 +80,7 @@ function ExcelController(){
               ["seqno"] : 0,
               ["period"] : Math.round(elapsedHour),
           }
-          
+          // 1.2 가열육 관능평가 데이터 수정 요청 API 
           try{
               const response  = fetch(`http://${apiIP}/meat/add/heatedmeat_eval`, {
               method: "POST",
@@ -80,7 +89,7 @@ function ExcelController(){
               },
               body: JSON.stringify(heatedmeatEvalReq),
               });
-              //업로드에 실패한 경우
+              //업로드에 성공한 경우
               response.then((res)=>{
                 if (res.status === 404) {
                   setIsImportSuccessed(false);
@@ -92,7 +101,7 @@ function ExcelController(){
             setIsImportSuccessed(false);
           }
 
-          // 2. 실험실 데이터 
+          // 2.1 실험실 데이터 JSON으로 변환 
           let probexptReq = probexpt_data;
           probexptReq = {
             ...probexptReq,
@@ -103,6 +112,7 @@ function ExcelController(){
             ['period'] :  Math.round(elapsedHour),
           }
 
+          // 2.2 실험실 데이터 수정 요청 API
           try{
             const response = fetch(`http://${apiIP}/meat/add/probexpt_data`, {
             method: "POST",
@@ -111,14 +121,13 @@ function ExcelController(){
             },
             body: JSON.stringify(probexptReq),
             });
-            //업로드에 실패한 경우
+            //업로드에 성공한 경우
             response.then((res)=>{
               if (res.status === 404) {
                 setIsImportSuccessed(false);
               }
             });
           }catch(err){
-            console.log('error')
             console.error(err);
             //업로드에 실패한 경우
             setIsImportSuccessed(false);

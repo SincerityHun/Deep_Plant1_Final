@@ -20,6 +20,7 @@ function DataEdit(){
     return (
       <Box style={{width:'100%', padding:'0px 80px'}}>
         <Box >
+          {/**데이터 목록으로 돌아가기 위한 컴포넌트 */}
           <div style={style.fixed}>
             <Link to={{pathname : '/DataManage', search: `?pageOffset=${pageOffset}&startDate=${startDate}&endDate=${endDate}`}} style={{textDecorationLine:'none',display:'flex', alignItems:'center',}}>
               <IconButton style={{color:`${navy}`, backgroundColor:'white', border:`1px solid ${navy}`, borderRadius:'10px', marginRight:'10px'}}>
@@ -31,6 +32,7 @@ function DataEdit(){
             </Link>
           </div>
         </Box>
+        {/**상세 조회 데이터 fetch */}
         <DataLoad id = {idParam.id} page = {"수정및조회"} />
       </Box>
     );

@@ -37,7 +37,6 @@ function SearchFilterBar({setStartDate, setEndDate,}){
 
     // 탭으로 변경 시
     useEffect(()=>{
-        // call API를 위한 준비
         const s = new Date();
         if (duration === 'week'){
             s.setDate(s.getDate() -7);
@@ -49,24 +48,18 @@ function SearchFilterBar({setStartDate, setEndDate,}){
             s.setFullYear(s.getFullYear() - 1);
         }
         if (duration !== null){
-            console.log('setting duration changes')
             setDurStart(new Date(s.getTime() + TIME_ZONE).toISOString().slice(0, -5));
             setDurEnd(new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5))
         }
-
-
     },[duration]);
 
     //완료 버튼 클릭하면 변함
     const handleCompleteBtn=()=>{
-        if (!isDur ){  //직접 입력할 시 
-            console.log('calender input',calenderStart,calenderEnd);
-            //call api
+        if (!isDur){  //직접 입력할 시 
             if (calenderStart){
                 const startVal= `${calenderStart.$y}-${(String(calenderStart.$M+1)).padStart(2,'0')}-${String((calenderStart.$D)).padStart(2,'0')}T00:00:00`;
                 setStartDate(startVal); 
             }
-
             if (calenderEnd){
                 const endVal = `${calenderEnd.$y}-${(String(calenderEnd.$M+1)).padStart(2,'0')}-${String((calenderEnd.$D)).padStart(2,'0')}T23:59:59`;
                 setEndDate(endVal);
@@ -75,13 +68,10 @@ function SearchFilterBar({setStartDate, setEndDate,}){
        }else{//탭으로 클릭할시 
             if(durStart){
                 setStartDate(durStart);
-                console.log('setting')
             }
             if(durEnd){
                 setEndDate(durEnd);
             }
-            console.log('tab input', durStart, ' ~ ', durEnd);
-
        }
     }
 

@@ -13,11 +13,11 @@ function DataConfirm(){
     const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
     const startDate = new URLSearchParams(searchParams).get('startDate');
     const endDate = new URLSearchParams(searchParams).get('endDate');
-    console.log('승인 및 반려',{ pageOffset, startDate , endDate});
     return(
         <Box sx={{ display: "flex"}}>
           <Box sx={style.fixed}>
             <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>
+              {/**데이터 목록으로 돌아가기 위한 컴포넌트 */}
               <Link to={{pathname : '/DataManage', search: `?pageOffset=${pageOffset}&startDate=${startDate}&endDate=${endDate}`}}  style={{textDecorationLine:'none',display:'flex', alignItems:'center',}} >
                 <IconButton style={{color:`${navy}`, backgroundColor:'white', border:`1px solid ${navy}`, borderRadius:'10px', marginRight:'10px'}}>
                   <FaArrowLeft/>
@@ -28,6 +28,7 @@ function DataConfirm(){
               </span>
             </div> 
           </Box>
+          {/**상세 조회 데이터 fetch */}
           <DataLoad id = {idParam.id} page = {"검토"}/>
         </Box>
     );

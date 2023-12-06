@@ -45,7 +45,7 @@ const MeatImgsCard = ({
             const fileName = id+'-'+currentIdx+'.png';
             const folderName = "sensory_evals";
             const reader = new FileReader();
-            //로그인한 유저 정보 -> 임시로 저장
+            //로그인한 유저 정보
             const userId = JSON.parse(localStorage.getItem('UserInfo'))["userId"];
             // 수정 시간
             const createdDate = new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5);
@@ -70,7 +70,6 @@ const MeatImgsCard = ({
                         }
                         setIsUploadingDone(true);// 업로드 중 화면 중지
                     });
-                    //.then 문법 or await 사용 
                     // 실패 시 
                     console.log('limit to change',response.statusText); 
 
@@ -80,11 +79,13 @@ const MeatImgsCard = ({
                     const i = currentIdx - 1;          
                     await updateProcessedData(
                         processedInput[i],processed_data[i],processedMinute[i],  i, id, userId, createdDate,elapsedHour)
+                        // 수정 성공 시
                         .then((response) => {
                             console.log('처리육 이미지 수정 POST요청 성공:', response);
                             updatePreviews(reader);
                             setIsImgChanged(true);
                         })
+                        // 수정 실패 시 
                         .catch((error) => {
                             console.error('처리육 이미지 수정 POST 요청 오류:', error);
                             setIsLimitedToChangeImage(true)//실패시
@@ -93,9 +94,7 @@ const MeatImgsCard = ({
                     ;
                 }    
             };
-
-            reader.readAsDataURL(newImgFile);
-            
+            reader.readAsDataURL(newImgFile); 
         }
     } 
 

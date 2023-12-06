@@ -121,7 +121,6 @@ function DataPAView({dataProps}){
 
     // 처리육 탭에서 회차가 바뀜에 따라 다른 예측 결과 load
     useEffect(()=>{
-        console.log(processedToggleValue)
         getPredictedData(parseInt(processedToggleValue)); 
     },[processedToggleValue]);
 
@@ -131,9 +130,8 @@ function DataPAView({dataProps}){
         //dataPA && setGradeXAIImg(dataPA.xai_gradeNum_imagePath);
     },[dataPA,processedToggleValue]); */
 
-    // 초기에 원육 데이터 로드
-    useEffect(()=>{   
-        console.log(0);
+    // 초기에 원육 예측 데이터 로드
+    useEffect(()=>{  
         getPredictedData(0);
     },[]);
  
