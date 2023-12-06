@@ -55,7 +55,7 @@
 ## 시작 가이드
 ### Requirements
 
-- [Node.js 20.9.0](https://nodejs.org/ca/blog/release/v20.9.0/)
+- [Node.js 20.9.0](https://nodejs.org/en/blog/release/v20.9.0/)
 - [Npm 10.1.0](https://www.npmjs.com/package/npm/v/10.1.0)
 
 ### Installation
