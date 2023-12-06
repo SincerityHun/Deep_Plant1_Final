@@ -39,19 +39,21 @@ $ git clone https://github.com/SincerityHun/Deep_Plant1_Final.git
 $ cd Deep_Plant1_Final
 ```
 
-#### Frontend
+#### Start Web
 ```
 $ cd web
+$ npm run start
 ```
 
 
----
+<!-- ---
 ### EC2 인스턴스 접속 후 배포
 ```
+$ cd web
 $ ssh -i DeeplantWebkey.pem ubuntu@43.202.4.18
 $ cd DP_Admin/frontend
 $ npm run build
-```
+``` -->
 
 ## Stacks
 
@@ -104,7 +106,7 @@ $ npm run build
 ---
 ## 아키텍쳐
 
-### 디렉토리 구조
+<!-- ### 디렉토리 구조
 ```bash
 ├── API : API 관련 정보 폴더
 │   ├── firebase : Firebase 연동과 관련된 스크립트 폴더
@@ -261,7 +263,7 @@ $ npm run build
     ├── home5.png
     └── home6.png
 
-```
+``` -->
 
 <!--
 ```bash

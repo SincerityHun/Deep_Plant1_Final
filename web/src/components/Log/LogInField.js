@@ -37,8 +37,8 @@ const LogInField = () => {
   const [loginError, setLoginError] = useState("");
   const [rememberMe, setRememberMe] = useState(false); // New state variable for "Remember Me" checkbox
 
-  
-  useEffect(() => { 
+
+  useEffect(() => {
     // Check if the email was stored in the local storage
     const storedEmail = localStorage.getItem("rememberedEmail");
     if (storedEmail) {
@@ -59,7 +59,7 @@ const LogInField = () => {
       console.log(error.message);
     }
   };
- 
+
   const navigate = useNavigate();
   const login = async () => {
     try {
@@ -112,7 +112,7 @@ const LogInField = () => {
         loginPassword
       );
       localStorage.setItem("UserInfo", JSON.stringify(user));
-      const updaeinfo=JSON.parse(localStorage.getItem("updateinfo"));
+      const updaeinfo = JSON.parse(localStorage.getItem("updateinfo"));
 
       localStorage.setItem("isLoggedIn", "true");
       console.log("LOGIN SUCCESS");
@@ -175,62 +175,62 @@ const LogInField = () => {
             mb: "160px",
           }}
         >
-        <Typography
-  sx={{
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginTop: `${(44 / 1080) * 100}vh`,
-    marginBottom: `${(54 / 1080) * 100}vh`,
-    color: '#616161',
-    fontFamily: 'Google Sans',
-    fontSize: `${(50 / 1080) * 100}vh`,
-    fontStyle: 'normal',
-    fontWeight: 400,
-    lineHeight: 'normal',
-  }}
->
-  Login
-</Typography>
+          <Typography
+            sx={{
+              alignSelf: 'center',
+              textAlign: 'center',
+              marginTop: `${(44 / 1080) * 100}vh`,
+              marginBottom: `${(54 / 1080) * 100}vh`,
+              color: '#616161',
+              fontFamily: 'Google Sans',
+              fontSize: `${(50 / 1080) * 100}vh`,
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: 'normal',
+            }}
+          >
+            Login
+          </Typography>
 
-        <input
-  required
-  id="email"
-  type="email"
-  placeholder="이메일을 입력하세요."
-  name="email"
-  autoComplete="email"
-  autoFocus
-  value={loginEmail}
-  onChange={(event) => {
-    setLoginEmail(event.target.value);
-  }}
-  onKeyPress={handleKeyPress}
-  style={{
-    width: `${(365 / 1920) * 100}vw`, // 너비를 365px로 설정
-    height: `${(72 / 1080) * 100}vh`, // 높이를 72px로 설정
-    padding: "8px", // Add padding for styling if needed
-    marginBottom: `${(20 / 1080) * 100}vh`,
-  }}
-/>
+          <input
+            required
+            id="email"
+            type="email"
+            placeholder="이메일을 입력하세요."
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={loginEmail}
+            onChange={(event) => {
+              setLoginEmail(event.target.value);
+            }}
+            onKeyPress={handleKeyPress}
+            style={{
+              width: `${(365 / 1920) * 100}vw`, // 너비를 365px로 설정
+              height: `${(72 / 1080) * 100}vh`, // 높이를 72px로 설정
+              padding: "8px", // Add padding for styling if needed
+              marginBottom: `${(20 / 1080) * 100}vh`,
+            }}
+          />
 
-<input
-  required
-  id="password"
-  type="password"
-  placeholder="비밀번호를 입력하세요."
-  name="password"
-  autoComplete="current-password"
-  value={loginPassword}
-  onChange={(event) => {
-    setLoginPassword(event.target.value);
-  }}
-  onKeyPress={handleKeyPress}
-  style={{
-    width: `${(365 / 1920) * 100}vw`, // 너비를 365px로 설정
-    height: `${(72 / 1080) * 100}vh`, // 높이를 72px로 설정
-    padding: "8px", // Add padding for styling if needed
-  }}
-/>
+          <input
+            required
+            id="password"
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            name="password"
+            autoComplete="current-password"
+            value={loginPassword}
+            onChange={(event) => {
+              setLoginPassword(event.target.value);
+            }}
+            onKeyPress={handleKeyPress}
+            style={{
+              width: `${(365 / 1920) * 100}vw`, // 너비를 365px로 설정
+              height: `${(72 / 1080) * 100}vh`, // 높이를 72px로 설정
+              padding: "8px", // Add padding for styling if needed
+            }}
+          />
           <FormControlLabel
             control={
               <Checkbox
@@ -251,11 +251,12 @@ const LogInField = () => {
             onClick={login}
             variant="contained"
             sx={{
-              width:`${(366 / 1920) * 100}vw`,
+              width: `${(366 / 1920) * 100}vw`,
               height: `${(64 / 1080) * 100}vh`,
-            marginTop: `${(100 / 1080) * 100}vh`,
-            mb:`${(44 / 1080) * 100}vh`, 
-            bgcolor: "#7BD758" }}
+              marginTop: `${(100 / 1080) * 100}vh`,
+              mb: `${(44 / 1080) * 100}vh`,
+              bgcolor: "#7BD758"
+            }}
           >
             로그인
           </Button>
