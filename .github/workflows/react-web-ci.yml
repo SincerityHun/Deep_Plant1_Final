@@ -80,9 +80,9 @@ jobs:
           chmod 400 $HOME/key.pem
           ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_KNOWN_HOSTS} '~/script.sh'
         env:
-          SSH_USER: ${{secrets.SSH_USER}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-          SSH_PEM_KEY: ${{secrets.SSH_PEM_KEY}}
+          SSH_USER: ${{secrets.USER}}
+          SSH_KNOWN_HOSTS: ${{secrets.HOSTS}}
+          SSH_PEM_KEY: ${{secrets.PEM_KEY}}
 
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
       - name: Pull and restart Docker Container
