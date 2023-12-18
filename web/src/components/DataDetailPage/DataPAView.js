@@ -74,7 +74,7 @@ function DataPAView({dataProps}){
     const [isPredictedDone, SetIsPredictedDone] = useState(true); 
 
     //데이터 예측 버튼 클릭 시
-    const handlePredictClick=async()=>{
+    const handlePredictClick = async()=>{
         //로그인한 유저 정보
         const userId = JSON.parse(localStorage.getItem('UserInfo'))["userId"];
         // period 계산 
@@ -99,6 +99,7 @@ function DataPAView({dataProps}){
                 },
                 body: JSON.stringify(req),
                 });
+                // 예측 정보 로드
                 await getPredictedData(i);                
             }catch(err){
                 console.error(err);
