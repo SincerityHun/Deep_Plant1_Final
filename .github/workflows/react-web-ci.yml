@@ -47,10 +47,7 @@ jobs:
           cd web
           npm install --loglevel=verbose
 
-      - name: Build
-        run: |
-          cd web
-          npm run build --loglevel=verbose
+
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
       # https://docs.docker.com/build/ci/github-actions/#step-three-define-the-workflow-steps
