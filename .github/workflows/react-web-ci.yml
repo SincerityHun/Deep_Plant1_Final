@@ -64,7 +64,14 @@ jobs:
         run: |
           ls -al ./web
           cat ./web/DockerFile
-   
+      
+      # Create and start containers using Docker Compose
+      - name: Build and push with Docker Compose
+        run: |
+          cd web
+          docker-compose build
+          docker-compose push
+      
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
