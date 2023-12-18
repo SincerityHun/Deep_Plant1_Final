@@ -68,8 +68,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./web
-          file: ./DockerFile
+          context: .
+          file: ./web/DockerFile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
