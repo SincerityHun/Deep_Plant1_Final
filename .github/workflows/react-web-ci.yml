@@ -71,14 +71,7 @@ jobs:
           cd web
           docker-compose build
           docker-compose push
-      
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./web/DockerFile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
+    
 
 
       - name: Build and deploy
