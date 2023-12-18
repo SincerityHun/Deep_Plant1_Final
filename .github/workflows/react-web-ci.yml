@@ -26,9 +26,9 @@ jobs:
       # 해당 프로젝트의 node_modules가 변했는지 안 변했는지를 이용해서
       # 모듈 변화가 있을 때만 npm install을 해줄 수도 있다.
       - name: Cache node modules
-      	# 그걸 제공하는 Action도 있다.
+      # 그걸 제공하는 Action도 있다.
         uses: actions/cache@v2.1.8
-        # 해당 step을 대표하는 id를 설정할 수도 있다. 해당 값은 뒤의 step에서 사용한다.
+      # 해당 step을 대표하는 id를 설정할 수도 있다. 해당 값은 뒤의 step에서 사용한다.
         id: cache
         with:
           # node_modules라는 폴더를 검사하여
