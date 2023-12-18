@@ -64,7 +64,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./web
+          file: ${{ github.workspace }}/Deep_Plant1_Final/web
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
