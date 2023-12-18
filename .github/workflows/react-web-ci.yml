@@ -50,8 +50,6 @@ jobs:
       - name: Build
         run: |
           cd web
-          pwd
-          ls -al
           npm run build --loglevel=verbose
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
