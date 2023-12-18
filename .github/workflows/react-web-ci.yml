@@ -59,15 +59,12 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Debug
-        run: |
-          pwd
-          ls -al
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./web/Dockerfile
+          file: ./web/
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
