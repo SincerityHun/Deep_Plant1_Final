@@ -67,6 +67,16 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
+      - name: Build and deploy
+        run: |
+          echo "$SSH_PEM_KEY" >> $HOME/key.pem
+          chmod 400 $HOME/key.pem
+          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_KNOWN_HOSTS} '~/script.sh'
+        env:
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_PEM_KEY: ${{secrets.SSH_PEM_KEY}}
+
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
       - name: Pull and restart Docker Container
         uses: appleboy/ssh-action@master
@@ -79,3 +89,5 @@ jobs:
             docker stop dpweb || true 
             sudo docker rm dpweb || true 
             docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
+
+
