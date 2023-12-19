@@ -77,9 +77,10 @@ jobs:
           username: ${{ secrets.USER }}
           script: |
             sudo docker ps
+            docker stop 47c495957b86
             sudo lsof -i :3000
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
-            sudo docker stop dp:1 || true 
+            sudo docker stop dpweb || true 
             sudo docker rm dpweb || true 
             sudo docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
