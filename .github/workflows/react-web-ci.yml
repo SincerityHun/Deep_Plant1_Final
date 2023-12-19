@@ -75,6 +75,7 @@ jobs:
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
             sudo docker stop dpweb || true 
             sudo docker rm dpweb || true 
+            chmod 600 ${{ secrets.PEM_KEY }}
             sudo docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
 
