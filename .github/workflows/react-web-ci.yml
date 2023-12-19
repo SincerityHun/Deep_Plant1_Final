@@ -70,7 +70,7 @@ jobs:
       - name: Debug SSH Variables
         run: |
           echo "SSH_USER: $SSH_USER"
-          echo "SSH_HOST: $SSH_HOST"
+          echo "SSH_HOST: $SSH_HOSTS"
           echo "SSH_PEM_KEY: $SSH_PEM_KEY"
           echo "$SSH_PEM_KEY" >> $HOME/key.pem
           echo "IdentityFile $HOME/key.pem"
@@ -78,6 +78,10 @@ jobs:
           SSH_USER: ${{secrets.USER}}
           SSH_HOSTS: ${{secrets.HOST}}
           SSH_PEM_KEY: ${{secrets.PEM_KEY}}
+
+      - name: Debug Key File Location
+        run: |
+          ls -al $HOME
 
       - name: Debug SSH Var
         run: |
