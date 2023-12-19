@@ -1,6 +1,7 @@
 import * as XLSX from 'xlsx';
 import { apiIP } from "../../config";
 
+// export 할 육류 데이터 목록 fetch
 const getDataListJSON = async () => {
     const json = await (
         await fetch(`http://${apiIP}/meat/get`)

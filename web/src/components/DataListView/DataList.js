@@ -6,8 +6,17 @@ import {FaRegTrashAlt} from "react-icons/fa";
 import DelWarningModal from "./WarningComp";
 import PropTypes from 'prop-types';
 
-function DataList({meatList, pageProp, offset, count, totalPages,startDate, endDate, pageOffset}){
-
+//데이터 목록 컴포넌트
+function DataList({
+    meatList, // 육류 목록 데이터
+    pageProp, // 페이지 종류
+    offset, // 현재 페이지 offset
+    count, // 한 페이지 당 보여줄 육류 데이터 개수 
+    totalPages, // 전체 페이지 개수
+    startDate, // 조회 시작 날짜
+    endDate,  // 조회 종료 날짜
+    pageOffset, // 현재 페이지 offset
+}){
     // 삭제 클릭 여부 
     const [isDelClick, setIsDelClick] = useState(false);
     // 삭제할 아이템 배열 관리

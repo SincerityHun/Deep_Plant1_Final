@@ -35,19 +35,19 @@ function DataView({dataProps}){
     
     //dataProps로 부터 properties destruct
     const { 
-        id, 
-        userId, 
-        createdAt,
-        qrImagePath,
-        raw_img_path, 
-        raw_data, 
-        processed_data, 
-        heated_data ,
-        lab_data,
-        api_data, 
-        processed_data_seq, 
-        processed_minute , 
-        processed_img_path 
+        id, // 이력번호
+        userId, // 로그인한 사용자 id
+        createdAt, // 생성 시간
+        qrImagePath, // QR이미지 경로
+        raw_img_path, // 원육 이미지 경로
+        raw_data,  // 원육 데이터
+        processed_data, // 처리육 데이터
+        heated_data , // 가열육 데이터
+        lab_data, // 실험실 데이터
+        api_data,  // 축산물 이력 API 데이터
+        processed_data_seq, // 처리(딥에이징) 회차
+        processed_minute , // 처리 시간(분)
+        processed_img_path // 처리육 이미지 경로
     } = dataProps;
     
     const [processedMinute,setProcessedMinute] = useState(processed_minute);

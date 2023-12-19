@@ -12,7 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from 'dayjs';
 // import timezone
 import { TIME_ZONE } from "../../config";
-const navy =  '#000000';//'#0F3659';
+const navy =  '#0F3659';
 
 function SearchFilterBar({setStartDate, setEndDate,}){
     

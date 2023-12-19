@@ -3,6 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 
 const navy =  '#0F3659';
 
+// 처리육 데이터 수정 전, 이미지 먼저 업로드 필수 알림 경고창 
 export default function InputTransitionsModal({ setModal}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);

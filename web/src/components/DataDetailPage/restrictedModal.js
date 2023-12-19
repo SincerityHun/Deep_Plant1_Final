@@ -3,6 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 
 const navy =  '#0F3659';
 
+// 이미지 수정 API 전송 실패 모달창
 export default function RestrictedModal({setIsLimitedToChangeImage}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);

@@ -8,7 +8,12 @@ import { useRejectedMeatListFetch } from "../../API/getRejectedMeatListSWR";
 
 const navy =  '#0F3659';
 
-const RejectedDataListComp=({startDate, endDate, pageOffset})=>{
+// 반려 데이터 목록 컴포넌트
+const RejectedDataListComp=({
+  startDate, // 조회 시작 날짜
+  endDate, // 조회 종료 날짜
+  pageOffset // 조회 페이지 offset
+})=>{
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
   // 데이터 전체 개수

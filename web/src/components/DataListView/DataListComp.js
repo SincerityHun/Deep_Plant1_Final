@@ -5,7 +5,12 @@ import DataList from "./DataList";
 import Pagination from "./Pagination";
 import { useMeatListFetch } from "../../API/getMeatListSWR";
 
-const DataListComp=({startDate, endDate, pageOffset})=>{
+// 데이터 목록 조회 페이지 컴포넌트
+const DataListComp=({
+  startDate, // 조회 시작 날짜
+  endDate, // 조회 종료 날짜
+  pageOffset // 현재 페이지 offset
+})=>{
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
   // 데이터 전체 개수
@@ -28,7 +33,6 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
   
   // API fetch
   const { data, isLoading, isError } = useMeatListFetch(currentPage-1, count, startDate, endDate) ;
-  console.log('육류 목록 fetch 결과:', data);
   
   // fetch한 데이터 전처리
   useEffect(() => {
