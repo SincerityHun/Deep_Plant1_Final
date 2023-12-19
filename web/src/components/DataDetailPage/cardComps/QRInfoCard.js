@@ -2,7 +2,14 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const QRInfoCard=({qrImagePath, id, userId, createdAt, page, divStyle})=>{
+const QRInfoCard=({
+    qrImagePath, // QR 이미지 경로
+    id, // 이력번호
+    userId, // 로그인 한 사용자 id
+    createdAt, // 생성 시간
+    page,  // 페이지 종류
+    divStyle // <Card/> 컴포넌트 스타일
+})=>{
     return(
         <Card style={page === 'predict' ? divStyle :{width:'27vw', height:'65vh',margin:'0px 10px',boxShadow: 24,}}>
             <Card.Body>

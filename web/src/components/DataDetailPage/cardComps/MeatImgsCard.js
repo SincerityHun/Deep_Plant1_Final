@@ -16,30 +16,61 @@ import { computePeriod } from "../computePeriod";
 const navy =  '#0F3659';
 
 const MeatImgsCard = ({
-    edited, 
-    page, 
-    raw_img_path,
-    processed_img_path, 
-    setIsUploadingDone, 
-    id,
-    raw_data, 
-    setIsLimitedToChangeImage,
-    butcheryYmd, 
-    processedInput, 
-    processed_data, 
-    processedMinute,})=>{
+    edited, //수정버튼 클릭 여부
+    page,  // 페이지 종류 
+    raw_img_path, // 원육 이미지 경로
+    processed_img_path,  // 처리육 이미지 경로
+    setIsUploadingDone,  // 이미지 업로드 처리 완료 setState 함수
+    id, // 이력번호
+    raw_data,  // 원육 데이터 
+    setIsLimitedToChangeImage, // 이미지 수정 실패 여부 setState 함수
+    butcheryYmd, // 도축 일자
+    processedInput, // 처리육 데이터
+    processed_data,  // 처리육 데이터 
+    processedMinute, // 처리 시간 (분)
+    })=>{
 
-    // 1.이미지 파일 변경 
+    
+    // 1.이미지 배열 만들기 
+    const [imgArr,setImgArr] = useState([raw_img_path,]);
+    useEffect(()=>{
+        (processed_img_path.length !== 0)
+        ? //{}이 아닌 경우 
+        setImgArr([
+            ...imgArr,
+            ...processed_img_path,
+        ])
+        ://{}인 경우 -> 1회차 처리육 정보 입력을 위해 null 생성 
+        setImgArr([
+            ...imgArr,
+            null,
+        ])
+    },[]);
+
+    // 이미지 배열 페이지네이션 
+    const [currentIdx, setCurrIdx] = useState(0);
+
+    // 1) 이미지 페이지네이션 '>' 버튼 클릭
+    const handleNextClick = () => {setCurrIdx((prev)=> (prev+1) % imgArr.length);}
+
+    // 2) 이미지 페이지네이션 '<' 버튼 클릭
+    const handlePrevClick = () =>{setCurrIdx((prev)=> (prev-1) % imgArr.length);}
+
+    // 3)이미지 페이지네이션 특정 숫자 클릭
+    const handleNumClick = (e) => {setCurrIdx(e.target.outerText-1);}
+
+    
+    // 2.이미지 파일 변경 
     const fileRef = useRef(null);
     // 이미지 미리보기 or 이미지 변경 될 때 마다 firebase 업로드 
     const [isImgChanged, setIsImgChanged] = useState(false);
 
-    const updatePreviews = (reader)=>{
-        let newImages = imgArr;
-        newImages[currentIdx] = reader.result;
-        setImgArr(newImages);
-    }
-
+    /**
+     * 이미지 파일 업로드 한 경우 
+     * 1. firebase의 fire storage에 이미지 업로드 
+     * 2.1 원육 이미지를 수정한 경우, 원육 수정 API 호출
+     * 2.2 처리육 이미지를 수정한 경우, 처리육 수정 API 호출
+     */
     const handleImgChange =(newImgFile)=>{
         if (newImgFile){
             const fileName = id+'-'+currentIdx+'.png';
@@ -98,31 +129,12 @@ const MeatImgsCard = ({
         }
     } 
 
-    // 2.이미지 배열 만들기 
-    const [imgArr,setImgArr] = useState([raw_img_path,]);
-    useEffect(()=>{
-        (processed_img_path.length !== 0)
-        ? //{}이 아닌 경우 
-        setImgArr([
-            ...imgArr,
-            ...processed_img_path,
-        ])
-        ://{}인 경우 -> 1회차 처리육 정보 입력을 위해 null 생성 
-        setImgArr([
-            ...imgArr,
-            null,
-        ])
-    },[]);
-
-    // 이미지 배열 페이지네이션 
-    const [currentIdx, setCurrIdx] = useState(0);
-
-    const handleNextClick = () => {setCurrIdx((prev)=> (prev+1) % imgArr.length);}
-
-    const handlePrevClick = () =>{setCurrIdx((prev)=> (prev-1) % imgArr.length);}
-
-    const handleNumClick = (e) => {setCurrIdx(e.target.outerText-1);}
-
+    // 이미지 수정시, 수정 API 호출까지 성공한 경우, 업로드 한 이미지로 미리보기 수정 
+    const updatePreviews = (reader)=>{
+        let newImages = imgArr;
+        newImages[currentIdx] = reader.result;
+        setImgArr(newImages);
+    }
     
     return(
         <Card style={{ width: "27vw", margin:'0px 10px',boxShadow: 24,}}>
@@ -136,7 +148,10 @@ const MeatImgsCard = ({
                         :<div style={style.imgTitleWrapper}>딥에이징 {currentIdx}회차 이미지</div>
                     }
                     <div style={{display:'flex'}}>            
-                        {
+                        { /**
+                         * page 가 수정및조회인 경우, 
+                         * 이미지 파일을 업로드하기 위한 <input type="file"/>
+                         */
                         page === '수정및조회'&&
                         <div>
                             <input 
@@ -146,7 +161,9 @@ const MeatImgsCard = ({
                                 ref={fileRef}
                                 onChange={(e) => {handleImgChange(e.target.files[0]); }} 
                                 style={{ marginRight: "20px", display:'none' }}/>
-                            {
+                            {/**
+                             * 수정 버튼 클릭시 이미지 조회 버튼 생성 
+                             */
                             edited
                             &&
                             <IconButton 

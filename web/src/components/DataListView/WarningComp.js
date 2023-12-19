@@ -4,7 +4,14 @@ import {FaRegTrashAlt} from "react-icons/fa";
 import { apiIP } from "../../config";
 const navy =  '#0F3659';
 
-export default function DelWarningModal({idArr, setIsDelClick, pageOffset, startDate, endDate}) {
+// 삭제 경고창 컴포넌트
+export default function DelWarningModal({
+  idArr, //삭제할 id 배열
+  setIsDelClick, // 삭제 버튼 클릭 setState 함수
+  pageOffset, // 현재 페이지 offset
+  startDate,  // 조회 시작 날짜
+  endDate // 조회 종료 날짜
+}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);
     const handleClose = () => {

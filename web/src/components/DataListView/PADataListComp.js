@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import Spinner from "react-bootstrap/Spinner";
 import { usePredictedMeatListFetch } from "../../API/getPredictedMeatListSWR";
 
+// 데이터 예측 페이지 목록 컴포넌트
 const PADataListComp=({startDate, endDate})=>{
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);

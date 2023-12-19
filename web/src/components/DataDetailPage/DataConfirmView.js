@@ -27,32 +27,35 @@ function DataConfirmView({dataProps}){
     const [searchParams, setSearchParams] = useSearchParams();
     const pageOffset = searchParams.get("pageOffset");
     
-    //dataProps로 부터 properties destruct
+    //1.dataProps로 부터 properties destruct
     const { 
-        id, 
-        userId, 
-        createdAt,
-        qrImagePath,
-        raw_img_path, 
-        raw_data, 
-        processed_data, 
-        heated_data ,
-        lab_data,
-        api_data, 
-        processed_data_seq, 
-        processed_minute , 
-        processed_img_path 
+        id, // 이력번호
+        userId, //로그인한 사용자 id
+        createdAt,// 생성 시간
+        qrImagePath, // qr 이미지 경로
+        raw_img_path,  // 원육 이미지 경로
+        raw_data, // 원육 데이터
+        processed_data, // 처리육 데이터
+        heated_data , // 가열육 데이터 
+        lab_data, // 실험실 데이터
+        api_data,  // 축산물 이력 API 데이터
+        processed_data_seq, // 처리 회차 {1회차, 2회차 ...} 
+        processed_minute , // 처리육 처리 시간 
+        processed_img_path // 처리육 이미지 경로
     } = dataProps;
     
+    //2.  <Autocomplete/> 컴포넌트의 option property값 
     useEffect(()=>{
         options = processed_data_seq;
     },[]);
 
-    // 처리육, 가열육, 실험실 데이터 n회차 값 
+    // 조회 선택한 처리육 데이터 회차 값 
     const [processed_toggle, setProcessedToggle] = useState('1회');
     const [processedToggleValue, setProcessedToggleValue] = useState('');
+     // 조회 선택한 가열육 데이터 회차 값
     const [heatedToggle, setHeatedToggle] = useState(options[0]);
     const [heatedToggleValue, setHeatedToggleValue] = useState('');
+     // 조회 선택한 실험실 데이터 회차 값
     const [labToggle, setLabToggle] = useState(options[0]);
     const [labToggleValue, setLabToggleValue] = useState('');
 
@@ -64,7 +67,7 @@ function DataConfirmView({dataProps}){
         setValue(newValue);
     };
 
-    // 반려/승인 버튼 클릭에 따른 모달 창 컴포넌트 결정
+    //3. 반려/승인 버튼 클릭에 따른 모달 창 컴포넌트 결정
     const [confirmVal, setConfirmVal] = useState(null);
     
     return(

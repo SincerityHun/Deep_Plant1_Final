@@ -1,5 +1,18 @@
 // 축산물 이력 데이터를 json 객체로 변환하는 함수
-function convertToApiData ( birthYmd, butcheryYmd,farmAddr,farmerNm,gradeNm, primalValue,secondaryValue,sexType,species,statusType,traceNum){
+function convertToApiData ( 
+    birthYmd, // 출생년월일
+    butcheryYmd, // 도축일자
+    farmAddr, // 사육지
+    farmerNm, // 소유주
+    gradeNm, // 육질등급
+    primalValue, // 대분류
+    secondaryValue, // 소분류
+    sexType, // 성별
+    species, // 종
+    statusType, // 데이터승인 상태
+    traceNum //traceNum
+    ){
+    //JSON 객체    
     const apiData = {
       birthYmd: birthYmd,
       butcheryYmd: butcheryYmd,
@@ -16,8 +29,9 @@ function convertToApiData ( birthYmd, butcheryYmd,farmAddr,farmerNm,gradeNm, pri
     return apiData;
 };
 
+// 데이터 전처리 
 export default function dataProcessing (items) {
-     // 3. API fetch가 정상적으로 일어난 경우 데이터를 JSON객체로 변환해서 반환
+     
     // 3-1. 축산물 이력 데이터 json 객체로 만들기 
     const apiData = convertToApiData(
         items.birthYmd,
@@ -37,6 +51,7 @@ export default function dataProcessing (items) {
     let heatedData = [items.rawmeat.heatedmeat_sensory_eval,];
     let labData = [items.rawmeat.probexpt_data];
     let processedMinute = [];
+
     //데이터 처리 횟수 parsing ex) 1회, 2회 ,...
     let processedDataSeq = ['원육',];
     // 처리육 이미지 

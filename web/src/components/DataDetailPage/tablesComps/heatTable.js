@@ -2,7 +2,7 @@ import { Paper,  Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 
 const HeatTable=({edited, heatInput, heated_data,heatedToggleValue,handleInputChange,})=>{
     return(
-        <TableContainer key='heatedmeat' component={Paper} sx={{/*minWidth:'fit-content',maxWidth:'680px',*/width:'100%',overflow:'auto'}}>
+        <TableContainer key='heatedmeat' component={Paper} sx={{width:'100%',overflow:'auto'}}>
             <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow key={'heatedmeat-explanation'}>

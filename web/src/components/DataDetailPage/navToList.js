@@ -1,3 +1,4 @@
+// 상세 페이지에서 목록페이지로 이동 컴포넌트
 const NavToList  = (pageOffset, idParam)=> {
     return (
         <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>

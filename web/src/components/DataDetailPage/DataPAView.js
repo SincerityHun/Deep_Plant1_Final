@@ -19,17 +19,17 @@ import { apiIP } from "../../config";
 function DataPAView({dataProps}){
     //데이터 받아오기
     const { 
-        id, 
-        userId, 
-        createdAt,
-        qrImagePath,
-        raw_img_path, 
-        raw_data,
-        processed_data,
-        api_data, 
-        processed_data_seq, 
-        processed_minute, 
-        processed_img_path, 
+        id, // 이력번호
+        userId, // 로그인한 사용자 id
+        createdAt, // 생성 시간
+        qrImagePath, // QR이미지 경로
+        raw_img_path, // 원육 이미지 경로
+        raw_data, // 원육 데이터 
+        processed_data, // 처리육 데이터 
+        api_data, // 축산물 이력 API 데이터 
+        processed_data_seq, // 처리(딥에이징) 회차
+        processed_minute, // 처리 시간 (분)
+        processed_img_path,  // 처리육 이미지 경로
     } = dataProps;
 
     // 처리육 및 실험 회차 토글  
@@ -125,11 +125,6 @@ function DataPAView({dataProps}){
         getPredictedData(parseInt(processedToggleValue)); 
     },[processedToggleValue]);
 
-    //XAI 이미지 로드
-    /*useEffect(()=>{
-        //dataPA && setDataXAIImg(dataPA.xai_imagePath);
-        //dataPA && setGradeXAIImg(dataPA.xai_gradeNum_imagePath);
-    },[dataPA,processedToggleValue]); */
 
     // 초기에 원육 예측 데이터 로드
     useEffect(()=>{  

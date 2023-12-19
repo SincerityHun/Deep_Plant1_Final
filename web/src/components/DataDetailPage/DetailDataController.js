@@ -11,7 +11,7 @@ import { useDetailMeatDataFetch } from "../../API/getDetailMeatDataSWR";
 const DataLoad = ({id, page}) => {
   // 전처리된 상세 데이터 저장 
   const [detailData, setDetailData] = useState();
-  console.log(page);
+
   // 육류 상세 데이터 API fetch
   const { data, isLoading, isError } = useDetailMeatDataFetch(id) ;
   

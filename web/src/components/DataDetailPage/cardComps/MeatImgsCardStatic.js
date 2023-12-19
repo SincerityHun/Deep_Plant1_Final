@@ -8,7 +8,10 @@ import { IconButton, } from '@mui/material';
 
 const navy =  '#0F3659';
 
-const MeatImgsCardStatic = ({raw_img_path,processed_img_path,})=>{
+const MeatImgsCardStatic = ({
+    raw_img_path, // 원육 이미지 경로
+    processed_img_path, // 처리육 이미지 경로
+})=>{
     //이미지 배열 만들기 
     const [imgArr,setImgArr] = useState([raw_img_path,]);
     useEffect(()=>{
@@ -27,11 +30,11 @@ const MeatImgsCardStatic = ({raw_img_path,processed_img_path,})=>{
 
     // 이미지 배열 페이지네이션 
     const [currentIdx, setCurrIdx] = useState(0);
-
+    // 1) 이미지 페이지네이션 '>' 버튼 클릭
     const handleNextClick = () => {setCurrIdx((prev)=> (prev+1) % imgArr.length);}
-
+    // 2) 이미지 페이지네이션 '<' 버튼 클릭
     const handlePrevClick = () =>{setCurrIdx((prev)=> (prev-1) % imgArr.length);}
-
+    // 3)이미지 페이지네이션 특정 숫자 클릭
     const handleNumClick = (e) => {setCurrIdx(e.target.outerText-1);}
 
     

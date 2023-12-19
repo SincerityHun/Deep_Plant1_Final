@@ -3,6 +3,7 @@ import { Box, IconButton} from '@mui/material';
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import ExcelController from "../DataListView/excelContr";
 
+// 상세 페이지에서 목록페이지로 이동 컴포넌트
 function navBar(){
     return(
         <Box sx={{display:'flex', marginTop:'70px'}}>

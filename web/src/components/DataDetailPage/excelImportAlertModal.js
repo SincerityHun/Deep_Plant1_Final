@@ -3,6 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 
 const navy =  '#0F3659';
 
+//엑셀 파일 업로드 실패/ 성공 여부 모달창
 export default function ExcelImportAlertModal({isImportSuccessed, setAlertDone, setIsImportSuccessed}) {
     //화면 창 닫기
     const [open, setOpen] = useState(true);

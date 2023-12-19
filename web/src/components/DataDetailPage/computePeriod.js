@@ -1,6 +1,7 @@
 // import timezone
 import { TIME_ZONE } from "../../config";
 
+// 경과 시간 계산 
 function computePeriod(butcheryYmd){
     // 수정 시간
     const createdDate = new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5);
@@ -15,10 +16,10 @@ function computePeriod(butcheryYmd){
     const createdDate2 =  new Date(yy,mm,dd,h,m,s);
     const elapsedMSec = createdDate2.getTime() - butcheryDate.getTime();
     const elapsedHour = elapsedMSec / 1000 / 60 / 60;
-
     return elapsedHour;
 }
 
+//현재 날짜 계산
 function computeCurrentDate(){
     const createdDate = new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5);
     const [date, time] = createdDate.split('T');
