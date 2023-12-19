@@ -11,7 +11,8 @@
 
 ## 배포 주소
 
-> **프론트 서버** : [http://43.202.4.18:8080/](http://43.202.4.18:8080/) <br>
+> **프론트 서버(배포방법1)** : [http://43.202.4.18:8080/](http://43.202.4.18:8080/) <br>
+> **프론트 서버(배포방법2)** : [http://43.202.217.225:3000/](http://43.202.217.225:3000/)<br>
 
 ## 웹개발팀 
 
@@ -19,7 +20,7 @@
 | :---------------------: | :------------------: |
 | <img width="160px" src="https://avatars.githubusercontent.com/u/102349883?s=400&v=4" alt="Kim Seongjung" /> | <img width="160px" src="https://avatars.githubusercontent.com/u/73726272?v=4" alt="Park Suhyun" /> |
 | [GitHub: @qpwozxc](https://github.com/qpwozxc) | [GitHub: @claspsh](https://github.com/clapsh) |
-| 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 3학년 |
+| 성균관대학교 소프트웨어학과 2학년 | 성균관대학교 소프트웨어학과 4학년 |
 
 
 ## 프로젝트 소개
@@ -52,7 +53,7 @@
 - 프로필 정보 수정 및 회원 탈퇴 기능
 ---
 
-## 시작 가이드
+## 시작 가이드-로컬
 ### Requirements
 
 - [Node.js 20.9.0](https://nodejs.org/en/blog/release/v20.9.0/)
@@ -63,11 +64,58 @@
 $ git clone https://github.com/SincerityHun/Deep_Plant1_Final.git
 $ cd Deep_Plant1_Final
 ```
-
-#### Start Web
+### Start Web 
 ```
+# web 폴더에서 진행
 $ cd web
 $ npm run start
+```
+### Start Web (using docker-compose)
+```
+# web 폴더에서 진행
+$ cd web
+
+# 이미지 빌드
+$ docker-compose build
+
+# 컨테이너 포함 전체 서비스 실행
+$ docker-compose up 
+
+# 전체 서비스 정지 및 컨테이너 삭제
+$ docker-compose down 
+```
+---
+
+## 시작 가이드-자동배포
+
+### Installation
+``` bash
+$ git clone https://github.com/SincerityHun/Deep_Plant1_Final.git
+$ cd Deep_Plant1_Final
+```
+### Set secrets for a repository
+ "Settings>Security>Secrets>Actions" 탭에 접근해 나오는 secrets로 환경변수 관리
+#### 환경변수
+  ##### DOCKERHUB_TOKEN
+    docker hub 계정 비밀번호
+  ##### DOCKERHUB_USERNAME
+    docker hub 계정 username
+  ##### HOST
+    EC2 서버 IP 주소
+  ##### PEM_KEY
+    AWS ssh 접속을 위한 키 파일 (.pem)
+  ##### USER
+    EC2 USER 이름 (default: ec2-user)
+
+### Start Web 
+```
+# web 폴더에서 진행
+$ cd web
+
+...
+
+# main branch에 변경 내용 push
+$ git push origin main
 ```
 ---
 ## 화면 구성
