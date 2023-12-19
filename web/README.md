@@ -97,15 +97,15 @@ $ cd Deep_Plant1_Final
  "Settings>Security>Secrets>Actions" 탭에 접근해 나오는 secrets로 환경변수 관리
 #### 환경변수
   ##### DOCKERHUB_TOKEN
-    docker hub 계정 비밀번호
+  ###### docker hub 계정 비밀번호
   ##### DOCKERHUB_USERNAME
-    docker hub 계정 username
+  ###### docker hub 계정 username
   ##### HOST
-    EC2 서버 IP 주소
+  ###### EC2 서버 IP 주소
   ##### PEM_KEY
-    AWS ssh 접속을 위한 키 파일 (.pem)
+  ###### AWS ssh 접속을 위한 키 파일 (.pem)
   ##### USER
-    EC2 USER 이름 (default: ec2-user)
+  ###### EC2 USER 이름 (default: ec2-user)
 
 ### Start Web 
 ```
