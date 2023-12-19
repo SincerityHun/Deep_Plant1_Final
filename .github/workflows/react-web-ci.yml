@@ -78,9 +78,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
-            docker stop dpweb || true 
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
+            sudo docker stop dpweb || true 
             sudo docker rm dpweb || true 
-            docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
+            sudo docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
 
