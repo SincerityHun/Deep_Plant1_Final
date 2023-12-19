@@ -33,7 +33,7 @@ jobs:
 
       - name: Debug SSH Var
         run: |
-          ssh -i $HOME/key.pem ${SSH_USER}@${SSH_HOSTS}
+          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOSTS}
         env:
           SSH_USER: ${{secrets.USER}}
           SSH_HOSTS: ${{secrets.HOST}}
