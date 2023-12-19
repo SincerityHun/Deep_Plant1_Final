@@ -18,16 +18,16 @@
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)       
 
 ### release
-![Amazone S3](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
-![Amazone EC2](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
-![Amazone RDS](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
-![Docker](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)   
+![Amazone EC2](https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white)
+![Amazone S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white)
+![Amazone RDS](https://img.shields.io/badge/Amazon%20RDS-527FFF?style=for-the-badge&logo=amazon-rds&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+![Github Action](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)     
 
 ### Development
-![Python](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
-![Flask](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Postgresql](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
-![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white)
+![Postgresql](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=Postgresql&logoColor=white)
 
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
@@ -45,30 +45,42 @@
 
 1. AWS_ACCESS_KEY_ID
    - AWS IAM Public Key
+
 2. AWS_SECRET_ACCESS_KEY
    - AWS IAM Secret key
+
 3. SSH_PRIVATE_KEY
    - AWS EC2 Access Pem File
+
 4. DB_URI
    - AWS RDS Public URI
+
 5. DOCKER_HUB_ACCESS_TOKEN
    - Docker 이미지 백업용 Access Tocken
+
 6. DOCKER_HUB_USERNAME
    - Docker 이미지 백업용 유저 아이디
+
 7. S3_BUCKET_NAME
    - S3 Buckt Name
+
 8. S3_REGION_NAME
    - S3 스토리지 영역
+
 9. FIREBASE_BUCKET_ADDRESS
    - Google Firebase Storage 주소
+
 10. ML_SERVER_BASER_URL
-   - ML 서버 퍼블릭 IP:port
+      - ML 서버 퍼블릭 IP:port
+
 11. SERVICE_ACCOUNT_KEY
-   - FIREBASE Secret Key
+      - FIREBASE Secret Key
+
 12. EC2_HOST
-   - 서버 구현 EC2 인스턴스 주소
+      - 서버 구현 EC2 인스턴스 주소
+
 13. EC2_USERNAME
-   - EC2 계정 유저명
+      - EC2 계정 유저명
 
 ## Server 로컬 실행
 
@@ -87,9 +99,11 @@
 5. sudo docker-compose up-d
    - docker compose container 구현
 
-## API Architecture
+## Server Architecture
+<img width="800" alt="image" src="https://raw.githubusercontent.com/SincerityHun/Deep_Plant1_Final/main/images/Architecture.png">
 
 ## DB ERD
+<img width="800" alt="image" src="https://raw.githubusercontent.com/SincerityHun/Deep_Plant1_Final/main/images/DBERD.png">
 
 ## 서버 개발자
 
