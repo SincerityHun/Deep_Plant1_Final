@@ -74,6 +74,13 @@ jobs:
           echo "SSH_PEM_KEY: $SSH_PEM_KEY"
           echo "$SSH_PEM_KEY" >> $HOME/key.pem
           echo "IdentityFile $HOME/key.pem"
+           env:
+          SSH_USER: ${{secrets.USER}}
+          SSH_HOSTS: ${{secrets.HOST}}
+          SSH_PEM_KEY: ${{secrets.PEM_KEY}}
+
+      - name: Debug SSH Var
+        run: |
           chmod 400 $HOME/key.pem
           ssh -i $HOME/key.pem ${SSH_USER}@${SSH_HOSTS}
            env:
