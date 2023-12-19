@@ -6,7 +6,7 @@ services:
     container_name: admin_front
     build:
       context: ./
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     stdin_open: true

@@ -1,22 +1,22 @@
 FROM node:14
 
-# Set the working directory inside the container
+# container 내부에 working directory 설정
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# package.json과 package-lock.json파일 working directory에 복사 
 COPY package*.json ./
 
-# Install project dependencies
+# project dependencies 설치
 RUN npm install
 
-# Copy the entire project to the working directory
+# 전체 project working directory에 복사
 COPY . .
 
 # Build the React app for production
 RUN npm run build
 
-# Expose the port the app runs on
+# app이 실행될 port 노출
 EXPOSE 3000
 
-# Command to run the application
+# application 실행 명령어
 CMD ["npm", "start"]

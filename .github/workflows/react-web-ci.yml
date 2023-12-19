@@ -10,7 +10,6 @@ jobs:
 
     steps:
       # GitHub Actions는 해당 프로젝트를 만들어진 환경에 checkout하고 나서 실행한다.
-      # 마치 브랜치를 만들 때 checkout하는 것처럼 꼭 필요하다.
       - name: Checkout
         uses: actions/checkout@v3.5.2
 
@@ -33,14 +32,10 @@ jobs:
           # 아래 키값으로 cache가 돼있는지 확인한다.
           key: npm-packages-${{ hashFiles('**/package-lock.json') }}
 
-        # 위 step에서 node_modules에 대한 cache 검사를 했다.
         # 만약 모듈에 변한 게 있다면 `npm install`을 실행하고 아니면 해당 step을 건너뛰게 된다.
-        # if 키워드는 해당 스텝을 실행할지 말지를 결정할 수 있는 키워드이다.
         # 위 step에서 정했던 cache라는 id를 steps.cache로 가져올 수 있다.
         # cache라는 id 값을 가진 step에서는 cache-hit라는 output을 내뱉는다. 
-        # 그걸로 cache가 hit 됐는지 안 됐는지를 알 수 있다.
         # 그 값이 true가 아닐 때만 npm install을 한다.
-        # https://fe-developers.kakaoent.com/2022/220106-github-actions/
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -49,7 +44,6 @@ jobs:
 
 
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
-      # https://docs.docker.com/build/ci/github-actions/#step-three-define-the-workflow-steps
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
