@@ -60,12 +60,12 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       
-      # Create and start containers using Docker Compose
+      # Create and start containers using Docker 
       - name: Build and push with Docker Compose
         run: |
           cd web
           docker-compose build
-          docker-compose push
+          docker push psh0/dp:1
       
 
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
