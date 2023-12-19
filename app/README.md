@@ -102,8 +102,10 @@ A few ot the things you can do with DeepAging:
 
 - Follow the [Flutter Install Guide](https://docs.flutter.dev/get-started/install) for getting started building a project with flutter SDK.
 - Install [Android Studio](https://developer.android.com/studio?hl=ko) and Emulator yo want from Android Studio for rendering flutter project on the emulator.
+- After installing Android Studio, proceed to install the necessary plugins.
 - And set the environment variable if you want to use flutter globally.
+- After completing all installations and environment setup, use `flutter doctor` to verity the installation.
 - Clone or download the repo.
-- Open your emulator from Android Studio.
+- Open your working folder in Android Studio and launch the emulator.
 - `flutter pub get` to get all flutter dependencies
-- `flutter start` to start the flutter app
+- `flutter run` to start the flutter app
