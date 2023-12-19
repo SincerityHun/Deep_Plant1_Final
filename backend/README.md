@@ -105,6 +105,44 @@
 ## DB ERD
 <img width="800" alt="image" src="https://raw.githubusercontent.com/SincerityHun/Deep_Plant1_Final/main/images/DBERD.png">
 
+## Code Architecture 
+```
+backend
+├─ README.md 
+├─ docker-compose.yaml
+├─ flask                                              // Python Server
+│  ├─ .dockerignore
+│  ├─ Dockerfile                                      // Gunicorn Docker File
+│  ├─ api                                             // API Folder
+│  │  ├─ create_api.py
+│  │  ├─ delete_api.py
+│  │  ├─ get_api.py
+│  │  ├─ statistic_api.py
+│  │  ├─ update_api.py
+│  │  └─ user_api.py
+│  ├─ app.py                                          // Python Flask Worker Main File
+│  ├─ connection                                      // Connection with Firebase, AWS S3 Storage Folder
+│  │  ├─ firebase_connect.py
+│  │  └─ s3_connect.py
+│  ├─ db                                              // AWS DB Folder
+│  │  ├─ db_controller.py
+│  │  └─ db_model.py
+│  ├─ gunicorn.conf.py                                // Gunicorn Configuration File
+│  ├─ images                                          // Image Transfer buffer
+│  │  ├─ heatedmeat_sensory_evals
+│  │  ├─ heatedmeat_sonsory_evals
+│  │  ├─ qr_codes
+│  │  └─ sensory_evals
+│  ├─ log                                             // App Logging Folder (for error)
+│  │  └─ app.log
+│  ├─ requirements.txt                                // Requirement package to work
+│  └─ utils.py                                        // Util files for workers
+└─ nginx                                              // NGINX Reverse Proxy Server folder
+   ├─ Dockerfile
+   └─ nginx.conf
+
+```
+
 ## 서버 개발자
 
 | 정성훈 (Seonghun Jung) |
