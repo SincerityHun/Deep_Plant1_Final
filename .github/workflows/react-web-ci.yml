@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.2
         with:
-          node-version: lts/Hydrogen
+          node-version: '14'
 
       # 해당 프로젝트의 node_modules가 변했는지 안 변했는지를 이용해서
       # 모듈 변화가 있을 때만 npm install을 해줄 수도 있다.
