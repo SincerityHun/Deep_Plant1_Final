@@ -68,15 +68,7 @@ jobs:
           docker-compose build
           docker-compose push
       
-      - name: Build and deploy
-        run: |
-          echo "$SSH_PEM_KEY" >> $HOME/key.pem
-          chmod 600 $HOME/key.pem
-          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOSTS} '~/script.sh'
-        env:
-          SSH_USER: ${{secrets.USER}}
-          SSH_HOSTS: ${{secrets.HOST}}
-          SSH_PEM_KEY: ${{secrets.PEM_KEY}}
+
 
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
       - name: Pull and restart Docker Container
