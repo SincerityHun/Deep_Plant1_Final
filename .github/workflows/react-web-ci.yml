@@ -48,7 +48,6 @@ jobs:
           npm install --loglevel=verbose
 
 
-
       # Docker에 연결하여 이미지를 빌드하고 Hub에 푸시한다.
       # https://docs.docker.com/build/ci/github-actions/#step-three-define-the-workflow-steps
       - name: Login to Docker Hub
@@ -69,7 +68,6 @@ jobs:
           docker-compose push
       
 
-
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
       - name: Pull and restart Docker Container
         uses: appleboy/ssh-action@master
@@ -82,6 +80,6 @@ jobs:
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
             sudo docker stop dpweb || true 
             sudo docker rm dpweb || true 
-            sudo docker run -d --rm --name dpweb -p 3001:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
+            sudo docker run -d --rm --name dpweb -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/dp:1
 
 
