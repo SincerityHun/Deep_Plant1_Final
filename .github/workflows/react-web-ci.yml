@@ -76,12 +76,12 @@ jobs:
 
       - name: Build and deploy
         run: |
-          echo "$PEM_KEY" >> $HOME/key.pem
+          echo "$SSH_PEM_KEY" >> $HOME/key.pem
           chmod 400 $HOME/key.pem
-          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${USER}@${HOST} '~/script.sh'
+          ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} '~/script.sh'
         env:
           SSH_USER: ${{secrets.USER}}
-          SSH_KNOWN_HOSTS: ${{secrets.HOST}}
+          SSH_HOSTS: ${{secrets.HOST}}
           SSH_PEM_KEY: ${{secrets.PEM_KEY}}
 
       # 마지막으로 ssh로 인스턴스에 연결하여 이미지를 Pull하고 컨테이너를 재시작한다.
